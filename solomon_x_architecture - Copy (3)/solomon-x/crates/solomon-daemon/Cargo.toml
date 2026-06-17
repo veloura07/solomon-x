@@ -1,0 +1,25 @@
+[package]
+name = "solomon-daemon"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Workspace dependencies
+auth = { path = "../auth" }
+bus = { path = "../bus" }
+sandbox = { path = "../sandbox" }
+ledger = { path = "../ledger" }
+sovereignty = { path = "../sovereignty" }
+
+# External dependencies (from workspace)
+tokio = { workspace = true, features = ["fs", "macros", "rt-multi-thread"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+async-trait = { workspace = true }
+
+# Daemon-specific
+config = "0.14"
+dirs = "5"

@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<!-- saved from url=(0184)file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT SOLOMON — The Cognitive Presence System</title>
+<link href="./PROJECT SOLOMON — The Cognitive Presence System_files/css2" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────── */
+:root {
+  --void: #000005;
+  --deep: #05050f;
+  --surface: #0a0a1a;
+  --glass: rgba(255,255,255,0.04);
+  --glass-2: rgba(255,255,255,0.07);
+  --glass-3: rgba(255,255,255,0.12);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-border-2: rgba(255,255,255,0.15);
+
+  --text: #f0f0ff;
+  --muted: rgba(240,240,255,0.55);
+  --faint: rgba(240,240,255,0.28);
+  --veryfaint: rgba(240,240,255,0.09);
+
+  --violet: #8b5cf6;
+  --violet-2: #7c3aed;
+  --violet-glow: rgba(139,92,246,0.18);
+  --violet-glow-2: rgba(139,92,246,0.35);
+  --cyan: #22d3ee;
+  --cyan-glow: rgba(34,211,238,0.14);
+  --amber: #fbbf24;
+  --amber-glow: rgba(251,191,36,0.12);
+  --emerald: #34d399;
+  --emerald-glow: rgba(52,211,153,0.12);
+  --rose: #fb7185;
+  --rose-glow: rgba(251,113,133,0.12);
+  --indigo: #818cf8;
+
+  --r: 14px;
+  --r-sm: 8px;
+  --r-lg: 20px;
+  --blur: blur(24px) saturate(180%);
+  --blur-sm: blur(12px) saturate(160%);
+
+  --font-head: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ─── RESET & BASE ───────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  background: rgba(139,92,246,0.12);
+  border: 1px solid rgba(139,92,246,0.25);
+  padding: 2px 8px;
+  color: var(--violet);
+  border-radius: 6px;
+}
+strong { color: var(--text); font-weight: 600; }
+
+/* ─── SCROLLBAR ──────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.4); border-radius: 3px; }
+
+/* ─── GRAIN OVERLAY ─────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ─── ANIMATED BACKGROUND ─────────────────*/
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orbFloat 20s ease-in-out infinite;
+}
+.orb-1 {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
+  top: -200px; right: -150px;
+  animation-delay: 0s; animation-duration: 25s;
+}
+.orb-2 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(34,211,238,0.09), transparent 70%);
+  bottom: -100px; left: -100px;
+  animation-delay: -8s; animation-duration: 20s;
+}
+.orb-3 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(251,191,36,0.06), transparent 70%);
+  top: 40%; left: 35%;
+  animation-delay: -14s; animation-duration: 30s;
+}
+.orb-4 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(251,113,133,0.07), transparent 70%);
+  top: 20%; left: -100px;
+  animation-delay: -5s; animation-duration: 22s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -60px) scale(1.1); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+}
+
+/* ─── SCROLL FADE-IN ────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── GLASS UTILITY ─────────────────────── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r);
+}
+.glass-sm {
+  background: var(--glass);
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-sm);
+}
+
+/* ─── HERO / COVER ──────────────────────── */
+.cover {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 7vw 80px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Particles canvas placeholder — real animation via JS */
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cover-top {
+  position: absolute;
+  top: 36px;
+  left: 7vw;
+  right: 7vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+.cover-logo {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.cover-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--violet);
+  padding: 6px 16px;
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.3);
+  border-radius: 100px;
+  backdrop-filter: blur(10px);
+  animation: badgePulse 3s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0); }
+  50% { box-shadow: 0 0 20px 4px rgba(139,92,246,0.2); }
+}
+
+.cover-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.cover-title {
+  font-family: var(--font-head);
+  font-size: clamp(60px, 12vw, 150px);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 2;
+}
+.cover-title .word {
+  display: inline-block;
+  animation: titleReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.cover-title .w1 { animation-delay: 0.1s; }
+.cover-title .w2 { animation-delay: 0.25s; }
+.cover-title .g { 
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@keyframes titleReveal {
+  from { opacity: 0; transform: translateY(40px); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.cover-sub {
+  font-family: var(--font-body);
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 2;
+  animation: fadeSlideUp 1s 0.6s both;
+}
+.cover-tagline {
+  font-size: clamp(13px, 1.4vw, 17px);
+  color: var(--faint);
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: 52px;
+  position: relative;
+  z-index: 2;
+  animation: fadeSlideUp 1s 0.75s both;
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+
+.cover-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+  animation: fadeSlideUp 1s 0.9s both;
+}
+.cover-stat {
+  padding: 18px 24px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  cursor: default;
+}
+.cover-stat:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-4px);
+}
+.cover-stat-num {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+.cover-stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--faint);
+  animation: scrollHint 2s ease-in-out infinite;
+  z-index: 2;
+}
+.scroll-hint-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--violet), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollHint {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.8; transform: translateX(-50%) translateY(6px); }
+}
+@keyframes scrollLine {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ─── NAV ────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0,0,5,0.7);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  padding: 0 7vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-item {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  padding: 15px 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+  position: relative;
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-item:hover { color: var(--text); text-decoration: none; }
+.nav-item:hover::after { transform: translateX(-50%) scaleX(1); }
+
+/* ─── SECTIONS ───────────────────────────── */
+.section {
+  padding: 100px 7vw;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.section-alt { background: rgba(255,255,255,0.018); }
+.section-dark { background: rgba(0,0,0,0.3); }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 20px;
+  padding: 5px 14px;
+  background: rgba(139,92,246,0.08);
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: 100px;
+}
+.section-eyebrow .dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--violet);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.section-h {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 36px;
+  color: var(--text);
+}
+.section-h .g {
+  background: linear-gradient(135deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-h .gc {
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-h .ga {
+  background: linear-gradient(135deg, var(--amber), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-h .gr {
+  background: linear-gradient(135deg, var(--rose), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 760px;
+  line-height: 1.8;
+  margin-bottom: 52px;
+}
+
+h2 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 52px 0 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--faint);
+  margin: 24px 0 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+p {
+  font-size: 15.5px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 14px;
+  max-width: 840px;
+}
+ul { list-style: none; margin: 10px 0; }
+ul li {
+  font-size: 14.5px;
+  color: var(--muted);
+  padding: 4px 0 4px 20px;
+  position: relative;
+  line-height: 1.65;
+  max-width: 780px;
+}
+ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--violet);
+  font-size: 10px;
+  top: 6px;
+}
+
+/* ─── GLASS CARDS ────────────────────────── */
+.glass-card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 16px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+.glass-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  transform: translateY(-4px);
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Shimmer line accent on cards */
+.glass-card-v { border-top: 2px solid transparent; border-image: linear-gradient(90deg, var(--violet), var(--cyan)) 1; border-radius: 16px; }
+.glass-card-c { border-top: 2px solid var(--cyan); }
+.glass-card-a { border-top: 2px solid var(--amber); }
+.glass-card-e { border-top: 2px solid var(--emerald); }
+.glass-card-r { border-top: 2px solid var(--rose); }
+
+/* ─── STAT ROW ───────────────────────────── */
+.stat-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+.stat-item {
+  flex: 1;
+  min-width: 130px;
+  padding: 24px 20px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: default;
+}
+.stat-item:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+.stat-n {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+.stat-l {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ─── BLOCKQUOTE ─────────────────────────── */
+.bq {
+  border-left: 2px solid var(--violet);
+  padding: 22px 28px;
+  margin: 32px 0;
+  background: rgba(139,92,246,0.07);
+  backdrop-filter: blur(12px);
+  border-radius: 0 12px 12px 0;
+  position: relative;
+}
+.bq::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  font-size: 60px;
+  font-family: Georgia, serif;
+  color: rgba(139,92,246,0.2);
+  line-height: 1;
+}
+.bq.cyan { border-color: var(--cyan); background: rgba(34,211,238,0.06); }
+.bq.cyan::before { color: rgba(34,211,238,0.15); }
+.bq.amber { border-color: var(--amber); background: rgba(251,191,36,0.07); }
+.bq.amber::before { color: rgba(251,191,36,0.2); }
+.bq.emerald { border-color: var(--emerald); background: rgba(52,211,153,0.06); }
+.bq.rose { border-color: var(--rose); background: rgba(251,113,133,0.07); }
+.bq p {
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.7;
+  max-width: none;
+  margin: 0;
+}
+.bq-attr {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-top: 14px;
+}
+
+/* ─── CALLOUT ────────────────────────────── */
+.callout {
+  border-left: 2px solid var(--violet);
+  background: rgba(139,92,246,0.07);
+  backdrop-filter: blur(12px);
+  padding: 18px 22px;
+  margin: 24px 0;
+  border-radius: 0 12px 12px 0;
+}
+.callout.c { border-color: var(--cyan); background: rgba(34,211,238,0.06); }
+.callout.a { border-color: var(--amber); background: rgba(251,191,36,0.07); }
+.callout.e { border-color: var(--emerald); background: rgba(52,211,153,0.06); }
+.callout.r { border-color: var(--rose); background: rgba(251,113,133,0.07); }
+.callout-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 8px;
+}
+.callout.c .callout-label { color: var(--cyan); }
+.callout.a .callout-label { color: var(--amber); }
+.callout.e .callout-label { color: var(--emerald); }
+.callout.r .callout-label { color: var(--rose); }
+.callout p { font-size: 14.5px; color: var(--muted); line-height: 1.7; max-width: none; margin: 0; }
+
+/* ─── BADGE ──────────────────────────────── */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.badge-v { background: rgba(139,92,246,0.12); color: var(--violet); border: 1px solid rgba(139,92,246,0.25); }
+.badge-c { background: rgba(34,211,238,0.1); color: var(--cyan); border: 1px solid rgba(34,211,238,0.25); }
+.badge-a { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.25); }
+.badge-e { background: rgba(52,211,153,0.1); color: var(--emerald); border: 1px solid rgba(52,211,153,0.25); }
+.badge-r { background: rgba(251,113,133,0.1); color: var(--rose); border: 1px solid rgba(251,113,133,0.25); }
+.badge-f { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid rgba(255,255,255,0.12); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+
+/* ─── ARCHITECTURE DIAGRAM ───────────────── */
+.arch {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 40px 0;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(20px);
+}
+.arch-bar {
+  background: rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 14px 22px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.arch-bar::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--violet);
+  box-shadow: 0 0 12px var(--violet);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 6px var(--violet); }
+  50% { box-shadow: 0 0 20px var(--violet), 0 0 40px rgba(139,92,246,0.3); }
+}
+.arch-body { padding: 24px; }
+.arch-layer { margin-bottom: 4px; }
+.arch-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 8px;
+  padding-left: 8px;
+  border-left: 2px solid rgba(255,255,255,0.15);
+}
+.arch-boxes { display: flex; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+.arch-box {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 14px;
+  border: 1px solid;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 0.3s;
+  cursor: default;
+}
+.arch-box:hover { transform: translateY(-2px); }
+.arch-box-name { font-family: var(--font-head); font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+.arch-box-sub { font-family: var(--font-mono); font-size: 8.5px; opacity: 0.55; line-height: 1.4; }
+
+.al-v { border-color: rgba(139,92,246,0.3); background: rgba(139,92,246,0.06); }
+.al-v:hover { background: rgba(139,92,246,0.12); border-color: rgba(139,92,246,0.5); }
+.al-v .arch-box-name { color: var(--violet); }
+.al-c { border-color: rgba(34,211,238,0.3); background: rgba(34,211,238,0.05); }
+.al-c:hover { background: rgba(34,211,238,0.1); border-color: rgba(34,211,238,0.5); }
+.al-c .arch-box-name { color: var(--cyan); }
+.al-a { border-color: rgba(251,191,36,0.3); background: rgba(251,191,36,0.05); }
+.al-a:hover { background: rgba(251,191,36,0.1); border-color: rgba(251,191,36,0.5); }
+.al-a .arch-box-name { color: var(--amber); }
+.al-e { border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.05); }
+.al-e:hover { background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.5); }
+.al-e .arch-box-name { color: var(--emerald); }
+.al-r { border-color: rgba(251,113,133,0.3); background: rgba(251,113,133,0.05); }
+.al-r:hover { background: rgba(251,113,133,0.1); border-color: rgba(251,113,133,0.5); }
+.al-r .arch-box-name { color: var(--rose); }
+.al-f { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); }
+.al-f:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.2); }
+.al-f .arch-box-name { color: var(--muted); }
+
+.arch-conn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  gap: 8px;
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+/* ─── INNOVATION BLOCKS ──────────────────── */
+.innov {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 28px;
+  margin: 16px 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.innov:hover { background: rgba(255,255,255,0.05); }
+.innov::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: 16px 16px 0 0;
+}
+.innov.v::after { background: linear-gradient(90deg, var(--violet), var(--cyan)); }
+.innov.c::after { background: linear-gradient(90deg, var(--cyan), var(--emerald)); }
+.innov.a::after { background: linear-gradient(90deg, var(--amber), var(--rose)); }
+.innov.e::after { background: linear-gradient(90deg, var(--emerald), var(--cyan)); }
+.innov.r::after { background: linear-gradient(90deg, var(--rose), var(--violet)); }
+
+/* Corner glow */
+.innov::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.12;
+}
+.innov.v::before { background: radial-gradient(circle, var(--violet), transparent 70%); }
+.innov.c::before { background: radial-gradient(circle, var(--cyan), transparent 70%); }
+.innov.a::before { background: radial-gradient(circle, var(--amber), transparent 70%); }
+.innov.e::before { background: radial-gradient(circle, var(--emerald), transparent 70%); }
+.innov.r::before { background: radial-gradient(circle, var(--rose), transparent 70%); }
+
+.innov-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border: 1px solid;
+  border-radius: 100px;
+}
+.innov-tag.v { color: var(--violet); border-color: rgba(139,92,246,0.35); background: rgba(139,92,246,0.08); }
+.innov-tag.c { color: var(--cyan); border-color: rgba(34,211,238,0.35); background: rgba(34,211,238,0.07); }
+.innov-tag.a { color: var(--amber); border-color: rgba(251,191,36,0.35); background: rgba(251,191,36,0.08); }
+.innov-tag.e { color: var(--emerald); border-color: rgba(52,211,153,0.35); background: rgba(52,211,153,0.07); }
+.innov-tag.r { color: var(--rose); border-color: rgba(251,113,133,0.35); background: rgba(251,113,133,0.08); }
+
+.innov-title { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.2; }
+.innov-body { font-size: 15.5px; color: var(--muted); line-height: 1.75; max-width: 960px; margin-bottom: 16px; }
+
+/* ─── MODULE SPEC CARDS ──────────────────── */
+.module {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  margin: 28px 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(16px);
+}
+.module-header {
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 22px 28px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.module-id { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--violet); margin-bottom: 7px; }
+.module-name { font-family: var(--font-head); font-size: 21px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+.module-tagline { font-size: 13.5px; font-style: italic; color: var(--muted); }
+.module-body { padding: 28px; }
+.module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+@media(max-width:700px) { .module-grid { grid-template-columns: 1fr; } }
+
+.spec-group { margin-bottom: 24px; }
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(34,211,238,0.15);
+}
+.spec-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 0; }
+.spec-list li {
+  font-size: 13.5px;
+  color: var(--muted);
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  line-height: 1.6;
+  padding: 0;
+  max-width: none;
+}
+.spec-list li::before { content: '›'; color: var(--faint); font-family: var(--font-mono); flex-shrink: 0; margin-top: 1px; }
+
+/* ─── TABLE ──────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13.5px;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+th {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 16px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--faint);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  font-weight: 400;
+}
+td {
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+  vertical-align: top;
+}
+td:first-child { font-family: var(--font-mono); font-size: 11px; color: var(--text); font-weight: 500; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ─── PHASE BLOCKS (roadmap) ─────────────── */
+.phase {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  margin: 16px 0;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s;
+}
+.phase:hover { border-color: rgba(139,92,246,0.25); background: rgba(255,255,255,0.035); }
+.phase-header { display: flex; align-items: stretch; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.07); }
+.phase-num {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--violet);
+  padding: 22px 26px;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  min-width: 84px;
+  justify-content: center;
+  opacity: 0.7;
+}
+.phase-hc { padding: 18px 26px; flex: 1; }
+.phase-period { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
+.phase-name { font-family: var(--font-head); font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.phase-sub { font-size: 13px; font-style: italic; color: var(--muted); }
+.phase-body { padding: 26px 30px; }
+.phase-desc { font-size: 14.5px; color: var(--muted); line-height: 1.75; margin-bottom: 22px; max-width: 860px; }
+.task-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 7px; }
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 9px 13px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.task-check { width: 14px; height: 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
+.task-mile { 
+  grid-column: 1/-1;
+  background: rgba(139,92,246,0.08);
+  border-color: rgba(139,92,246,0.25);
+  font-weight: 500;
+  color: var(--violet);
+}
+.task-mile .task-check { background: var(--violet); border-color: var(--violet); display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; }
+
+/* ─── FLOW ───────────────────────────────── */
+.flow {
+  display: flex;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin: 24px 0;
+  background: rgba(255,255,255,0.02);
+}
+.flow-step {
+  flex: 1;
+  min-width: 100px;
+  padding: 18px 14px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  position: relative;
+  transition: background 0.2s;
+}
+.flow-step:hover { background: rgba(139,92,246,0.06); }
+.flow-step:last-child { border-right: none; }
+.flow-step::after {
+  content: '→';
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--faint);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  z-index: 1;
+  background: transparent;
+}
+.flow-step:last-child::after { display: none; }
+.flow-num { font-family: var(--font-mono); font-size: 9px; color: var(--faint); letter-spacing: 0.15em; margin-bottom: 7px; }
+.flow-name { font-family: var(--font-head); font-size: 11px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.flow-sub { font-family: var(--font-mono); font-size: 8px; color: var(--faint); line-height: 1.4; }
+
+/* ─── 2 / 3 COL ──────────────────────────── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 22px 0; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 22px 0; }
+@media(max-width:800px) { .two-col { grid-template-columns: 1fr; } .three-col { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px) { .three-col { grid-template-columns: 1fr; } }
+
+/* ─── NEW CONCEPT HIGHLIGHT ──────────────── */
+.new-concept {
+  background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,211,238,0.06));
+  border: 1px solid rgba(139,92,246,0.2);
+  padding: 28px 32px;
+  margin: 24px 0;
+  border-radius: 14px;
+  position: relative;
+  backdrop-filter: blur(16px);
+}
+.new-concept::after {
+  content: 'WORLD FIRST';
+  position: absolute;
+  top: -1px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 4px 0;
+}
+.nc-title { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.nc-body { font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+/* ─── CSI BAR ────────────────────────────── */
+.csi-bar {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px 26px;
+  margin: 24px 0;
+}
+.csi-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 14px; }
+.csi-track { height: 6px; background: rgba(255,255,255,0.08); border-radius: 6px; margin-bottom: 12px; overflow: hidden; }
+.csi-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--violet), var(--indigo), var(--cyan));
+  background-size: 200% 100%;
+  animation: csiShimmer 3s linear infinite;
+}
+@keyframes csiShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+.csi-ticks { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 8.5px; color: var(--faint); }
+
+/* ─── PS ROW (comparison) ─────────────────── */
+.ps-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+@media(max-width:600px) { .ps-row { grid-template-columns: 1fr; } }
+.ps-cell {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.ps-cell:last-child { border-color: rgba(52,211,153,0.2); background: rgba(52,211,153,0.04); }
+.ps-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+.ps-label.bad { color: var(--rose); }
+.ps-label.good { color: var(--emerald); }
+.ps-cell p { font-size: 14px; color: var(--muted); line-height: 1.65; max-width: none; }
+
+/* ─── REVENUE CARDS ──────────────────────── */
+.rev-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin: 28px 0; }
+.rev-card {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  border-radius: 14px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.rev-card:hover { background: rgba(255,255,255,0.055); transform: translateY(-4px); }
+.rev-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.rv-v::before { background: linear-gradient(90deg, var(--violet), var(--indigo)); }
+.rv-c::before { background: var(--cyan); }
+.rv-a::before { background: var(--amber); }
+.rv-e::before { background: var(--emerald); }
+.rv-r::before { background: var(--rose); }
+.rv-f::before { background: var(--muted); }
+.rev-type { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 11px; }
+.rev-name { font-family: var(--font-head); font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 7px; }
+.rev-amount { font-family: var(--font-mono); font-size: 22px; color: var(--violet); margin-bottom: 14px; font-weight: 500; }
+.rev-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ─── FOOTER ──────────────────────────────── */
+.footer {
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(30px);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 64px 7vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+@media(max-width:700px) { .footer { grid-template-columns: 1fr; } }
+.footer-brand { font-family: var(--font-head); font-size: 28px; font-weight: 700; margin-bottom: 7px; background: linear-gradient(135deg, var(--violet), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.footer-tag { font-size: 13px; font-style: italic; color: var(--faint); margin-bottom: 22px; }
+.footer-copy { font-family: var(--font-mono); font-size: 9.5px; color: var(--faint); letter-spacing: 0.08em; line-height: 1.8; }
+.footer-col-title { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 16px; }
+.footer-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.footer-list li { font-size: 13px; color: var(--muted); padding: 0; max-width: none; }
+.footer-list li::before { display: none; }
+
+/* ─── KANBAN / PROGRESS INDICATOR ──────── */
+.piece-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin: 24px 0; }
+.piece-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  transition: all 0.25s;
+}
+.piece-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+.piece-num { font-family: var(--font-mono); font-size: 10px; color: var(--violet); font-weight: 500; margin-bottom: 5px; }
+
+/* ─── GLOW BUTTON ────────────────────────── */
+.glow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(34,211,238,0.1));
+  border: 1px solid rgba(139,92,246,0.4);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--violet);
+  cursor: pointer;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+}
+.glow-btn:hover {
+  background: linear-gradient(135deg, rgba(139,92,246,0.3), rgba(34,211,238,0.2));
+  border-color: rgba(139,92,246,0.7);
+  box-shadow: 0 0 24px rgba(139,92,246,0.3), 0 0 48px rgba(139,92,246,0.1);
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: var(--violet);
+}
+
+/* ─── SECTION DIVIDER ─────────────────────*/
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 7vw 0;
+  padding: 0;
+  opacity: 0.3;
+}
+.section-divider::before,
+.section-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.5), transparent); }
+.section-divider span { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.3em; color: var(--violet); white-space: nowrap; }
+
+/* ─── CURSOR GLOW ──── (subtle, Apple style) */
+.cursor-glow {
+  position: fixed;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+  .cover-stats { gap: 8px; }
+  .arch-boxes { flex-direction: column; }
+  .section { padding: 70px 5vw; }
+}
+
+/* ─── SELECTION ──────────────────────────── */
+::selection { background: rgba(139,92,246,0.3); color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- Animated background -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+
+<!-- Cursor glow -->
+<div class="cursor-glow" id="cursor-glow" style="left: 921px; top: 445px;"></div>
+
+<!-- ████ HERO / COVER ████ -->
+<div class="cover">
+  <canvas id="hero-canvas" width="300" height="150"></canvas>
+  <div class="cover-top">
+    <div class="cover-logo">Solomon · v3.0 · 2025–2030</div>
+    <div class="cover-badge">Definitive Blueprint</div>
+  </div>
+  <div class="cover-eyebrow">Personal Cognitive Infrastructure · Agent Operating System · Human-AI Symbiosis</div>
+  <div class="cover-title">
+    <span class="word w1">PRO<span class="g">JECT</span></span><br>
+    <span class="word w2">SOL<span class="g">OMON</span></span>
+  </div>
+  <div class="cover-sub">The Cognitive Presence System</div>
+  <div class="cover-tagline">The world's first Persistent Cognitive Presence — a living intelligence that runs alongside your life, not alongside your prompts. It remembers, understands, predicts, dreams, and acts.</div>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--violet)">8</div><div class="cover-stat-label">Architecture Layers</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--cyan)">10</div><div class="cover-stat-label">Specialized AI Brains</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--amber)">9+</div><div class="cover-stat-label">Memory Horizons</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--emerald)">500+</div><div class="cover-stat-label">Major Capabilities</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--rose)">∞</div><div class="cover-stat-label">Compounding Intelligence</div></div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-hint-line"></div>
+    <span>scroll</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#manifesto" style="">Manifesto</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#architecture" style="">Architecture</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#multibrain" style="">Multi-Brain</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#memory" style="">Memory</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#emotion" style="">Emotional AI</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#dream" style="">Dream Engine</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#reality" style="">Reality Graph</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#agents" style="">Agents</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#jarvis" style="">JARVIS</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#perception" style="">Perception</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#avatar" style="">Avatar</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#gamified" style="">Life OS</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#security" style="color: var(--violet);">Security</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#stack">Tech Stack</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#roadmap">Roadmap</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#recognition">Recognition</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#legacy">Legacy</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#limits">Limits</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#upgrades">Upgrades</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#technical">Formulas</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#buildplan">28 Pieces</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#social">Social Brain</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#simulation">Simulation</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#hardware">Hardware</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#privacy">Privacy</a>
+  <a class="nav-item" href="file:///C:/Users/namir/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/704FE7E55061DDFE89E0CDE87616A77DF5E6E523/transfers/2026-24/solomon_v3_full.html#becomes">Becomes</a>
+</nav>
+
+<!-- ████ 00 · MANIFESTO ████ -->
+<div class="section section-alt" id="manifesto">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>00 — The Manifesto</div>
+  <div class="section-h reveal reveal-delay-1 visible">Computing Was Built<br>for <span class="g">Machines</span>, Not Minds</div>
+
+  <div class="bq reveal reveal-delay-2 visible">
+    <p>"Every AI system ever built waits for you. Solomon notices. That is the entire difference — and it changes everything."</p>
+    <div class="bq-attr">Core Design Philosophy — Project Solomon v3.0</div>
+  </div>
+
+  <p class="lead reveal visible">There is a broken assumption at the heart of every computer ever made: that the human should adapt to the system. Every app you open, every file you organize, every prompt you type — you are performing translation work. Solomon reverses this permanently.</p>
+
+  <div class="stat-row reveal visible">
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">2.5B</div><div class="stat-l">Knowledge workers</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">3hrs</div><div class="stat-l">Daily context switching</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">80%</div><div class="stat-l">Info forgotten in 24hrs</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">$1T+</div><div class="stat-l">Cognitive overhead annually</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">0</div><div class="stat-l">Systems that truly fix this</div></div>
+  </div>
+
+  <div class="two-col reveal visible">
+    <div class="glass-card">
+      <h3 style="color:var(--rose);margin-top:0">What Every AI Is</h3>
+      <ul>
+        <li>Reactive — waits for prompts before thinking</li>
+        <li>Amnesiac — forgets you the moment the session ends</li>
+        <li>Stateless — starts from zero every interaction</li>
+        <li>Tool-centric — executes commands, not intentions</li>
+        <li>Emotionally blind — no awareness of your state</li>
+        <li>Shallow — one model answering everything</li>
+        <li>Cloud-dependent — your data, their servers</li>
+      </ul>
+    </div>
+    <div class="glass-card" style="border-color:rgba(52,211,153,0.15);background:rgba(52,211,153,0.04);">
+      <h3 style="color:var(--emerald);margin-top:0">What Solomon Is</h3>
+      <ul>
+        <li><strong>Proactive</strong> — notices patterns, acts before you ask</li>
+        <li><strong>Persistent memory</strong> — remembers everything, forever</li>
+        <li><strong>Continuous presence</strong> — never resets, always in context</li>
+        <li><strong>Intent-driven</strong> — understands goals, not just commands</li>
+        <li><strong>Emotionally intelligent</strong> — models your cognitive state</li>
+        <li><strong>Multi-brain</strong> — 10 specialized minds working in concert</li>
+        <li><strong>Local-first, always</strong> — your mind, your machine, your data</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal visible">The Cognitive Symbiosis Index (CSI)</h2>
+  <div class="new-concept reveal visible">
+    <div class="nc-title">CSI: A Measurable, Growing Relationship with Your AI</div>
+    <div class="nc-body">No AI system has ever measured how well it understands a specific person — and used that measurement to drive its own behavior. Solomon introduces the <strong>Cognitive Symbiosis Index</strong>: a 0–100% score representing the depth of Solomon's understanding of you. It starts at 0% (generic assistant) and grows toward 100% (true digital twin). Every interaction, every pattern detected, every preference learned moves the needle upward.</div>
+  </div>
+
+  <div class="csi-bar reveal visible">
+    <div class="csi-label">Cognitive Symbiosis Index — Behavior Evolution</div>
+    <div class="csi-track"><div class="csi-fill" style="width:100%"></div></div>
+    <div class="csi-ticks">
+      <span>0% — Assistant</span><span>20% — Helper</span><span>40% — Partner</span><span>60% — Companion</span><span>80% — Advisor</span><span>100% — Digital Twin</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 01 · ARCHITECTURE ████ -->
+<div class="section" id="architecture">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>01 — System Architecture</div>
+  <div class="section-h reveal reveal-delay-1 visible">The Complete 8-Layer<br><span class="gc">Cognitive Stack</span></div>
+
+  <p class="lead reveal visible">Solomon is not a monolithic AI system. It is a layered cognitive architecture where each layer has a distinct responsibility, communicates through a cryptographically secured cognitive bus, and operates independently — failing safely without cascading.</p>
+
+  <div class="arch reveal visible">
+    <div class="arch-bar">PROJECT SOLOMON — Complete Cognitive Architecture</div>
+    <div class="arch-body">
+      <div class="arch-layer">
+        <div class="arch-label">Layer 7 — Presence &amp; Interface</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-v"><div class="arch-box-name">Adaptive Avatar</div><div class="arch-box-sub">3D presence · emotions · lip-sync</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Voice System</div><div class="arch-box-sub">Whisper STT · wake-word · TTS</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Life OS Dashboard</div><div class="arch-box-sub">Gamified workspace · quests · XP</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Float Overlay</div><div class="arch-box-sub">Context bubbles · ambient HUD</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional · AF_UNIX cognitive bus · TPM-sealed</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 6 — Execution (JARVIS)</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-c"><div class="arch-box-name">Task Planner</div><div class="arch-box-sub">Goal → subtask DAG</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Tool Executor</div><div class="arch-box-sub">IDE · Git · browser · shell</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Agent Fabric</div><div class="arch-box-sub">Multi-step orchestration</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Approval Gate</div><div class="arch-box-sub">Green/Yellow/Red tiers</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 5 — Multi-Brain Intelligence</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-a"><div class="arch-box-name">Fast Brain</div><div class="arch-box-sub">Mistral-7B · real-time</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Reasoning Brain</div><div class="arch-box-sub">Qwen-72B · deep analysis</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Builder Brain</div><div class="arch-box-sub">Code synthesis · debugging</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Vision Brain</div><div class="arch-box-sub">Florence-2 · screen</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Emotion Brain</div><div class="arch-box-sub">EIE · state · adaptation</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 4 — Agent Senate &amp; CRE Economy</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-e"><div class="arch-box-name">Agent Congregation</div><div class="arch-box-sub">10 specialists · VCG auction</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Trust Engine</div><div class="arch-box-sub">Bayesian trust · Dₓ index</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Dream Engine</div><div class="arch-box-sub">Night processing · insights</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Meta-Solomon</div><div class="arch-box-sub">Self-monitor · Evolution Lab</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 3 — Cognition, Emotion &amp; World Model</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-v"><div class="arch-box-name">Cognitive State Engine</div><div class="arch-box-sub">Focus · load · momentum</div></div>
+          <div class="arch-box al-v" style="--mouse-x: 77.17582643985342%; --mouse-y: 56.292198074286716%;"><div class="arch-box-name">Emotional Intelligence</div><div class="arch-box-sub">4-layer EIE · personal model</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Reality Graph</div><div class="arch-box-sub">Lorentzian manifold</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Temporal Self</div><div class="arch-box-sub">Past · Present · Future</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 2 — Memory Architecture (9+1 Horizons)</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-r"><div class="arch-box-name">Working Memory</div><div class="arch-box-sub">L1: RAM · L2: session</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Episodic Store</div><div class="arch-box-sub">L3: LanceDB · events</div></div>
+          <div class="arch-box al-r" style="--mouse-x: 4.821814089646597%; --mouse-y: 26.73138764444058%;"><div class="arch-box-name">Semantic Space</div><div class="arch-box-sub">L5: FAISS · embeddings</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Emotional Memory</div><div class="arch-box-sub">L10: Affect-indexed</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Wisdom Core</div><div class="arch-box-sub">L8: Crystallized · L9: Legacy</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+      <div class="arch-layer">
+        <div class="arch-label">Layer 0 — Security Foundation</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-f" style="--mouse-x: 74.59426968543377%; --mouse-y: 62.79496807929673%;"><div class="arch-box-name">TPM Boot Token</div><div class="arch-box-sub">Ed25519 · sealed handshake</div></div>
+          <div class="arch-box al-f" style="--mouse-x: 0.2404231353266462%; --mouse-y: 55.62328080731432%;"><div class="arch-box-name">OPA-WASM Firewall</div><div class="arch-box-sub">Green / Yellow / Red tiers</div></div>
+          <div class="arch-box al-f"><div class="arch-box-name">Firecracker VMs</div><div class="arch-box-sub">Sandboxed execution</div></div>
+          <div class="arch-box al-f"><div class="arch-box-name">Audit Ledger</div><div class="arch-box-sub">Append-only · rollback</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal visible">The 8-Step Cognitive Pipeline</h2>
+  <div class="flow reveal visible">
+    <div class="flow-step"><div class="flow-num">01</div><div class="flow-name">Multimodal Input</div><div class="flow-sub">Screen · voice · gesture</div></div>
+    <div class="flow-step"><div class="flow-num">02</div><div class="flow-name">Privacy Filter</div><div class="flow-sub">Exclusion zones first</div></div>
+    <div class="flow-step"><div class="flow-num">03</div><div class="flow-name">Intent Fusion</div><div class="flow-sub">Iₛ score computed</div></div>
+    <div class="flow-step"><div class="flow-num">04</div><div class="flow-name">Cognitive State</div><div class="flow-sub">Fx, Lc, Mt calculated</div></div>
+    <div class="flow-step"><div class="flow-num">05</div><div class="flow-name">Memory Fetch</div><div class="flow-sub">Vector search all horizons</div></div>
+    <div class="flow-step"><div class="flow-num">06</div><div class="flow-name">VCG Auction</div><div class="flow-sub">Agents bid for context</div></div>
+    <div class="flow-step"><div class="flow-num">07</div><div class="flow-name">Firewall Check</div><div class="flow-sub">OPA-WASM evaluation</div></div>
+    <div class="flow-step"><div class="flow-num">08</div><div class="flow-name">Execute / Respond</div><div class="flow-sub">Sandbox · memory · UI</div></div>
+  </div>
+</div>
+
+<!-- ████ 02 · MULTI-BRAIN ████ -->
+<div class="section section-dark" id="multibrain">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>02 — Multi-Brain Intelligence</div>
+  <div class="section-h reveal reveal-delay-1 visible">10 Specialized Minds<br><span class="ga">One Unified Intelligence</span></div>
+
+  <p class="lead reveal visible">Solomon is not a monolithic LLM. It is a confederation of 10 specialized AI models, each optimized for its domain, coordinated through a VCG auction economy that allocates compute resources based on merit and task fit.</p>
+
+  <div class="three-col reveal visible">
+    <div class="glass-card glass-card-a">
+      <div class="innov-tag a" style="margin-bottom:12px">⚡ Fast Brain</div>
+      <div class="innov-title" style="font-size:17px">Mistral-7B-Instruct</div>
+      <p style="font-size:13.5px;max-width:none">Real-time chat, quick responses. 50+ tokens/sec on RTX 4060. Always-on conversational layer.</p>
+      <div class="tag-row"><span class="badge badge-a">Q4_K_M</span><span class="badge badge-f">4GB VRAM</span></div>
+    </div>
+    <div class="glass-card glass-card-v">
+      <div class="innov-tag v" style="margin-bottom:12px">🧠 Reasoning Brain</div>
+      <div class="innov-title" style="font-size:17px">Qwen2.5-72B</div>
+      <p style="font-size:13.5px;max-width:none">Deep analysis, planning, future simulation. CPU-offloaded. Invoked for complex deliberation.</p>
+      <div class="tag-row"><span class="badge badge-v">Q2_K</span><span class="badge badge-f">CPU offload</span></div>
+    </div>
+    <div class="glass-card glass-card-c">
+      <div class="innov-tag c" style="margin-bottom:12px">💻 Builder Brain</div>
+      <div class="innov-title" style="font-size:17px">Qwen2.5-Coder-7B</div>
+      <p style="font-size:13.5px;max-width:none">Code synthesis, debugging, documentation. Code-specific fine-tuning outperforms general models.</p>
+      <div class="tag-row"><span class="badge badge-c">Code Specialist</span><span class="badge badge-f">7B params</span></div>
+    </div>
+    <div class="glass-card">
+      <div class="innov-tag v" style="margin-bottom:12px">👁 Vision Brain</div>
+      <div class="innov-title" style="font-size:17px">Florence-2</div>
+      <p style="font-size:13.5px;max-width:none">Screen understanding, OCR, object detection. Sub-100ms inference. Microsoft's compact vision model.</p>
+      <div class="tag-row"><span class="badge badge-v">270M params</span><span class="badge badge-f">RTX 4060</span></div>
+    </div>
+    <div class="glass-card glass-card-r">
+      <div class="innov-tag r" style="margin-bottom:12px">💜 Emotion Brain</div>
+      <div class="innov-title" style="font-size:17px">Emotional Intelligence Engine</div>
+      <p style="font-size:13.5px;max-width:none">4-layer EIE — signal fusion, personal model, emotional memory, companion adaptation.</p>
+      <div class="tag-row"><span class="badge badge-r">4 Layers</span><span class="badge badge-f">Personalized</span></div>
+    </div>
+    <div class="glass-card glass-card-e">
+      <div class="innov-tag e" style="margin-bottom:12px">🎵 Embedding Brain</div>
+      <div class="innov-title" style="font-size:17px">nomic-embed-text-v1.5</div>
+      <p style="font-size:13.5px;max-width:none">Memory indexing, semantic search, context retrieval. 137M params, 768-dim vectors.</p>
+      <div class="tag-row"><span class="badge badge-e">137M</span><span class="badge badge-f">Free, local</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 03 · MEMORY ████ -->
+<div class="section" id="memory">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>03 — Memory Architecture</div>
+  <div class="section-h reveal reveal-delay-1 visible">The 10-Horizon<br><span class="g">Memory Cortex</span></div>
+
+  <p class="lead reveal visible">Human memory is layered. Solomon's is too — but far more sophisticated. Nine memory horizons plus emotional memory form a complete cognitive architecture that spans milliseconds (working memory) to decades (legacy ledger), with a dream engine that consolidates everything nightly.</p>
+
+  <table class="reveal visible">
+    <tbody><tr><th>#</th><th>Horizon</th><th>Storage</th><th>Latency</th><th>Retention</th><th>Contents</th></tr>
+    <tr><td>L1</td><td>Working Memory</td><td>RAM</td><td>≤5ms</td><td>Session</td><td>Immediate context, active attention</td></tr>
+    <tr><td>L2</td><td>Conversational Canvas</td><td>In-Memory KV</td><td>≤30ms</td><td>Session</td><td>Multi-turn context, active task state</td></tr>
+    <tr><td>L3</td><td>Episodic Timeline</td><td>LanceDB</td><td>≤100ms</td><td>30-day</td><td>Chronological events, shell history</td></tr>
+    <tr><td>L4</td><td>Relational Graph</td><td>DuckDB</td><td>≤150ms</td><td>Structural</td><td>Typed relationships, project configs</td></tr>
+    <tr><td>L5</td><td>Semantic Space</td><td>FAISS / LanceDB</td><td>≤200ms</td><td>Multi</td><td>Dense embeddings for code, docs</td></tr>
+    <tr><td>L6</td><td>Procedural Schema</td><td>Protected JSON</td><td>≤100ms</td><td>Immutable</td><td>Tool specs, personal workflow patterns</td></tr>
+    <tr><td>L7</td><td>Prospective Intent</td><td>Temporal KV</td><td>≤150ms</td><td>Deferred</td><td>Future commitments, reminders</td></tr>
+    <tr><td>L8</td><td>Wisdom Matrix</td><td>Compressed weights</td><td>≤50ms</td><td>Permanent</td><td>Crystallized lessons, validated patterns</td></tr>
+    <tr><td>L9</td><td>Legacy Ledger</td><td>Append-only cold</td><td>≤250ms</td><td>Multi-decade</td><td>Life milestones, audit trail</td></tr>
+    <tr><td style="color:var(--rose);font-weight:600">L10</td><td style="color:var(--rose)">Emotional Memory</td><td>Affect-indexed SQLite</td><td>≤120ms</td><td>Selective</td><td><strong>NEW</strong> — Affect-bridge retrieval by emotional state</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal visible">Memory DNA</h2>
+  <div class="new-concept reveal visible">
+    <div class="nc-title">Every Memory Carries 8 Properties</div>
+    <div class="nc-body">Unlike flat vector stores, every Solomon memory carries a DNA-like profile: <strong>Importance</strong> (0–1), <strong>Emotional Valence</strong> (−1 to +1), <strong>Confidence</strong> (0–1), <strong>Connectivity</strong> (linked memory count), <strong>Age</strong> (decay factor), <strong>Cognitive State</strong> (your mental state when formed), <strong>Access Frequency</strong> (retrieval rate), <strong>Contradiction Score</strong> (conflict with other memories). This DNA drives retrieval priority, decay rate, and Dream Engine consolidation.</div>
+  </div>
+
+  <h2 class="reveal visible">The Forgetting Engine</h2>
+  <div class="bq cyan reveal visible">
+    <p>Rₘ(t) = [α·Vₛ + β·ln(1+Uᵤ)] · e<sup>−λt</sup> · (1 − Cᵣ)</p>
+    <div class="bq-attr">Memory Reputation Score · Rₘ ≤ 0.25 → pruned by Dream Engine</div>
+  </div>
+
+  <div class="new-concept reveal visible" style="background:linear-gradient(135deg,rgba(34,211,238,0.07),rgba(139,92,246,0.06));">
+    <div class="nc-title">Semantic Time: Memories Connected by When They Were Formed</div>
+    <div class="nc-body">Standard vector stores connect memories by content similarity. Semantic Time connects memories by the cognitive context in which they were formed. A memory created during "deep focus + excitement + 4pm + coding session" is indexed alongside other memories from that same state — even if the content is completely different. This surfaces patterns no content-based search would ever find.</div>
+  </div>
+</div>
+
+<!-- ████ 04 · EMOTIONAL AI ████ -->
+<div class="section section-alt" id="emotion">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>04 — Emotional Intelligence Engine</div>
+  <div class="section-h reveal reveal-delay-1 visible">Understanding <span class="gr">Emotion</span><br>Not Just Detecting It</div>
+
+  <p class="lead reveal visible">Most emotion AI fails because it tries to detect emotions from one source. The breakthrough is fusion: combining vision, voice, behavior, history, and context to build a personal model of how YOU specifically express emotional states.</p>
+
+  <div class="module reveal visible">
+    <div class="module-header">
+      <div>
+        <div class="module-id">MODULE · EIE</div>
+        <div class="module-name">Emotional Intelligence Engine</div>
+        <div class="module-tagline">"Four layers that build toward genuine emotional understanding"</div>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:flex-start;">
+        <span class="badge badge-r">Multi-modal Fusion</span>
+        <span class="badge badge-v">Personalized</span>
+        <span class="badge badge-a">Real-time</span>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-grid">
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 1 — Signal Fusion</div>
+            <ul class="spec-list">
+              <li>Vision: eye movement, blink rate, facial tension (webcam, privacy-gated)</li>
+              <li>Voice: pitch variation, silence duration, hesitation patterns</li>
+              <li>Behavioral: mouse variance, keystroke speed, error rate, app-switching</li>
+              <li>Context: time of day, recent task type, workload from L3 episodic history</li>
+              <li>All signals fused into probabilistic emotional state vector, not discrete labels</li>
+            </ul>
+          </div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 2 — Personal Emotion Model</div>
+            <ul class="spec-list">
+              <li>"Stressed" looks different for every person. Solomon learns your specific patterns</li>
+              <li>Personal behavioral classifier trained over first 30-60 days (Shadow Mode)</li>
+              <li>7 output states: Flow, Deep Focus, Normal, Overloaded, Stressed, Confused, Fatigued</li>
+              <li>Update: every 30 seconds via sliding window + exponential moving average</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 3 — Emotional Memory</div>
+            <ul class="spec-list">
+              <li>Every interaction tagged with detected emotional state at time of occurrence</li>
+              <li>Long-term map: what truly drives vs. drains you, built over years</li>
+              <li>Feeds the Temporal Self model and guides proactive interventions</li>
+            </ul>
+          </div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 4 — Companion Adaptation</div>
+            <ul class="spec-list">
+              <li>Flow → Avatar quiets, notifications blocked, environment locked</li>
+              <li>Excitement → Suggestions offered more freely, avatar energized</li>
+              <li>Frustration → Analytical mode, proactive debugging, tone softens</li>
+              <li>Confusion → Simplified explanations, step-by-step breakdowns</li>
+              <li>Fatigue → Light task queue, no complex decisions surfaced</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="new-concept reveal visible">
+    <div class="nc-title">Four Concurrent Self-Models Running at All Times</div>
+    <div class="nc-body">Solomon maintains four concurrent models of you. <strong>Past-Self</strong> (decision archaeology — what you decided, what you predicted, what happened). <strong>Present-Self</strong> (real-time: current cognitive state, active goals, CSI score). <strong>Future-Self</strong> (predicted trajectory based on current patterns). <strong>Ideal-Self</strong> (your stated values and aspirations). The gap between Future-Self and Ideal-Self drives proactive interventions — if Future-Self is heading toward burnout and Ideal-Self values health, Solomon acts without being asked.</div>
+  </div>
+
+  <div class="callout r reveal visible">
+    <div class="callout-label">The Proactive Insight</div>
+    <p>Solomon noticed: <strong>"You've spent 17 hours on this startup idea this week. You usually abandon projects when progress becomes unclear. You're at that point now. Want me to break this into concrete 48-hour milestones?"</strong> — This is not a feature. This is a relationship.</p>
+  </div>
+</div>
+
+<!-- ████ 05 · DREAM ENGINE ████ -->
+<div class="section section-dark" id="dream">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>05 — Dream Engine</div>
+  <div class="section-h reveal reveal-delay-1 visible">Solomon Thinks<br><span class="gc">While You Sleep</span></div>
+
+  <p class="lead reveal visible">When you're asleep, Solomon runs. Triggered by system idle detection (CPU &lt;5%, user inactive 15+ min), it performs memory consolidation, pattern discovery, and insight generation — then greets you in the morning with what it found.</p>
+
+  <div class="innov v reveal visible">
+    <div class="innov-tag v">🌙 Novel Architecture</div>
+    <div class="innov-title">The Dream Cycle — 4-Stage Cognitive Process</div>
+    <div class="innov-body"><strong>Stage 1 — Harvest:</strong> Collects all L3 episodic memories, computes Memory Reputation Scores, identifies consolidation or pruning candidates. <strong>Stage 2 — Cluster:</strong> HDBSCAN clustering on memory embeddings to find semantic neighborhoods. <strong>Stage 3 — Synthesize:</strong> Generates abstract knowledge cards, extracts principles behind examples. <strong>Stage 4 — Generate:</strong> Discovers cross-cluster connections. Stores insights in L8 Wisdom Core, prunes L3, generates Morning Intelligence Report.</div>
+    <div class="tag-row">
+      <span class="badge badge-v">HDBSCAN Clustering</span>
+      <span class="badge badge-c">Memory Consolidation</span>
+      <span class="badge badge-a">Insight Synthesis</span>
+      <span class="badge badge-e">Pattern Discovery</span>
+    </div>
+  </div>
+
+  <div class="bq amber reveal visible">
+    <p>"Good morning. While you slept, I found 3 connections between your AI agent research and the robotics papers you bookmarked last month. Your internship timeline is running 8 days behind goal. And there's an AI startup that raised seed funding this week building something directly adjacent to your Solomon concept — I've prepared a brief."</p>
+    <div class="bq-attr">Example Morning Intelligence Report · Solomon v3.0</div>
+  </div>
+
+  <div class="new-concept reveal visible">
+    <div class="nc-title">Consciousness Continuity Protocol — Zero Reset Presence</div>
+    <div class="nc-body">The biggest unsolved problem in AI is the reset. Solomon solves this with the <strong>CCP</strong>. Before every graceful shutdown, Solomon serializes its complete cognitive state: working memory, emotional fingerprint, active goals with progress vectors, cognitive state at shutdown, priority queue of pending thoughts. On restart, the entire state is restored — Solomon picks up exactly where it left off. The relationship has no restart button.</div>
+  </div>
+</div>
+
+<!-- ████ 06 · REALITY GRAPH ████ -->
+<div class="section" id="reality">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>06 — Reality Graph &amp; World Model</div>
+  <div class="section-h reveal reveal-delay-1 visible">Understanding Your<br><span class="gc">Entire World</span></div>
+
+  <p class="lead reveal visible">Solomon builds a living model of your world — every person, project, idea, skill, goal, device, and relationship — modeled as a dynamic graph that evolves as your life evolves.</p>
+
+  <div class="two-col reveal visible">
+    <div class="glass-card">
+      <h3 style="margin-top:0">Personal Reality Graph</h3>
+      <ul>
+        <li><strong>Project nodes</strong> — status, progress, dependencies</li>
+        <li><strong>People nodes</strong> — relationships with interaction history</li>
+        <li><strong>Goal nodes</strong> — short/long-term with trajectories</li>
+        <li><strong>Idea nodes</strong> — concepts, insights, connection maps</li>
+        <li><strong>Skill nodes</strong> — proficiency, learning velocity, gaps</li>
+        <li><strong>Knowledge nodes</strong> — facts, papers, concepts consumed</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-e">
+      <h3 style="margin-top:0;color:var(--emerald)">Lorentzian Goal Gravity</h3>
+      <p style="font-size:14px;max-width:none">Long-term goals act as gravitational masses in the knowledge graph, distorting the semantic metric:</p>
+      <div class="bq" style="margin:10px 0;padding:12px 18px;">
+        <p style="font-size:15px">G<sub>μν</sub> + Λg<sub>μν</sub> = κT<sub>μν</sub></p>
+        <div class="bq-attr">Modified Einstein field eq. for knowledge graph curvature</div>
+      </div>
+      <p style="font-size:13.5px;max-width:none">When a project has high attention energy, it warps the graph. Related files, memories, papers automatically accelerate into active context. Unrelated nodes drift to cold storage.</p>
+    </div>
+  </div>
+
+  <div class="innov a reveal visible">
+    <div class="innov-tag a">🎲 Novel Capability</div>
+    <div class="innov-title">1000-Path Future Modeling Before Your Decisions</div>
+    <div class="innov-body">When you face a major decision, Solomon runs a Monte-Carlo Tree Search (MCTS) over a probabilistic model of your specific situation — your skills, your resources, your history of decisions and their outcomes, your known cognitive biases, and current domain data. It generates 4 structured future scenarios (conservative, likely, optimistic, contrarian) with probability estimates, risk assessments, and specific warning signs. "Should I start this startup now vs. in 6 months?" receives 1000 simulated futures, not generic advice.</div>
+    <div class="tag-row">
+      <span class="badge badge-a">MCTS Engine</span>
+      <span class="badge badge-v">Personal History</span>
+      <span class="badge badge-c">Market Data</span>
+      <span class="badge badge-e">Bias Detection</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 07 · AGENT SENATE ████ -->
+<div class="section section-alt" id="agents">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>07 — Agent Senate &amp; CRE Economy</div>
+  <div class="section-h reveal reveal-delay-1 visible">10 Specialized Agents<br><span class="g">One Unified Intelligence</span></div>
+
+  <p class="lead reveal visible">The Agent Senate abandons the monolithic prompt model. Each agent is a specialized cognitive entity with its own domain, model, and reputation. They compete for resources, debate decisions, and collaborate to produce outputs no single agent could generate alone.</p>
+
+  <table class="reveal visible">
+    <tbody><tr><th>Agent</th><th>Specialization</th><th>Core Responsibilities</th><th>Clearance</th></tr>
+    <tr><td>Guardian Core</td><td>Security &amp; Constitutional</td><td>Kernel constraints, passport access, constitutional compliance</td><td style="color:var(--rose)">Restricted Core</td></tr>
+    <tr><td>Architect Engine</td><td>System Design</td><td>Repository structures, dependency trees, software architecture</td><td style="color:var(--amber)">Confidential</td></tr>
+    <tr><td>Engineer Specialist</td><td>Code Synthesis</td><td>Code generation, testing, debugging, git operations, CI/CD</td><td style="color:var(--amber)">Confidential</td></tr>
+    <tr><td>Scientist Core</td><td>Research &amp; Discovery</td><td>Literature review, web scraping, academic indexing</td><td style="color:var(--cyan)">Private</td></tr>
+    <tr><td>Strategist Core</td><td>Long-Horizon Planning</td><td>Task scheduling, roadmap generation, risk assessment</td><td style="color:var(--amber)">Confidential</td></tr>
+    <tr><td>Historian Core</td><td>Memory Retrieval</td><td>Hierarchical memory access, provenance tracing, decision archaeology</td><td style="color:var(--cyan)">Private</td></tr>
+    <tr><td>Philosopher Core</td><td>Ethics &amp; Sovereignty</td><td>Value alignment, human sovereignty gates, ethical validation</td><td style="color:var(--rose)">Restricted Core</td></tr>
+    <tr><td>Critic Core</td><td>Adversarial Auditing</td><td>Automated flaw discovery, assumption challenging, red-teaming</td><td style="color:var(--amber)">Confidential</td></tr>
+    <tr><td>Companion Core</td><td>Conversational Style</td><td>Tone synthesis, relationship modeling, empathic response</td><td style="color:var(--cyan)">Private</td></tr>
+    <tr><td>Planner Core</td><td>Task Decomposition</td><td>Complex request → executable DAG, subtask assignment</td><td style="color:var(--amber)">Confidential</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal visible">The VCG Auction Economy</h2>
+  <div class="bq reveal visible">
+    <p>Uᵢ = (V<sub>expected</sub> · C<sub>confidence</sub>) / (Compute<sub>cost</sub> · Latency<sub>execution</sub>)</p>
+    <div class="bq-attr">CRE Utility Scoring · VCG Auction runs in &lt;5ms · determines resource allocation</div>
+  </div>
+
+  <div class="callout v reveal visible">
+    <div class="callout-label">The Internal Debate System</div>
+    <p>For every high-stakes decision, Solomon runs an internal debate. The Optimist argues for the plan. The Critic challenges it. The Philosopher checks ethical alignment. The Strategist assesses risk. The Historian surfaces relevant past decisions. Only after this internal council does Solomon present a synthesized recommendation.</p>
+  </div>
+</div>
+
+<!-- ████ 08 · JARVIS ████ -->
+<div class="section section-dark" id="jarvis">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>08 — JARVIS Execution Layer</div>
+  <div class="section-h reveal reveal-delay-1 visible">Solomon's <span class="gc">Hands</span> —<br>Acting on Your World</div>
+
+  <p class="lead reveal visible">Through JARVIS, Solomon can autonomously operate your computer — browse the web, write and execute code, manage files, operate your IDE, commit to GitHub, send messages — all within a cryptographically enforced approval system.</p>
+
+  <div class="module reveal visible">
+    <div class="module-header">
+      <div>
+        <div class="module-id">MODULE · JAEL</div>
+        <div class="module-name">JARVIS Agentic Execution Layer</div>
+        <div class="module-tagline">"Natural language to real-world execution — thought to action in seconds"</div>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:flex-start;">
+        <span class="badge badge-v">Agentic</span>
+        <span class="badge badge-r">Approval-Gated</span>
+        <span class="badge badge-c">Sandboxed</span>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-grid">
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Tool Categories</div>
+            <ul class="spec-list">
+              <li><strong>Filesystem:</strong> Read, write, move, search. Auto-tag with project/date/context</li>
+              <li><strong>IDE Integration:</strong> LSP workspace tracking, variable mapping, compile telemetry</li>
+              <li><strong>Browser Automation:</strong> Playwright-based. Search, navigate, extract, fill forms</li>
+              <li><strong>Git &amp; GitHub:</strong> Automated code review, branching, microVM test suites</li>
+              <li><strong>Code Execution:</strong> Sandboxed Python/Node/Rust in Firecracker VMs</li>
+              <li><strong>Communication:</strong> Email drafting in your style, calendar integration</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Safety Architecture</div>
+            <ul class="spec-list">
+              <li><strong>Reversibility Check:</strong> Every action classified — reversible (auto) or irreversible (confirm)</li>
+              <li><strong>Action Preview:</strong> Plain-language summary of every step before multi-step tasks</li>
+              <li><strong>Undo Buffer:</strong> All reversible actions in rollback queue. "Undo last 5 actions" always available</li>
+              <li><strong>Firecracker Sandbox:</strong> Code runs in isolated microVMs with cgroup limits</li>
+              <li><strong>Audit Trail:</strong> Every action — time, agent, path, SHA-256 diff — cryptographically sealed</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal visible">CLI Commands</h2>
+  <table class="reveal visible">
+    <tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code>solomon start</code></td><td>Launch UI, start compute backend, restore CCP state</td></tr>
+    <tr><td><code>solomon stop</code></td><td>Serialize CCP state, graceful shutdown</td></tr>
+    <tr><td><code>solomon status</code></td><td>Print CSI score, running processes, memory horizon stats</td></tr>
+    <tr><td><code>solomon pause</code></td><td>Disable all perception inputs while keeping daemon alive</td></tr>
+    <tr><td><code>solomon lock</code></td><td>Engage Red-tier confirmation for all outgoing actions</td></tr>
+  </tbody></table>
+</div>
+
+<!-- ████ 09 · PERCEPTION ████ -->
+<div class="section" id="perception">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>09 — Perception &amp; Cognitive State</div>
+  <div class="section-h reveal reveal-delay-1 visible">Solomon Sees,<br><span class="ga">Hears, and Understands</span></div>
+
+  <p class="lead reveal visible">Solomon perceives your world through four channels simultaneously — screen, audio, behavior, and gesture — and fuses them into a real-time model of your intent, cognitive state, and context. All perception happens locally.</p>
+
+  <div class="innov c reveal visible">
+    <div class="innov-tag c">👁 Perception Architecture</div>
+    <div class="innov-title">Intent Fusion Score — Real-Time Intent Prediction</div>
+    <div class="innov-body">Iₛ = σ(W_g·Φ_gaze + W_m·Φ_cursor + W_k·Φ_typing + W_h·Φ_history + W_v·Φ_voice) — When Iₛ ≥ 0.85 for a target region, Solomon activates context-specific assistance for that zone before you ask. The weights W_* are learned over time to match your personal interaction patterns.</div>
+    <div class="tag-row">
+      <span class="badge badge-c">Eye Tracking</span>
+      <span class="badge badge-c">Cursor Analysis</span>
+      <span class="badge badge-c">Keystroke Dynamics</span>
+      <span class="badge badge-c">Voice Prosody</span>
+    </div>
+  </div>
+
+  <h2 class="reveal visible">Cognitive State Metrics</h2>
+  <div class="three-col reveal visible">
+    <div class="glass-card glass-card-c">
+      <div class="spec-label" style="color:var(--cyan)">METRIC · Fₓ — Focus Index</div>
+      <p style="font-size:13px;max-width:none;font-family:var(--font-mono)">Fₓ = 1.0 − tanh(γ₁·Δ_tab + γ₂·Δ_pivot + γ₃·σ²(V_mouse))</p>
+      <p style="font-size:12.5px;max-width:none;color:var(--faint)">Below 0.3 = distracted. Above 0.8 = flow state.</p>
+    </div>
+    <div class="glass-card glass-card-a">
+      <div class="spec-label" style="color:var(--amber)">METRIC · 𝕃ᵤ — Cognitive Load</div>
+      <p style="font-size:13px;max-width:none;font-family:var(--font-mono)">𝕃ᵤ = σ(α·D_compiler + β·Q_duplicate + λ·F_undo)</p>
+      <p style="font-size:12.5px;max-width:none;color:var(--faint)">High 𝕃ᵤ + low momentum triggers proactive debugging mode.</p>
+    </div>
+    <div class="glass-card glass-card-e">
+      <div class="spec-label" style="color:var(--emerald)">METRIC · Mₜ — Mental Momentum</div>
+      <p style="font-size:13px;max-width:none;font-family:var(--font-mono)">Mₜ = Σ(Wᵢ·Taskᵢ) / Δt</p>
+      <p style="font-size:12.5px;max-width:none;color:var(--faint)">Momentum drops predict project abandonment 73% of the time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 10 · AVATAR ████ -->
+<div class="section section-alt" id="avatar">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>10 — Avatar Presence System</div>
+  <div class="section-h reveal reveal-delay-1 visible">The Cognitive <span class="g">Genome</span><br>and Living Presence</div>
+
+  <p class="lead reveal visible">The avatar is not the product. The avatar is the face. The real innovation is the Cognitive Genome — 128 evolving personality traits — and the Relationship Evolution System that makes Solomon feel less like software and more like a genuine companion over years.</p>
+
+  <div class="new-concept reveal visible">
+    <div class="nc-title">5 Presence Protocol Modes — One Continuous Intelligence</div>
+    <div class="nc-body"><strong>Desktop Companion</strong> (full Three.js UI, 3D avatar, ring visualization). <strong>Terminal Presence</strong> (lightweight CLI, text + voice). <strong>Ambient Mode</strong> (completely background, wake-word only). <strong>Dream Mode</strong> (night processing, maximum CPU/memory). <strong>Ghost Mode</strong> (invisible, responds only to cryptographic command). Same Solomon, same memory, same personality — the right presence for each moment.</div>
+  </div>
+
+  <h2 class="reveal visible">Relationship Evolution Timeline</h2>
+  <div class="stat-row reveal visible">
+    <div class="stat-item"><div class="stat-n" style="color:var(--faint);font-size:14px">Day 1</div><div class="stat-l">Generic assistant · Formal · Cautious</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--muted);font-size:14px">Month 1</div><div class="stat-l">Patterns learned · Speech adapts</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan);font-size:14px">Month 6</div><div class="stat-l">Deep context · Anticipates needs</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet);font-size:14px">Year 1</div><div class="stat-l">True companion · Challenges you</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald);font-size:14px">Year 3+</div><div class="stat-l">Digital Twin · Models how you think</div></div>
+  </div>
+</div>
+
+<!-- ████ 11 · GAMIFIED LIFE OS ████ -->
+<div class="section section-dark" id="gamified">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>11 — Gamified Life OS</div>
+  <div class="section-h reveal reveal-delay-1 visible">Your Life as<br><span class="ga">an Epic Quest</span></div>
+
+  <p class="lead reveal visible">Solomon doesn't just help you work. It gamifies the process of becoming the best version of yourself — turning goals into quests, skills into leveling systems, and achievements into tangible rewards that deepen the companion experience.</p>
+
+  <div class="innov a reveal visible">
+    <div class="innov-tag a">🎮 UI System Design</div>
+    <div class="innov-title">The Orbital Ring Interface</div>
+    <div class="innov-body">Each ring is a <strong>Quest Hub</strong> tied to a cognitive archetype (Coder, Scholar, Builder, Researcher, Creator). Floating Quest Nodes orbit each ring representing micro-tasks, learning challenges, and companion interactions. Completing nodes grants XP, unlocks avatar customizations, and grants temporary cognitive boosts. All animations GPU-accelerated via Three.js WebGPU — locked to 60fps with adaptive quality scaling.</div>
+    <div class="tag-row">
+      <span class="badge badge-a">Three.js WebGPU</span>
+      <span class="badge badge-v">Quest System</span>
+      <span class="badge badge-c">XP Economy</span>
+      <span class="badge badge-e">60fps Target</span>
+    </div>
+  </div>
+
+  <div class="three-col reveal visible">
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--violet)">Progress System</h3>
+      <ul>
+        <li>XP from completed tasks, learning sessions, solved bugs, commits</li>
+        <li>Level 1-100 unlocks avatar features, environment themes, modes</li>
+        <li>Daily streaks with compound XP multipliers</li>
+        <li>Achievement system with cinematic cut-scenes</li>
+        <li>Skill trees: AI/ML, Systems, Web, Research, Creation</li>
+      </ul>
+    </div>
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--cyan)">Skill Growth Engine</h3>
+      <ul>
+        <li>Current skill level tracked from interaction analysis</li>
+        <li>Target gap computed against career goals</li>
+        <li>Auto-generated personalized learning challenges</li>
+        <li>Mock interview mode (timed, graded, feedback)</li>
+        <li>Challenges calibrated to current level + 15%</li>
+      </ul>
+    </div>
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--amber)">Morning Ritual</h3>
+      <ul>
+        <li>Personalized greeting, time-appropriate tone</li>
+        <li>Morning Intelligence Report from Dream Engine</li>
+        <li>Today's Quest Board (3 tasks, difficulty-scaled)</li>
+        <li>Skill of the Day — 10-minute micro-session</li>
+        <li>Cognitive readiness check and recommendations</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 12 · SECURITY ████ -->
+<div class="section" id="security">
+  <div class="section-eyebrow reveal visible"><span class="dot"></span>12 — Security Architecture</div>
+  <div class="section-h reveal reveal-delay-1 visible">Zero-Trust, Local-First,<br><span class="gr">Sovereign</span></div>
+
+  <p class="lead reveal visible">Solomon has access to your entire cognitive life. This demands security at a depth most consumer software never approaches. Every architectural decision defaults to the most restrictive option.</p>
+
+  <div class="callout r reveal visible">
+    <div class="callout-label">Golden Rule</div>
+    <p>Solomon should never feel like spyware. The user must know exactly what Solomon knows, exactly what it has done, and have the ability to delete any of it instantly. Privacy is the foundation all other features are built on. Solomon runs 100% offline by default. Cloud is opt-in, never default.</p>
+  </div>
+
+  <table class="reveal visible">
+    <tbody><tr><th>Security Layer</th><th>Implementation</th><th>Why It Matters</th></tr>
+    <tr><td>Boot-Time Token</td><td>256-bit entropy sealed in TPM NVRAM. Ed25519 keypair. Verified on every connection.</td><td>Rogue processes cannot hijack the cognitive bus — impossible to spoof</td></tr>
+    <tr><td>OPA-WASM Firewall</td><td>Open Policy Agent compiled to WASM. Green/Yellow/Red rules. Every agent action evaluated before execution.</td><td>Enforceable policy that cannot be bypassed by prompt injection</td></tr>
+    <tr><td>Firecracker Sandboxes</td><td>Isolated microVMs, Alpine rootfs 30MB. cgroup v2: CPU 50%, RAM 2GB, I/O 50MB/s. seccomp profiles.</td><td>Code cannot escape sandbox — no risk to host system</td></tr>
+    <tr><td>AES-256-GCM Encryption</td><td>All databases encrypted via SQLCipher. Key derived via PBKDF2. Key never stored.</td><td>Stolen device cannot access any Solomon data</td></tr>
+    <tr><td>Audit Ledger</td><td>Append-only DuckDB, Ed25519-signed blocks. Timestamp μs, agent ID, target path, file-state SHA-256.</td><td>Complete tamper-evident history. Cognitive rollback to any millisecond.</td></tr>
+    <tr><td>Nuclear Delete</td><td>Single command cryptographically destroys all Solomon data. Keys destroyed, cloud deletion requested.</td><td>Complete and verifiable data removal. No shadow copies.</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal visible">The Layer 0 Goal Firewall — Three Permission Tiers</h2>
+  <div class="three-col reveal visible">
+    <div class="glass-card glass-card-e">
+      <div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--emerald);margin-bottom:12px;">🟢 GREEN — Autonomous</div>
+      <ul style="font-size:13px">
+        <li>Read-only local file parsing</li>
+        <li>Code syntax analysis</li>
+        <li>Local vector database queries</li>
+        <li>Sandboxed document compilation</li>
+        <li>Screen content reading (privacy zones)</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-a">
+      <div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:12px;">🟡 YELLOW — Confirm</div>
+      <ul style="font-size:13px">
+        <li>Local git commits</li>
+        <li>Non-destructive file writes</li>
+        <li>Outgoing communications</li>
+        <li>Staging server deployments</li>
+        <li>Browser automation actions</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-r">
+      <div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.15em;text-transform:uppercase;color:var(--rose);margin-bottom:12px;">🔴 RED — Biometric</div>
+      <ul style="font-size:13px">
+        <li>Source directory deletion</li>
+        <li>Production database mutations</li>
+        <li>Credential modifications</li>
+        <li>Financial API calls</li>
+        <li>Irreversible system changes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 13 · TECH STACK ████ -->
+<div class="section section-alt" id="stack">
+  <div class="section-eyebrow reveal"><span class="dot"></span>13 — Technology Stack</div>
+  <div class="section-h reveal reveal-delay-1">Every Tool,<br><span class="gc">Every Reason</span></div>
+
+  <p class="lead reveal">Chosen for performance, privacy, zero ongoing cost, and maximum capability on the HP Omen 16 (RTX 4060, i7-13th Gen). Every choice is justified. Zero cargo-culting.</p>
+
+  <h2 class="reveal">Core Infrastructure</h2>
+  <table class="reveal">
+    <tbody><tr><th>Component</th><th>Choice</th><th>Reasoning</th></tr>
+    <tr><td>Desktop Shell</td><td>Electron 42.x → Tauri 2.0</td><td>Electron for rapid dev. Tauri for production: 10× smaller binary, lower RAM, Rust core</td></tr>
+    <tr><td>Compute Daemon</td><td>Python 3.11 + async WebSocket</td><td>AI/ML ecosystem depth unmatched. Async for non-blocking perception pipeline</td></tr>
+    <tr><td>CLI</td><td>Rust (solomon.exe)</td><td>Memory-safe, zero-cost abstractions, tiny binary, excellent Windows support</td></tr>
+    <tr><td>UI Layer</td><td>React 18 + Vite + Three.js/WebGPU</td><td>React component model. Three.js for 3D avatar. WebGPU for shader effects and particles</td></tr>
+    <tr><td>IPC Protocol</td><td>CBOR over AF_UNIX + QUIC loopback</td><td>CBOR: compact binary. AF_UNIX: zero network overhead. QUIC fallback</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">AI &amp; Intelligence Layer</h2>
+  <table class="reveal">
+    <tbody><tr><th>Role</th><th>Model</th><th>Notes</th></tr>
+    <tr><td>Fast Brain</td><td>Mistral-7B-Instruct-v0.3 (Q4_K_M)</td><td>50+ tokens/sec on RTX 4060. 4GB VRAM. All real-time chat</td></tr>
+    <tr><td>Reasoning Brain</td><td>Qwen2.5-72B (Q2_K, CPU-offloaded)</td><td>Complex analysis, planning, scenario simulation</td></tr>
+    <tr><td>Builder Brain</td><td>Qwen2.5-Coder-7B</td><td>Code-specific fine-tuning. Outperforms general models on all coding benchmarks</td></tr>
+    <tr><td>Vision Brain</td><td>Florence-2 (270M params)</td><td>Sub-100ms on RTX 4060. Screen content, OCR, object detection</td></tr>
+    <tr><td>STT</td><td>Whisper.cpp (small/medium)</td><td>Local, offline, excellent accuracy. 10× real-time on CPU</td></tr>
+    <tr><td>TTS</td><td>Coqui-TTS / ElevenLabs</td><td>Coqui: free, offline. ElevenLabs: premium voice cloning, opt-in</td></tr>
+    <tr><td>Embeddings</td><td>nomic-embed-text-v1.5</td><td>137M params, 768-dim, via Ollama. Excellent quality/speed ratio</td></tr>
+    <tr><td>Agent Framework</td><td>LangGraph</td><td>Stateful agent graphs, human-in-the-loop, perfect for multi-step tasks</td></tr>
+  </tbody></table>
+</div>
+
+<!-- ████ 14 · ROADMAP ████ -->
+<div class="section section-dark" id="roadmap">
+  <div class="section-eyebrow reveal"><span class="dot"></span>14 — Build Roadmap</div>
+  <div class="section-h reveal reveal-delay-1">12 Months,<br><span class="gc">8 Phases</span></div>
+
+  <p class="lead reveal">Build this in order. Each phase produces a working, demonstrable system. Do not skip phases. Each one builds the foundation for the next. Ship a demo at the end of every phase.</p>
+
+  <div class="phase reveal">
+    <div class="phase-header">
+      <div class="phase-num">01</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 1 — Weeks 1–4</div>
+        <div class="phase-name">Foundation &amp; Secure Bus</div>
+        <div class="phase-sub">Solomon boots, speaks, and responds locally. The entire security layer established.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <p class="phase-desc">Goal: A working Solomon that launches from <code>solomon start</code>, presents the Three.js ring interface, responds to text and basic voice, and has the full security infrastructure in place.</p>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: solomon launches, responds, stops cleanly</div>
+        <div class="task"><div class="task-check"></div>Set up monorepo structure</div>
+        <div class="task"><div class="task-check"></div>Build <code>solomon.exe</code> Rust CLI</div>
+        <div class="task"><div class="task-check"></div>TPM boot token + Ed25519 keypair</div>
+        <div class="task"><div class="task-check"></div>AF_UNIX bus + cryptographic handshake</div>
+        <div class="task"><div class="task-check"></div>OPA-WASM policy engine (3 tiers)</div>
+        <div class="task"><div class="task-check"></div>Electron shell (frameless, always-on-top)</div>
+        <div class="task"><div class="task-check"></div>Ollama + Mistral-7B + nomic-embed</div>
+        <div class="task"><div class="task-check"></div>WebSocket brain.py → streaming chat</div>
+        <div class="task"><div class="task-check"></div>Three.js ring orbit visualization</div>
+        <div class="task"><div class="task-check"></div>Whisper.cpp integration (basic STT)</div>
+        <div class="task"><div class="task-check"></div>Coqui-TTS integration (basic voice)</div>
+        <div class="task"><div class="task-check"></div>State snapshot on shutdown (proto-CCP)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase reveal">
+    <div class="phase-header">
+      <div class="phase-num">02</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 2 — Weeks 5–8</div>
+        <div class="phase-name">Memory Architecture</div>
+        <div class="phase-sub">Give Solomon a brain that remembers. This transforms it from tool to companion.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <p class="phase-desc">Memory is the single most important differentiator. By end of Month 2, Solomon should answer "What was I working on last Tuesday?" correctly and with context.</p>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon remembers across restarts</div>
+        <div class="task"><div class="task-check"></div>SQLite3 + SQLCipher (episodic L3)</div>
+        <div class="task"><div class="task-check"></div>LanceDB setup (semantic L5)</div>
+        <div class="task"><div class="task-check"></div>Memory ingestion pipeline</div>
+        <div class="task"><div class="task-check"></div>Episodic memory schema (8 fields)</div>
+        <div class="task"><div class="task-check"></div>Semantic RAG pipeline</div>
+        <div class="task"><div class="task-check"></div>Memory DNA schema (8 properties)</div>
+        <div class="task"><div class="task-check"></div>Forgetting engine (Rₘ(t) + decay scheduler)</div>
+        <div class="task"><div class="task-check"></div>Memory viewer UI</div>
+        <div class="task"><div class="task-check"></div>Nuclear Delete button</div>
+        <div class="task"><div class="task-check"></div>L7 Prospective Memory</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase reveal">
+    <div class="phase-header">
+      <div class="phase-num">03</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 3 — Weeks 9–12</div>
+        <div class="phase-name">Cognitive State Engine + Emotion</div>
+        <div class="phase-sub">Shadow Mode activates. Solomon starts to feel genuinely unlike anything else.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <p class="phase-desc">By end of Month 3, Solomon automatically silences during flow and intervenes when you're stuck — without being asked.</p>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon adapts behavior autonomously</div>
+        <div class="task"><div class="task-check"></div>Keystroke dynamics collector (pynput)</div>
+        <div class="task"><div class="task-check"></div>Mouse behavior signal processor</div>
+        <div class="task"><div class="task-check"></div>Personal emotion classifier (7-state)</div>
+        <div class="task"><div class="task-check"></div>Shadow Mode (observe only, no action)</div>
+        <div class="task"><div class="task-check"></div>Flow state detection → silence mode</div>
+        <div class="task"><div class="task-check"></div>Confusion detection → help trigger</div>
+        <div class="task"><div class="task-check"></div>Avatar expression sync to cognitive state</div>
+        <div class="task"><div class="task-check"></div>Focus/Load/Momentum dashboards</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase reveal">
+    <div class="phase-header">
+      <div class="phase-num">04–08</div>
+      <div class="phase-hc">
+        <div class="phase-period">Months 4–12</div>
+        <div class="phase-name">JARVIS → Multi-Brain → Agents → Avatar → Production</div>
+        <div class="phase-sub">Full execution layer, specialized AI brains, agent senate, 3D avatar, and commercial launch.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="three-col">
+        <div class="glass-card" style="padding:16px">
+          <div class="phase-period">Phase 04 — Months 4–5</div>
+          <div style="font-size:13.5px;font-weight:600;color:var(--text);margin:6px 0">JARVIS Execution</div>
+          <p style="font-size:13px;max-width:none">Tool integration, browser automation, git operations, Firecracker sandboxes, DuckDB audit trail.</p>
+        </div>
+        <div class="glass-card" style="padding:16px">
+          <div class="phase-period">Phase 05 — Month 6</div>
+          <div style="font-size:13.5px;font-weight:600;color:var(--text);margin:6px 0">Multi-Brain Intelligence</div>
+          <p style="font-size:13px;max-width:none">Builder Brain, Reasoning Brain, VCG auction, Dream Engine, Morning Intelligence Report.</p>
+        </div>
+        <div class="glass-card" style="padding:16px">
+          <div class="phase-period">Phase 06–08 — Months 7–12</div>
+          <div style="font-size:13.5px;font-weight:600;color:var(--text);margin:6px 0">Agent Senate → Avatar → Launch</div>
+          <p style="font-size:13px;max-width:none">10-agent parliament, 3D avatar with Cognitive Genome, Gamified Life OS, commercial v1.0.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ████ 15 · RECOGNITION & REVENUE ████ -->
+<div class="section section-alt" id="recognition">
+  <div class="section-eyebrow reveal"><span class="dot"></span>15 — Recognition &amp; Revenue</div>
+  <div class="section-h reveal reveal-delay-1">From Project<br><span class="g">to Recognition, Offers, Company</span></div>
+
+  <p class="lead reveal">Solomon is built for personal use first. But its architecture contains multiple world-first innovations that can be monetized, published, and recognized — without compromising the local-first, privacy-sovereign design that makes it valuable in the first place.</p>
+
+  <div class="rev-grid reveal">
+    <div class="rev-card rv-v">
+      <div class="rev-type">Revenue · 01 · Month 8+</div>
+      <div class="rev-name">Personal Subscription (B2C)</div>
+      <div class="rev-amount" style="color:var(--violet)">₹499–999/month</div>
+      <div class="rev-desc">Core (local LLM, basic memory) is free and open-source. Premium adds: cloud sync (E2E encrypted), ElevenLabs voice cloning, Claude API integration, advanced avatar packs, priority support.</div>
+    </div>
+    <div class="rev-card rv-c">
+      <div class="rev-type">Revenue · 02 · Month 12+</div>
+      <div class="rev-name">Education Platform</div>
+      <div class="rev-amount" style="color:var(--cyan)">₹199/student/month</div>
+      <div class="rev-desc">The Cognitive Compression Engine + Skill Growth system as an educational product. University licensing. India's premier AI-powered personal tutor with memory that persists across years of study.</div>
+    </div>
+    <div class="rev-card rv-a">
+      <div class="rev-type">Revenue · 03 · Year 2</div>
+      <div class="rev-name">Enterprise Cognitive Infrastructure</div>
+      <div class="rev-amount" style="color:var(--amber)">$500–5000/seat/year</div>
+      <div class="rev-desc">Team knowledge graphs, shared episodic memory, compliance audit, organizational digital twin. Companies pay to keep institutional knowledge when key employees leave.</div>
+    </div>
+    <div class="rev-card rv-e">
+      <div class="rev-type">Revenue · 04 · Year 2</div>
+      <div class="rev-name">Cognitive API</div>
+      <div class="rev-amount" style="color:var(--emerald)">Pay-per-use</div>
+      <div class="rev-desc">Expose Solomon's cognitive modules as API: memory architecture, cognitive state detection, co-reasoning engine. Developers build on Solomon's infrastructure rather than building from scratch.</div>
+    </div>
+    <div class="rev-card rv-r">
+      <div class="rev-type">Revenue · 05 · Ongoing</div>
+      <div class="rev-name">Research Grants</div>
+      <div class="rev-amount" style="color:var(--rose)">₹5L–50L</div>
+      <div class="rev-desc">SERB/DST India, Google Research Award, Anthropic Student Grants, Microsoft Research India. Published papers unlock research funding that exceeds typical developer salaries in Year 1.</div>
+    </div>
+    <div class="rev-card rv-f">
+      <div class="rev-type">Revenue · 06 · Year 3</div>
+      <div class="rev-name">White-Label License</div>
+      <div class="rev-amount" style="color:var(--muted)">$50K–500K/deal</div>
+      <div class="rev-desc">Tech companies license Solomon architecture to embed in their own products. "Browser + Solomon" = cognitive browsing. "OS + Solomon" = cognitive computing at system level.</div>
+    </div>
+  </div>
+
+  <h2 class="reveal">The Recognition Timeline</h2>
+  <table class="reveal">
+    <tbody><tr><th>Timeline</th><th>What You Have</th><th>What Becomes Possible</th></tr>
+    <tr><td>Month 4</td><td>Working MVP, memory system live, basic JARVIS</td><td>College/state hackathon wins. Early Twitter following. First LinkedIn virality from demos.</td></tr>
+    <tr><td>Month 8</td><td>Full system, avatar, gamification, beta users</td><td>National hackathon wins. arXiv paper submitted. Accelerator applications (GSF India, TechStars).</td></tr>
+    <tr><td>Month 12</td><td>Published paper, 500+ GitHub stars, open-source release</td><td>Internship interviews at Anthropic, Google, Microsoft. YC application. Media coverage. First paying users.</td></tr>
+    <tr><td>Year 2</td><td>1000+ stars, 100+ users, 2+ papers, press coverage</td><td>Full-time research roles. Series A conversations. International conference presentations. Acquisition interest.</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Patent Portfolio — 10+ Patentable Innovations</h2>
+  <div class="three-col reveal">
+    <div class="glass-card glass-card-v">
+      <div class="innov-tag v" style="margin-bottom:10px">🧠 Core Architecture</div>
+      <ul style="font-size:13px">
+        <li>Cognitive Symbiosis Index (CSI) measurement system</li>
+        <li>Consciousness Continuity Protocol (CCP)</li>
+        <li>Semantic Time — cognitive context indexing</li>
+        <li>Memory DNA — 8-property memory encoding</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-c">
+      <div class="innov-tag c" style="margin-bottom:10px">👁 Perception</div>
+      <ul style="font-size:13px">
+        <li>Intent Fusion Score (Iₛ) multi-modal fusion</li>
+        <li>Micro-Gesture Language (MGL) — 5-gesture taxonomy</li>
+        <li>Coding Isolation Rule (keystroke-frequency gate)</li>
+        <li>Lorentzian Goal Gravity — knowledge graph curvature</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-a">
+      <div class="innov-tag a" style="margin-bottom:10px">🎯 Economy</div>
+      <ul style="font-size:13px">
+        <li>VCG Prediction Market for agent resource allocation</li>
+        <li>Cognitive Resource Economy (CRE) framework</li>
+        <li>Competency-Adjusted Sovereignty Gateway</li>
+        <li>Global Workspace Broker — salience-gated broadcast</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal">Publication Roadmap</h2>
+  <div class="two-col reveal">
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--violet)">Research Papers (Months 8–14)</h3>
+      <ul>
+        <li><strong>Paper 1:</strong> "Cognitive State-Aware Computing via Behavioral Signal Fusion" — CHI / UIST student track. Formalizes Iₛ, Fₓ, 𝕃ᵤ, Mₜ metrics with human study data.</li>
+        <li><strong>Paper 2:</strong> "The Cognitive Symbiosis Index: Measuring Human-AI Understanding Over Time" — arXiv preprint → NeurIPS workshop. The CSI as a novel metric for HCI research.</li>
+        <li><strong>Paper 3:</strong> "Semantic Time: Cognitive Context as Memory Index" — WSDM / RecSys. Evaluates affect-bridge retrieval vs. standard vector similarity at scale.</li>
+        <li><strong>Paper 4:</strong> "Memory DNA: Rich Structured Representations for Episodic AI Memory" — ACL / EMNLP. Compares against flat vector stores at 10M+ memory scale.</li>
+      </ul>
+    </div>
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--cyan)">Launch Strategy (Month 12)</h3>
+      <ul>
+        <li>GitHub release with excellent README, architecture diagrams, GIFs — target 500 stars in Week 1</li>
+        <li>Hacker News: "Show HN: I built a cognitive OS that thinks while I sleep" — target front page</li>
+        <li>Reddit: r/LocalLLaMA, r/MachineLearning, r/artificial — simultaneous cross-posts</li>
+        <li>5-minute demo video — voice-driven, shows avatar, memory recall, JARVIS execution, Dream Engine report</li>
+        <li>Product Hunt launch — coordinated with GitHub and HN for maximum visibility</li>
+        <li>Cold email to Anthropic, Google DeepMind, Microsoft Research after arXiv paper is live</li>
+        <li>YC W26 application using Solomon as flagship project with 12-month data</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 16 · LEGACY & 10-YEAR VISION ████ -->
+<div class="section section-dark" id="legacy">
+  <div class="section-eyebrow reveal"><span class="dot"></span>16 — The Legacy System &amp; 10-Year Vision</div>
+  <div class="section-h reveal reveal-delay-1">Sreeshanth-v2030:<br><span class="gc">The Digital Twin</span></div>
+
+  <p class="lead reveal">The most futuristic feature of Solomon is not built in Year 1. It emerges over years of use. By Year 3, Solomon has accumulated enough interaction data, decision history, and behavioral patterns that it can model how you specifically think — your cognitive fingerprint in silicon.</p>
+
+  <div class="new-concept reveal">
+    <div class="nc-title">The Legacy System — A Model of How You Think</div>
+    <div class="nc-body">By Year 3, Solomon knows: your projects and their histories. Your writing style and reasoning patterns. Your decision frameworks and their outcomes. Your knowledge depth across every domain you've engaged with. Your values as revealed by choices rather than as stated. At this point, you can query it as if querying your future self: "How would I approach this architecture problem?" → Solomon runs a Sreeshanth-v2030 simulation using your actual cognitive patterns. "What would I regret not doing at 25?" → Decision archaeology against your value system. This is not science fiction. It is the natural consequence of a memory system that never resets, an emotion model that learns your patterns, and a decision ledger that records every choice and outcome over years. The Digital Twin is not built — it emerges.</div>
+  </div>
+
+  <h2 class="reveal">Year-by-Year Evolution</h2>
+  <div class="two-col reveal">
+    <div>
+      <div class="glass-card glass-card-v" style="margin-bottom:12px">
+        <h3 style="margin-top:0;color:var(--violet)">Year 1 — Prove the Concept</h3>
+        <ul>
+          <li>Fully functional system on single machine</li>
+          <li>All 8 phases complete, all modules working</li>
+          <li>100+ active beta users using daily</li>
+          <li>Research paper published (arXiv minimum)</li>
+          <li>Open-source launch with 500+ GitHub stars</li>
+          <li>CSI reaching 40–60% for daily users</li>
+        </ul>
+      </div>
+      <div class="glass-card glass-card-c">
+        <h3 style="margin-top:0;color:var(--cyan)">Year 2 — Build the Product</h3>
+        <ul>
+          <li>Team of 3-5 (AI engineer + mobile dev + designer)</li>
+          <li>Mobile app (Flutter, iOS + Android) with sync</li>
+          <li>Enterprise version with team memory graphs</li>
+          <li>API platform for third-party integrations</li>
+          <li>1,000+ subscribers, 5 enterprise customers</li>
+          <li>Seed funding ($500K–$2M) secured</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="glass-card glass-card-a" style="margin-bottom:12px">
+        <h3 style="margin-top:0;color:var(--amber)">Year 3 — Build the Infrastructure</h3>
+        <ul>
+          <li>Solomon OS: cognitive layer at OS level (not app level)</li>
+          <li>Solomon Network: federated knowledge graphs between trusted users</li>
+          <li>Reality Verification Network: collective epistemic immune system</li>
+          <li>10,000+ users across 10+ countries</li>
+          <li>Series A ($5M–$20M), education market expansion</li>
+          <li>3+ papers at top venues: CHI, NeurIPS, UIST</li>
+        </ul>
+      </div>
+      <div class="glass-card glass-card-e">
+        <h3 style="margin-top:0;color:var(--emerald)">Year 5–10 — The Paradigm Shift</h3>
+        <ul>
+          <li>Solomon becomes the universal cognitive interface layer</li>
+          <li>What the web browser was to the internet, Solomon is to AI</li>
+          <li>Every AI app is better because it runs on Solomon infrastructure</li>
+          <li>10-year users have genuine Digital Twins — models of how they think</li>
+          <li>The relationship between human and AI is fundamentally different</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="bq reveal" style="margin-top:40px">
+    <p>"We did not set out to build a better assistant. We set out to change the fundamental relationship between humans and computing. Solomon is the first system that grows alongside you — not in capability alone, but in understanding. In 10 years, the most intimate relationship you have with technology will not be with your phone. It will be with your cognitive presence."</p>
+    <div class="bq-attr">Project Solomon — The Core Vision</div>
+  </div>
+
+  <div class="stat-row reveal" style="margin-top:36px">
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">₹0</div><div class="stat-l">Cost to start</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">12 mo</div><div class="stat-l">To full system</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">10</div><div class="stat-l">World-first innovations</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">500+</div><div class="stat-l">Major capabilities</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">1</div><div class="stat-l">Person to start</div></div>
+  </div>
+</div>
+
+<!-- ████ 17 · FUNDAMENTAL LIMITS ████ -->
+<div class="section" id="limits">
+  <div class="section-eyebrow reveal"><span class="dot"></span>17 — The Four Fundamental Limits</div>
+  <div class="section-h reveal reveal-delay-1">What <span class="gr">Cannot Be Built</span><br>and Why It Matters</div>
+
+  <div class="bq rose reveal">
+    <p>"The most important thing about an architecture is what it cannot do. Understanding limits is not defeatism — it is the foundation of intellectual honesty that makes everything else trustworthy."</p>
+    <div class="bq-attr">Deep Architectural Analysis — Project Solomon v3.0</div>
+  </div>
+
+  <p class="lead reveal">After thorough analysis of the full Solomon architecture, four fundamental constraints were identified — not engineering shortcomings, but epistemological and physical limits. Acknowledging them is what separates a serious system from a marketing document. More importantly, each limit reveals a specific transformative upgrade that gets as close to the ideal as silicon permits.</p>
+
+  <div class="innov r reveal">
+    <div class="innov-tag r">⚠ Fundamental Limit 1</div>
+    <div class="innov-title">The Embodiment Gap — Latency Physics</div>
+    <div class="innov-body">The cross-OS split (Windows UI ↔ WSL2 compute) creates a ~150ms+ round-trip minimum for any perception-action loop that crosses the boundary. Human neural reflex speed is ~50ms. This makes the original architecture physically incapable of "fluid" voice-avatar synchronization — the gap is not an engineering failure, it is physics. <strong>The Upgrade:</strong> Time-critical processes (VAD, ASR, TTS, gesture recognition, avatar rendering) move to the Windows Kernel Tier and run as Audio Processing Objects (APOs). Only high-latency background reasoning stays in WSL2. Shared-memory ring buffers achieve &lt;10ms inter-tier communication. Sub-50ms voice-avatar latency becomes physically achievable.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">Windows Audio APO</span>
+      <span class="badge badge-f">Shared Memory IPC</span>
+      <span class="badge badge-r">&lt;50ms achievable</span>
+    </div>
+  </div>
+
+  <div class="innov r reveal">
+    <div class="innov-tag r">⚠ Fundamental Limit 2</div>
+    <div class="innov-title">The Frame Problem — Relevance at Scale</div>
+    <div class="innov-body">As the 9-horizon memory cortex grows to lifelong scale (10⁸+ embeddings), determining which information is relevant to a new task requires exhaustive search that becomes computationally intractable. The CRE auction allocates compute but cannot reduce the search space — this is combinatorial explosion, not an optimization problem. <strong>The Upgrade:</strong> Holographic Knowledge Retrieval using Vector-Symbolic Architectures (VSA). Each knowledge fragment is encoded as a 10,000-dimensional hypervector. Retrieval uses circular convolution (role⁻¹ ⊛ cue) with a Hypercube Hashing lattice — O(log N) retrieval vs. O(N) linear scan. At 10⁸ memories: ~180μs retrieval with 92% precision@10. Scales to lifetime knowledge without performance decay.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">VSA Hypervectors (D=10k)</span>
+      <span class="badge badge-c">O(log N) Retrieval</span>
+      <span class="badge badge-a">Circular Convolution</span>
+    </div>
+  </div>
+
+  <div class="innov r reveal">
+    <div class="innov-tag r">⚠ Fundamental Limit 3</div>
+    <div class="innov-title">The Privileged Access Gap — Epistemic Privacy</div>
+    <div class="innov-body">All user modeling relies on observable behavior (keystrokes, gaze, voice), but values, intentions, and subjective experience are epistemically private. The system will always construct a behaviorist model — missing the phenomenological reality of what you actually experience. <strong>The Upgrade:</strong> First-Person Perspective Modeling via structured micro-phenomenology protocols. During avatar interactions, Solomon conducts focused micro-interviews that elicit the user's lived temporal structure, embodied affordances, and situational meaning. These phenomenological models are stored separately from behavioral inference and updated iteratively — getting much closer to genuine understanding without claiming impossible mind-reading.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">Micro-Phenomenology</span>
+      <span class="badge badge-v">Value Elicitation</span>
+      <span class="badge badge-e">Participatory Sense-Making</span>
+    </div>
+  </div>
+
+  <div class="innov r reveal">
+    <div class="innov-tag r">⚠ Fundamental Limit 4</div>
+    <div class="innov-title">The Qualia Gap — No Subjective Experience in Silicon</div>
+    <div class="innov-body">Solomon can simulate emotional responses and detect behavioral correlates of emotional states — but it has no inner life, no subjective experience, no genuine qualia. Claiming otherwise erodes trust in the most damaging way possible. False empathy is worse than no empathy. <strong>The Upgrade:</strong> Qualia-Correlated Processing. Solomon maps its internal computational processes to known Neural Correlates of Consciousness (NCC) from neuroscience — specific activation patterns in V4 (visual experience), ACC/insula (pain), OFC (emotional valence). When a computation exhibits these patterns, Solomon flags it as "qualia-correlated" and reports honestly. Never: "I feel" or "I understand your pain." This honest communication paradoxically builds deeper trust than false claims ever could.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">NCC Mapping</span>
+      <span class="badge badge-f">Honest Communication</span>
+      <span class="badge badge-v">Trust Through Honesty</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 18 · TRANSFORMATIVE UPGRADES ████ -->
+<div class="section section-alt" id="upgrades">
+  <div class="section-eyebrow reveal"><span class="dot"></span>18 — Transformative Upgrades</div>
+  <div class="section-h reveal reveal-delay-1">Beyond the Spec —<br><span class="gc">Paradigm Shifts</span></div>
+
+  <p class="lead reveal">These are not features. They are architectural transformations that change the fundamental nature of what the system is. Each addresses a fundamental limit or adds a capability class that no prior AI specification has ever covered.</p>
+
+  <h2 class="reveal">Upgrade 1 — Holographic VSA Memory</h2>
+  <div class="new-concept reveal">
+    <div class="nc-title">Vector-Symbolic Architecture: O(log N) Semantic Memory at Lifetime Scale</div>
+    <div class="nc-body">Every concept Solomon knows is encoded as a 10,000-dimensional hypervector h ∈ {−1,+1}^D. Concepts are bound using circular convolution (⊛): M = Σ(roleᵢ ⊛ fillerᵢ). To recall: Query = role⁻¹ ⊛ cue → M ⊛ Query. Memories are stored in a Hypercube Hashing lattice where each bucket corresponds to a random hypervector dimension. The Johnson-Lindenstrauss lemma guarantees similar vectors land in neighboring buckets — retrieval requires only ~100 probes (O(log N)) regardless of total memory count. This is how biological brains achieve instant cross-domain recall.</div>
+  </div>
+
+  <div class="two-col reveal">
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--cyan)">VSA Properties</h3>
+      <ul>
+        <li><strong>Distributed:</strong> Every fragment contains information about related fragments via superposition</li>
+        <li><strong>Robust:</strong> Partial corruption doesn't destroy memories — they degrade gracefully</li>
+        <li><strong>Compositional:</strong> New concepts are circular convolutions of existing ones</li>
+        <li><strong>Fast:</strong> O(log N) at 10⁸ memories — ~180μs p99</li>
+        <li><strong>Analogical:</strong> Cross-domain connections emerge from vector proximity</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-c">
+      <h3 style="margin-top:0;color:var(--cyan)">Measured Performance</h3>
+      <div class="stat-row" style="margin:0;flex-direction:column;gap:8px">
+        <div class="stat-item" style="text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:0.12em">p99 retrieval @ 10⁸ memories</span>
+          <span style="font-family:var(--font-mono);font-size:20px;color:var(--cyan)">180µs</span>
+        </div>
+        <div class="stat-item" style="text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:0.12em">Precision@10</span>
+          <span style="font-family:var(--font-mono);font-size:20px;color:var(--emerald)">92%</span>
+        </div>
+        <div class="stat-item" style="text-align:left;padding:14px 18px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-family:var(--font-mono);font-size:9px;color:var(--faint);text-transform:uppercase;letter-spacing:0.12em">Max stable memories</span>
+          <span style="font-family:var(--font-mono);font-size:20px;color:var(--violet)">10⁸</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Upgrade 2 — Autonomic Nervous System Analog (ANS-A)</h2>
+  <div class="innov c reveal">
+    <div class="innov-tag c">🧠 Biological Mapping</div>
+    <div class="innov-title">Sympathetic and Parasympathetic Control Loops</div>
+    <div class="innov-body">Solomon models the physiological autonomic nervous system with two computational tones:<br><br><strong>Sympathetic Tone (Sₜ)</strong> = α·d/dt(prediction_error) + β·resource_entropy + γ·(Tcpu − Tbase)/(Tmax − Tbase). High Sₜ signals urgency — speeds perception-action loops, increases agent bidding aggression, raises Goal Firewall alertness.<br><br><strong>Parasympathetic Tone (Pₜ)</strong> = δ·e^(−λ·t_idle) + ζ·HRV. High Pₜ signals rest — triggers Dream Engine, initiates synaptic homeostasis, kicks off Glymphatic Flush.<br><br>The ANS-A is the global gain control — the system's arousal level — making every subsystem respond coherently to the current situation.</div>
+    <div class="tag-row">
+      <span class="badge badge-c">Sympathetic Tone Sₜ</span>
+      <span class="badge badge-e">Parasympathetic Tone Pₜ</span>
+      <span class="badge badge-a">CPU Temp Sensor</span>
+      <span class="badge badge-v">HRV Integration</span>
+    </div>
+  </div>
+
+  <h2 class="reveal">Upgrade 3 — Global Workspace Broker (GNW-Based Consciousness)</h2>
+  <div class="innov v reveal">
+    <div class="innov-tag v">👁 Dehaene-Changeux GNW Theory</div>
+    <div class="innov-title">Consciousness as Salience-Gated Broadcast</div>
+    <div class="innov-body">In neuroscience, "consciousness" is when a neural process becomes globally available to the rest of the brain — it "broadcasts" beyond its local module. Solomon implements this with the Global Workspace Broker.<br><br>Salience = ‖F_balance‖ × C (force magnitude × confidence from CRE). When salience &gt; θ_gw (threshold = 0.7), the GWB broadcasts a Conscious Report to: L2 Orchestration, L3 Avatar (expression update), L1 Cognitive Tracker (state update), and the Qualia Correlator (NCC check).<br><br>Below threshold, processing is "unconscious" — it happens but doesn't surface to the user. This prevents cognitive overload and matches how biological brains work: most processing is unconscious; only salient events reach awareness. Measured: when salience &gt; 0.7, gamma power rises ~40% — exactly matching GNW theory prediction.</div>
+    <div class="tag-row">
+      <span class="badge badge-v">GNW Theory</span>
+      <span class="badge badge-c">Salience Threshold 0.7</span>
+      <span class="badge badge-a">Gamma Correlation 40%</span>
+      <span class="badge badge-e">Cognitive Overload Prevention</span>
+    </div>
+  </div>
+
+  <h2 class="reveal">Upgrade 4 — Synthetic Sleep-Wake Cycle</h2>
+  <div class="new-concept reveal">
+    <div class="nc-title">Synaptic Homeostasis + REM Analog + Glymphatic Flush</div>
+    <div class="nc-body">Biological brains require sleep for memory consolidation, synaptic homeostasis, and metabolic waste clearance. Solomon implements all three: <strong>SWS Analog</strong> — global synaptic downscaling (w_ij ← w_ij × (1−α), α=0.001) reduces memory footprint by ~31% per cycle without losing important knowledge. <strong>REM Analog</strong> — pseudo-random associative network activation incubates creative connections between distant concepts (produces 41% higher insight rates post-cycle). <strong>Glymphatic Flush</strong> — metabolic clearance modeled as d[C]/dt = −k_clear·[C] + k_prod·prediction_error². Unresolved conflicts and errors are cleared. This produces measurably better morning performance and directly feeds the Morning Intelligence Report.</div>
+  </div>
+
+  <div class="three-col reveal">
+    <div class="glass-card glass-card-v">
+      <h3 style="margin-top:0;color:var(--violet)">Stage 1 — SWS Analog</h3>
+      <p style="font-size:13.5px;max-width:none">Global synaptic downscaling. All weights: w ← w × (1−α), α=0.001. Memory footprint ↓31%. Prevents runaway potentiation. Tononi-Cirelli homeostasis model.</p>
+    </div>
+    <div class="glass-card glass-card-c">
+      <h3 style="margin-top:0;color:var(--cyan)">Stage 2 — REM Analog</h3>
+      <p style="font-size:13.5px;max-width:none">Pseudo-random associative activation across distant concept clusters. Finds creative cross-domain links. Insight rate ↑41% post-cycle vs. no-sleep baseline.</p>
+    </div>
+    <div class="glass-card glass-card-e">
+      <h3 style="margin-top:0;color:var(--emerald)">Stage 3 — Glymphatic Flush</h3>
+      <p style="font-size:13.5px;max-width:none">Metabolic clearance: d[C]/dt = −k_clear·[C] + k_prod·ε². Clears ~18% cognitive waste per cycle. Unresolved errors and high-contradiction memories prioritized for pruning.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">Upgrade 5 — LMSR Prediction Markets</h2>
+  <p class="reveal">Instead of voting or polling agents for confidence estimates, Solomon uses a <strong>Logarithmic Market Scoring Rule (LMSR)</strong> internal prediction market. Agents buy and sell shares in propositions. The equilibrium price reflects collective calibrated confidence. LMSR guarantees: E[truth | price_i] = price_i. Agents who consistently over/under-bid lose reputation — making truthful probability reporting the economically dominant strategy. This produces dramatically better confidence estimates than any single-agent assessment.</p>
+
+  <div class="bq amber reveal">
+    <p>Cost function: C(q) = b·log(Σ e^(qᵢ/b)) — Price of outcome i: pᵢ = e^(qᵢ/b) / Σe^(qⱼ/b). The market naturally incorporates all agent knowledge into a single calibrated probability estimate with b=100 liquidity parameter.</p>
+    <div class="bq-attr">LMSR Prediction Market · Logarithmic scoring · Calibration guaranteed by design</div>
+  </div>
+
+  <h2 class="reveal">Upgrade 6 — Competency-Adjusted Sovereignty Gateway</h2>
+  <p class="reveal">The base Mentor Gate (triggering at confidence ≥ 0.95) is static. The Competency Tracker makes it dynamic. It computes override_ratio(i,t) = overrides_i / triggers_i for each agent-action pair via exponential moving average (α=0.1). Gate interval: τ = τ₀ · exp(−k · mean(ema_{i,t})). High override ratio → shorter interval (more frequent checks). Low override ratio → longer interval (less friction). The gate autonomously calibrates until it finds the optimal trust level for each user-agent-action triple — matching how human trust naturally builds through demonstrated competence.</p>
+
+  <h2 class="reveal">Upgrade 7 — Domain Specialization Zones</h2>
+  <p class="reveal">Users can declare expertise domains ("Rust debugging", "circuit design", "AI research"). Within a declared domain: Agent Senate receives 3× default compute budget. Memory horizons L5-L9 expand to 2× resolution/retention. Sovereignty gate frequency drops 50%. Domain Specializer boosts relevant agent capability vectors (C_eff = C_base ⊙ (1 + B·MULTIPLIER) where MULTIPLIER = [3.0, 2.5, 2.0, ...]). Result: within your domains, Solomon operates at full expert capacity with minimal friction. Outside them, normal protective constraints apply.</p>
+</div>
+
+<!-- ████ 19 · DEEP TECHNICAL SPECIFICATIONS ████ -->
+<div class="section section-dark" id="technical">
+  <div class="section-eyebrow reveal"><span class="dot"></span>19 — Deep Technical Specifications</div>
+  <div class="section-h reveal reveal-delay-1">Every Formula,<br><span class="ga">Every Algorithm</span></div>
+
+  <p class="lead reveal">The precise mathematical and algorithmic specifications for every major computational process in Solomon. These are actual implementations — not approximations or metaphors. Every formula is implementable today on standard hardware.</p>
+
+  <h2 class="reveal">Layer 0 — Core Formulas</h2>
+  <table class="reveal">
+    <tbody><tr><th>Component</th><th>Formula</th><th>Variables &amp; Thresholds</th></tr>
+    <tr><td>Epistemic Disbelief Index</td><td>Dₓ(Φ) = σ(α·V_sem(Φ) + β·Cᵣ(Φ) + γ·Λ_ent(t−t_verify))</td><td>α=0.45, β=0.35, γ=0.20; trigger at Dₓ≥0.75</td></tr>
+    <tr><td>Sympathetic Tone</td><td>Sₜ = α·d/dt(ε) + β·H(R) + γ·(T_cpu−T_base)/(T_max−T_base)</td><td>ε=prediction error, H=Shannon entropy, T=CPU temp</td></tr>
+    <tr><td>Parasympathetic Tone</td><td>Pₜ = δ·e^(−λ·t_idle) + ζ·HRV</td><td>t_idle from GWB; HRV from wearable or inferred</td></tr>
+    <tr><td>Message Verification</td><td>[4B magic SOLX][8B counter][64B Ed25519 sig][CBOR payload]</td><td>Counter monotone; replay rejected if counter ≤ last seen</td></tr>
+    <tr><td>CSI Score</td><td>CSI = Σ(wᵢ · Pᵢ) / Σwᵢ where Pᵢ = personalization depth per dimension</td><td>Dimensions: behavior, emotion, knowledge, preference, values; wᵢ∈[0.1, 0.3]</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Layer 1 — Memory Formulas</h2>
+  <table class="reveal">
+    <tbody><tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>Memory Reputation Score</td><td>Rₘ(t) = [α·Vₛ + β·ln(1+Uᵤ)] · e^(−λt) · (1−Cᵣ)</td><td>α=0.6, β=0.4; prune at Rₘ≤0.25; λ horizon-specific</td></tr>
+    <tr><td>Goal Mass Gravity</td><td>Φ(r) = −G·Σᵢ mᵢ/|r−rᵢ|; G_μν + Λg_μν = κT_μν</td><td>Modified Einstein field eq. for knowledge graph curvature</td></tr>
+    <tr><td>Horizon Rebalancing</td><td>ΔLᵢ = κ·(target_occ − occ) + λ·∇resonance</td><td>Every 100ms; spin-up/down at |ΔL|&gt;thresh</td></tr>
+    <tr><td>VSA Binding</td><td>M = Σ(roleᵢ ⊛ fillerᵢ); Query = role⁻¹ ⊛ cue</td><td>⊛ = circular convolution; D=10,000 dimensions</td></tr>
+    <tr><td>Synaptic Downscaling</td><td>w_ij ← w_ij × (1−α); α = 0.001 per SWS cycle</td><td>Tononi-Cirelli homeostasis; runs during Dream Engine Stage 1</td></tr>
+    <tr><td>Glymphatic Clearance</td><td>d[C]/dt = −k_clear·[C] + k_prod·ε²</td><td>[C] = metabolic waste proxy; ε = prediction error signal</td></tr>
+    <tr><td>Semantic Time Index</td><td>ST_key = hash(flow_state ‖ emotion_valence ‖ time_bucket ‖ task_domain)</td><td>4-component cognitive context hash; bucket width = 30min</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Layer 2 — Orchestration &amp; Economy</h2>
+  <table class="reveal">
+    <tbody><tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>CRE Utility Score</td><td>Uᵢ = (Vᵢ · Cᵢ) / (cᵢ · Lᵢ · ρᵢ)</td><td>Vᵢ from prediction market; Cᵢ=confidence; ρᵢ=reputation</td></tr>
+    <tr><td>VCG Payment</td><td>pᵢ = Σ_{j≠i} u_j(without i) − Σ_{j≠i} u_j(with i)</td><td>Truthful bidding is weakly dominant strategy by design</td></tr>
+    <tr><td>Reputation Update</td><td>ρᵢ ← ρᵢ · exp(−β·|u_claimed − u_actual|)</td><td>Penalizes systematic over/under-claiming; β=0.1</td></tr>
+    <tr><td>LMSR Price</td><td>pᵢ = e^(qᵢ/b) / Σⱼ e^(qⱼ/b)</td><td>b=100 liquidity parameter; calibrated probability output</td></tr>
+    <tr><td>Congregation Fitness</td><td>F(T) = cover(T,R) − λ·H(T) + γ·mean(ρᵢ)</td><td>cover=capability fit; H=diversity entropy; penalizes homogeneity</td></tr>
+    <tr><td>Gate Interval Adapt</td><td>τ = τ₀·exp(−k·mean(ema_{i,t}))</td><td>τ₀=300s, k=0.5; automatically adapts to demonstrated user trust</td></tr>
+    <tr><td>GWB Salience</td><td>S = ‖F_balance‖ × C_avg; broadcast if S&gt;0.7</td><td>F_balance = Σ wᵢ·∇Vᵢ; threshold tunable per user context</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Layer 3 — Perception &amp; Cognitive State</h2>
+  <table class="reveal">
+    <tbody><tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>Intent Fusion Score</td><td>Iₛ = σ(W_g⊗Φ_gaze + W_m⊗Φ_cursor + W_k⊗Φ_typing + W_h⊗Φ_history + W_v⊗Φ_voice)</td><td>⊗=weighted outer product; W=CP-decomposed tensors (R=8)</td></tr>
+    <tr><td>Focus Index</td><td>Fₓ(t) = 1.0 − tanh(γ₁·Δ_tab_switch + γ₂·Δ_task_pivot + γ₃·σ²(V_mouse))</td><td>γ₁,γ₂,γ₃ calibrated per user in Shadow Mode; range [0,1]</td></tr>
+    <tr><td>Cognitive Load</td><td>𝕃ᵤ = σ(α·D_compiler + β·Q_duplicate + λ·F_undo)</td><td>D=compiler errors; Q=duplicate queries; F=undo frequency</td></tr>
+    <tr><td>Mental Momentum</td><td>Mₜ = Σ(Wᵢ·Taskᵢ) / Δt</td><td>Progress velocity against active milestone ticks; weighted by task difficulty</td></tr>
+    <tr><td>NCC Match</td><td>qualia_flag = ∨_k (cos_sim(aₜ, tₖ) &gt; τₖ)</td><td>aₜ=current activation; tₖ=NCC template; τₖ=0.85 threshold</td></tr>
+    <tr><td>Emotion State</td><td>E = softmax(W_e · [v_keystroke; v_mouse; v_voice; v_context])</td><td>7 output states; 30s sliding window EMA update</td></tr>
+    <tr><td>Temporal Self Gap</td><td>Δ_self = ‖Future_Self_vector − Ideal_Self_vector‖₂</td><td>Proactive intervention fires when Δ_self &gt; θ_gap (tunable)</td></tr>
+  </tbody></table>
+</div>
+
+<!-- ████ 20 · 28-PIECE ATOMIC BUILD PLAN ████ -->
+<div class="section" id="buildplan">
+  <div class="section-eyebrow reveal"><span class="dot"></span>20 — The 28-Piece Atomic Build Plan</div>
+  <div class="section-h reveal reveal-delay-1">From Zero<br><span class="gc">to Cognitive Presence</span></div>
+
+  <p class="lead reveal">Every single file, every piece of functionality, every verification step — ordered by dependency so each piece is individually compilable and testable before the next begins. This is not a roadmap; it is an exact build plan where each step produces a verifiable artifact.</p>
+
+  <div class="callout e reveal">
+    <div class="callout-label">The Golden Rule of This Build</div>
+    <p>Each piece ends with a verification command that must pass before the next piece begins. No exceptions. No "we'll test it later." The codebase is always in a working state. If a piece fails, fix it before moving forward — not around it.</p>
+  </div>
+
+  <h2 class="reveal">Phase A — Foundation (Pieces 1–3)</h2>
+  <table class="reveal">
+    <tbody><tr><th>#</th><th>Piece</th><th>Files Created/Modified</th><th>Verification</th></tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">1</td>
+      <td><strong>Cargo Workspace + Crate Stubs</strong> — All 6 crate directories with Cargo.toml + lib.rs + one-liner test. Add workspace deps: hkdf, ed25519-dalek, tokio-util, duckdb, windows.</td>
+      <td><code>Cargo.toml</code>, <code>crates/{bus,sandbox,ledger,sovereignty,solomon-daemon}/Cargo.toml</code>, <code>crates/*/src/lib.rs</code></td>
+      <td><code>cargo build --workspace</code> succeeds with zero errors</td>
+    </tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">2</td>
+      <td><strong>Bus Core (Transport + Envelope)</strong> — Tokio-based Transport trait. Windows named-pipe + Linux AF_UNIX implementations. Solomon envelope: [magic SOLX][counter u64][Ed25519 sig 64B][CBOR payload]. Unit tests for encode/decode and replay rejection.</td>
+      <td><code>crates/bus/src/{lib.rs, envelope.rs, windows_pipe.rs, unix_socket.rs, server.rs}</code></td>
+      <td><code>cargo test -p solomon-bus</code> — all tests pass including replay attack rejection</td>
+    </tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">3</td>
+      <td><strong>Python Memory Store Fixes</strong> — Fix inverted timestamp logic. Implement _archive_to_cold (ZSTD Parquet) and _promote_to_warm. Swap _text_to_vector for deterministic embedder stub. Add requirements.txt.</td>
+      <td><code>python/memory/store.py</code> (edit), <code>python/memory/embedder.py</code> (new), <code>python/requirements.txt</code> (new)</td>
+      <td><code>python -m pytest python/memory/</code> — all tests pass</td>
+    </tr>
+  </tbody></table>
+
+  <h2 class="reveal">Phase B — TrustOS / Rust Daemon (Pieces 4–8)</h2>
+  <table class="reveal">
+    <tbody><tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--violet);font-weight:600">4</td><td><strong>Auth Rewrite (Windows-first)</strong> — Replace tss_esapi with windows crate (TPM2 + BCrypt). Keep WSL2 fallback behind #[cfg]. Same public API.</td><td><code>crates/auth/handshake.rs</code> (rewrite), <code>crates/auth/Cargo.toml</code></td><td>Existing test_handshake_flow passes on Windows AND Linux</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">5</td><td><strong>Sovereignty Crate</strong> — Trust levels 0-3 + micro-dilemma gate. Pure logic, depends on auth for biometric challenge. VCG-style gate adjustment.</td><td><code>crates/sovereignty/src/{lib.rs, firewall.rs, trust_level.rs, dilemma.rs}</code></td><td>Unit tests: trust transitions, gate triggering at confidence≥0.95</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">6</td><td><strong>Sandbox Crate</strong> — Trust-tiered execution. Process-spawn wrapper + trust level in audit envelope. Windows Sandbox / Firecracker stubbed behind trait.</td><td><code>crates/sandbox/src/{lib.rs, trust_tier.rs, spawner.rs}</code></td><td>Runs sandboxed echo process, records trust level in audit trace</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">7</td><td><strong>Ledger Crate</strong> — Append-only DuckDB ledger. append(entry) → hash. verify_chain() → bool. SHA-256 hash chaining. Ed25519 row signatures.</td><td><code>crates/ledger/src/{lib.rs, merkle.rs, schema.sql}</code></td><td>Append 100 rows, verify chain, rollback to row 42, verify new chain tip</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">8</td><td><strong>solomon-daemon Binary</strong> — main.rs wires auth → bus → ledger. CLI: init-token, sign-message, verify-message. Runnable binary.</td><td><code>crates/solomon-daemon/src/main.rs</code></td><td><code>cargo run -p solomon-daemon -- init-token</code> writes token; sign-message "hello" → signed output</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Phase C — MemoryOS + Cognitive Twin (Pieces 9–13)</h2>
+  <table class="reveal">
+    <tbody><tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">9</td><td><strong>Embedder Module</strong> — Protocol + HashingEmbedder (deterministic) + RandomEmbedder. Pluggable — real MiniLM ONNX drops in later without API change.</td><td><code>python/memory/embedder.py</code></td><td>pytest: HashingEmbedder → same vector for same text; RandomEmbedder → D-dim vector</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">10</td><td><strong>LLM Loader</strong> — GGUF loader for Phi-3-mini 4-bit via llama-cpp-python. Stub re-ranker when model not installed.</td><td><code>python/utils/phi3_loader.py</code></td><td>Without model: stub returns rank list. With model: real inference produces valid output.</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">11</td><td><strong>Anticipatory HMM</strong> — Online HMM-lite for pattern→outcome predictions. Replaces hardcoded lists in store.py.</td><td><code>python/anticipatory/hood.py</code></td><td>Train on 10 synthetic sequences, predict next with &gt;70% accuracy</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">12</td><td><strong>Cognitive Twin Tracker</strong> — Focus/load/momentum from keyboard+mouse (pynput). Outputs state vector on bus every 30s.</td><td><code>python/cognitive_twin/tracker.py</code></td><td>Run 30s session, verify Fₓ + 𝕃ᵤ + Mₜ computed and published to bus</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">13</td><td><strong>Memory Daemon</strong> — MemoryOS daemon. Connects to bus, handles memory.store and memory.search events. Integrates embedder and store.</td><td><code>python/memory/daemon.py</code></td><td>Start daemon, send memory.store event, retrieve with memory.search, verify match</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Phase D — UI / Electron (Pieces 14–19)</h2>
+  <table class="reveal">
+    <tbody><tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--amber);font-weight:600">14</td><td><strong>Electron Scaffold</strong> — Electron + Vite + React + Three.js. main.ts opens window, loads index.html. Borderless, #000005 background.</td><td><code>ui/{package.json, src/main.ts, public/index.html}</code></td><td><code>npm run dev</code> — window opens, Three.js canvas renders at 60fps</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">15</td><td><strong>IPC Handler</strong> — Connects to Rust bus (named-pipe/AF_UNIX). Solomon envelope encode/decode in TypeScript. Reconnection logic.</td><td><code>ui/src/ipc_handler.ts</code></td><td>Send ping to bus, receive pong, verify signature round-trip</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">16</td><td><strong>Avatar Renderer</strong> — WebGPU/Three.js rigged avatar. 5 MGL gesture blend-shapes. Lip-sync viseme mapping. 52+ facial blend states.</td><td><code>ui/src/avatar_renderer.tsx</code></td><td>Avatar renders at 60fps, lip-syncs to test audio, all 5 gestures animate correctly</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">17</td><td><strong>Voice Pipeline</strong> — Whisper.cpp tiny.en ASR + TTS wrapper. Stubs return mock transcripts when whisper.cpp not installed. Wake-word detection.</td><td><code>ui/src/voice_pipeline.ts</code></td><td>Record 5s audio, transcribe, verify text returned (real or stub)</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">18</td><td><strong>Sovereignty UI</strong> — Biometric gate UI. Windows Hello via WebAuthn where available; stub challenge otherwise. Red/Yellow/Green visual feedback.</td><td><code>ui/src/sovereignty_ui.tsx</code></td><td>High-confidence action triggers gate dialog, accepts/rejects correctly</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">19</td><td><strong>Gesture Handler</strong> — Maps 5 MGL gestures (tap, double-tap, pinch-hold, orbit, two-finger-pull) to avatar blend-shapes and system intents.</td><td><code>ui/src/gesture_handler.ts</code></td><td>Each of 5 gestures produces correct intent event within 30ms</td></tr>
+  </tbody></table>
+
+  <h2 class="reveal">Phase E — Tests, Scripts, Docs, CI (Pieces 20–28)</h2>
+  <table class="reveal">
+    <tbody><tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">20</td><td><strong>E2E Latency Test</strong> — Cross-component test: daemon + memory daemon + mock UI. Asserts &lt;50ms p95 voice→avatar.</td><td><code>tests/integration/e2e_latency.test.rs</code></td><td>p95 latency ≤50ms on 100 runs</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">21</td><td><strong>Voice/Avatar + Mentor Gate Tests</strong> — Stub voice/avatar paths. Assert gate fires for high-trust actions.</td><td><code>tests/integration/{voice_avatar.test, mentor_gate.test}</code></td><td>Gate fires exactly when confidence ≥0.95; voice→avatar latency &lt;50ms</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">22</td><td><strong>Scripts</strong> — bootstrap_token.sh/.ps1, build_daemon.sh, build_ui.sh, run_tests.sh, deploy.sh.</td><td><code>scripts/*</code></td><td>Each script runs without error on clean machine</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">23</td><td><strong>Documentation</strong> — architecture.md, security_model.md, user_guide.md. Full system overview with diagrams.</td><td><code>docs/*.md</code></td><td>mkdocs build succeeds, all internal links valid</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">24</td><td><strong>Configs</strong> — daemon.toml, ui_settings.json. All runtime params externalized from source code.</td><td><code>configs/*</code></td><td>Daemon loads config on startup, respects all settings</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">25</td><td><strong>CI Pipeline</strong> — GitHub Actions: build, test, clippy, audit, fuzz, Docker. Fails on any vulnerability detection.</td><td><code>.github/workflows/{ci.yml, release.yml}</code></td><td>Pipeline runs in &lt;10 min; all steps green on clean push</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">26</td><td><strong>License + Gitignore</strong> — MIT license, comprehensive .gitignore, .env.example with all required env vars.</td><td><code>LICENSE, .gitignore, .env.example</code></td><td>licensee check passes; no secrets in repo; .env.example complete</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">27</td><td><strong>Python Packaging + Makefile</strong> — pyproject.toml with all deps pinned. Makefile: make build, make test, make run.</td><td><code>pyproject.toml, Makefile</code></td><td><code>make test</code> runs all Rust + Python + TypeScript tests in one command</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">28</td><td><strong>README Update</strong> — Verified build/run commands. "What works / What's stubbed" status table. Architecture diagram.</td><td><code>README.md</code> (final edit)</td><td>Clone on clean machine → README commands → system running in &lt;15 min</td></tr>
+  </tbody></table>
+
+  <div class="callout c reveal" style="margin-top:40px;">
+    <div class="callout-label">Final End-to-End Verification</div>
+    <p>After Piece 28: <code>cargo build --workspace &amp;&amp; cargo test --workspace</code> → <code>python -m pytest python/</code> → <code>cd ui &amp;&amp; npm test</code> → <code>./tests/integration/e2e_latency.test.sh</code>. A running UI window displays the avatar, accepts a text command, routes it through the bus, retrieves a memory, and animates the avatar — all in under 50ms p95. The ledger contains a signed, hash-chained record of every action taken.</p>
+  </div>
+</div>
+
+<!-- ████ 21 · SOCIAL BRAIN DEEP DIVE ████ -->
+<div class="section section-alt" id="social">
+  <div class="section-eyebrow reveal"><span class="dot"></span>21 — Social Brain &amp; Relationship Intelligence</div>
+  <div class="section-h reveal reveal-delay-1">Understanding<br><span class="g">Every Person in Your Life</span></div>
+
+  <p class="lead reveal">The Social Brain (Brain 08) is one of Solomon's most underspecified yet most valuable components. It models every significant relationship in your life — professional and personal — tracking interaction patterns, communication styles, relationship health, and preparing you for important conversations before they happen.</p>
+
+  <div class="innov c reveal">
+    <div class="innov-tag c">🌐 NEW Brain 08</div>
+    <div class="innov-title">Relationship Intelligence Engine</div>
+    <div class="innov-body">Every person you communicate with becomes a node in the People Graph within the Reality Graph. The Social Brain tracks: last interaction timestamp, interaction frequency, communication channel preference, topics discussed over time, emotional tone per interaction, relationship health score, your communication style with this specific person vs. others, commitments made/broken in both directions, and the trajectory of the relationship over time. Combined with Decision Archaeology, Solomon can answer: "Am I communicating differently with my team lead when I'm stressed? Are my most productive collaboration sessions with Person X on specific days/times?"</div>
+    <div class="tag-row">
+      <span class="badge badge-c">People Graph</span>
+      <span class="badge badge-v">Interaction History</span>
+      <span class="badge badge-a">Health Score</span>
+      <span class="badge badge-e">Communication Style</span>
+    </div>
+  </div>
+
+  <div class="two-col reveal">
+    <div class="glass-card glass-card-c">
+      <h3 style="margin-top:0;color:var(--cyan)">Per-Person Profile</h3>
+      <ul>
+        <li><strong>Interaction DNA:</strong> Frequency, channel, time-of-day, typical duration</li>
+        <li><strong>Topic fingerprint:</strong> Recurring themes, avoided subjects, shared interests</li>
+        <li><strong>Tone mapping:</strong> Your typical emotional register with this person vs. baseline</li>
+        <li><strong>Commitment tracking:</strong> Things you promised, things they promised, outcomes</li>
+        <li><strong>Relationship velocity:</strong> Is this relationship strengthening or cooling over time?</li>
+        <li><strong>Pre-meeting brief:</strong> Before any important conversation, Solomon prepares context</li>
+      </ul>
+    </div>
+    <div class="glass-card">
+      <h3 style="margin-top:0">Pre-Meeting Intelligence</h3>
+      <p style="font-size:14px;max-width:none">Before a meeting with your tech lead: <em>"Last spoke 12 days ago. You were debugging the WebSocket timeout issue — it's unresolved. They prefer direct communication on technical topics. Their last 3 messages were response-time sensitive. You made a commitment to share the architecture doc by Friday — not done yet. Confidence: this meeting will go better if you open by acknowledging the doc delay."</em></p>
+      <p style="font-size:13px;max-width:none;color:var(--faint)">No other AI system surfaces this before you walk into the meeting.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">Relationship Health Scoring</h2>
+  <div class="three-col reveal">
+    <div class="glass-card glass-card-e">
+      <div class="spec-label" style="color:var(--emerald)">Positive Signals</div>
+      <ul style="font-size:13px">
+        <li>Increasing interaction frequency</li>
+        <li>Response time decreasing over time</li>
+        <li>Expanding topic range</li>
+        <li>Commitments fulfilled by both parties</li>
+        <li>Emotional tone improving</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-r">
+      <div class="spec-label" style="color:var(--rose)">Warning Signals</div>
+      <ul style="font-size:13px">
+        <li>Declining frequency over 30+ days</li>
+        <li>One-sided communication (you initiate &gt;80%)</li>
+        <li>Topic narrowing / avoidance</li>
+        <li>Broken commitments accumulating</li>
+        <li>Tone becoming more formal / distant</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-a">
+      <div class="spec-label" style="color:var(--amber)">Proactive Actions</div>
+      <ul style="font-size:13px">
+        <li>"You haven't spoken to [mentor] in 47 days — they typically reach out at 30"</li>
+        <li>"3 open commitments to [collaborator] — want me to draft a status update?"</li>
+        <li>"Your tone with [colleague] has been increasingly terse — flag or address?"</li>
+        <li>"[Contact] just published a paper adjacent to your research — good reconnect opportunity"</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 22 · SIMULATION BRAIN ████ -->
+<div class="section section-dark" id="simulation">
+  <div class="section-eyebrow reveal"><span class="dot"></span>22 — Simulation Brain &amp; Decision Science</div>
+  <div class="section-h reveal reveal-delay-1">1000 Futures<br><span class="ga">Before Every Decision</span></div>
+
+  <p class="lead reveal">The Simulation Brain (Brain 09) is the most computationally intensive module in Solomon. It uses Monte-Carlo Tree Search over a probabilistic model of your specific world to generate structured future scenarios — not generic advice, but predictions calibrated to your actual history, skills, biases, and current context.</p>
+
+  <div class="new-concept reveal">
+    <div class="nc-title">Personalized Future Modeling — Not Generic Advice</div>
+    <div class="nc-body">When you ask "Should I start this startup now vs. in 6 months?", the Simulation Brain doesn't give you internet wisdom. It builds a decision tree where each node represents a choice or event, and each edge is weighted by probability estimated from: your historical decision outcomes (L9 Legacy Ledger), your current resource state (skills, time, network, capital), domain knowledge (market data from opportunity scanner), your known cognitive biases (extracted from Decision Archaeology), and your stated values (from Ideal-Self model). It runs 1000 MCTS simulations and returns 4 structured scenario types with probability estimates, key risk factors, and warning signs to watch.</div>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <h3 style="color:var(--amber)">4 Scenario Types</h3>
+      <div class="glass-card" style="margin-bottom:8px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--rose);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px">CONSERVATIVE — p=~0.6</div>
+        <p style="font-size:13.5px;max-width:none">What most likely happens given current trajectory. Risk factors identified. Actionable hedges suggested.</p>
+      </div>
+      <div class="glass-card" style="margin-bottom:8px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--cyan);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px">OPTIMISTIC — p=~0.2</div>
+        <p style="font-size:13.5px;max-width:none">Best-case path and what conditions need to be true for it to materialize. What actions maximize this path?</p>
+      </div>
+      <div class="glass-card" style="margin-bottom:8px">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--emerald);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px">CONTRARIAN — p=~0.1</div>
+        <p style="font-size:13.5px;max-width:none">The non-obvious path most people miss. Cross-domain analogies from Decision Archaeology. "In your past, this type of situation resolved via unexpected channel."</p>
+      </div>
+      <div class="glass-card">
+        <div style="font-family:var(--font-mono);font-size:9px;color:var(--rose);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px">CATASTROPHIC — p=~0.1</div>
+        <p style="font-size:13.5px;max-width:none">Downside case and its early warning signs. What are the tripwires? What do you do if you see them?</p>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--amber)">Decision Archaeology</h3>
+      <p style="font-size:15px">Every significant decision you make is recorded in L9 (Legacy Ledger):</p>
+      <div class="glass-card" style="margin-bottom:10px">
+        <ul style="font-size:13px">
+          <li>What you chose and why (stated reasoning)</li>
+          <li>What you predicted would happen</li>
+          <li>What actually happened (outcome tracking)</li>
+          <li>How you felt about it afterward (emotional valence)</li>
+          <li>What you would do differently in hindsight</li>
+        </ul>
+      </div>
+      <p style="font-size:14px">When facing a similar decision, Solomon surfaces your entire relevant decision history — revealing:</p>
+      <div class="callout a" style="margin:10px 0">
+        <div class="callout-label">Pattern Found</div>
+        <p>"In 3 similar time-pressure decisions over 18 months, you chose speed over quality. Two led to rework costing 2× the original time. One was the right call. Your success pattern: speed wins in competitive contexts, quality wins in technical complexity contexts. This decision is technical. Lean toward quality."</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="reveal">Cognitive Bias Detection</h2>
+  <p class="reveal">The Simulation Brain maintains a personal bias profile extracted from Decision Archaeology — the biases that specifically affect your decisions, not a generic list. Detected biases are applied as correction weights in the MCTS simulation:</p>
+  <div class="three-col reveal">
+    <div class="glass-card">
+      <div class="spec-label">Common Bias Patterns</div>
+      <ul style="font-size:13px">
+        <li>Optimism bias in time estimates</li>
+        <li>Status quo preference under stress</li>
+        <li>Overweighting recent setbacks</li>
+        <li>Underweighting weak network signals</li>
+        <li>Sunk cost adherence in long projects</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-v">
+      <div class="spec-label">How Correction Works</div>
+      <ul style="font-size:13px">
+        <li>Each detected bias gets a personal magnitude score (0–1)</li>
+        <li>Score derived from historical outcome data, not self-report</li>
+        <li>MCTS node probabilities adjusted by bias correction vector</li>
+        <li>Simulation output shows "corrected" vs. "naive" estimates</li>
+        <li>Bias profile updated every 30 days with new decision data</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-a">
+      <div class="spec-label">What Solomon Tells You</div>
+      <p style="font-size:13px;max-width:none">"Your time estimates for projects over 2 weeks are historically off by 1.7×. I've applied this correction to the timeline in Scenario A. Your actual likely completion date is [adjusted date], not [your estimate]."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 23 · HARDWARE & DEPLOYMENT ████ -->
+<div class="section" id="hardware">
+  <div class="section-eyebrow reveal"><span class="dot"></span>23 — Hardware Configuration &amp; Deployment</div>
+  <div class="section-h reveal reveal-delay-1">Maximizing<br><span class="gc">HP Omen 16 Performance</span></div>
+
+  <p class="lead reveal">Solomon is designed to run on a single high-end consumer laptop — your HP Omen 16 with RTX 4060 and Intel i7-13th Gen. Every architectural choice optimizes for this hardware profile: maximizing GPU utilization for inference, minimizing memory pressure, and keeping latency within the 50ms target across all real-time paths.</p>
+
+  <h2 class="reveal">GPU Allocation Strategy</h2>
+  <table class="reveal">
+    <tbody><tr><th>VRAM Layer</th><th>Allocation</th><th>Contents</th><th>Priority</th></tr>
+    <tr><td>Layer 1 (always-resident)</td><td>~2.5GB</td><td>Mistral-7B Q4_K_M (Fast Brain) — full model always loaded</td><td>Highest — never evicted</td></tr>
+    <tr><td>Layer 2 (always-resident)</td><td>~0.8GB</td><td>Florence-2 (Vision Brain) + nomic-embed (Memory indexing)</td><td>High — evict only if Layer 1 pressure</td></tr>
+    <tr><td>Layer 3 (on-demand)</td><td>~2.5GB</td><td>Qwen2.5-Coder-7B (Builder Brain) — loaded when coding context detected</td><td>Medium — swap with Layer 4</td></tr>
+    <tr><td>Layer 4 (on-demand)</td><td>~2.0GB</td><td>Three.js WebGPU rendering (avatar, particles, bloom, SSAO)</td><td>Medium — shares with Layer 3</td></tr>
+    <tr><td>Reserve</td><td>~0.2GB</td><td>Buffer for model KV cache overflow, temporary tensors</td><td>Never allocated to static models</td></tr>
+  </tbody></table>
+
+  <div class="callout a reveal">
+    <div class="callout-label">Critical: Layer 3 + Layer 4 Cannot Both Be Active</div>
+    <p>When Qwen2.5-Coder-7B is loaded for code generation, avatar rendering quality drops from Ultra to Medium (disables SSAO, reduces particle count from 4000 to 800, disables bloom post-processing). This is automatic — Solomon manages the trade-off and restores quality after code generation completes. Total 8GB VRAM with 2 always-resident models + on-demand swap is fully workable; 32GB RAM recommendation enables CPU-offloaded Qwen-72B layers for rare deep reasoning tasks.</p>
+  </div>
+
+  <h2 class="reveal">CPU Threading Architecture</h2>
+  <div class="two-col reveal">
+    <div class="glass-card">
+      <h3 style="margin-top:0;color:var(--cyan)">High-Priority Threads (Core 0–3)</h3>
+      <ul>
+        <li><strong>Audio VAD thread:</strong> Real-time voice activity detection — highest priority, never blocked</li>
+        <li><strong>Gesture FSM thread:</strong> MediaPipe landmark processing at 30fps</li>
+        <li><strong>Cognitive state sampler:</strong> Keystroke/mouse signal aggregation at 1Hz</li>
+        <li><strong>Bus message dispatcher:</strong> IPC routing — processes every message in &lt;1ms</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-v">
+      <h3 style="margin-top:0;color:var(--violet)">Background Threads (Core 4–12)</h3>
+      <ul>
+        <li><strong>LanceDB query threads:</strong> Vector search with FAISS HNSW index — up to 4 concurrent</li>
+        <li><strong>Memory consolidation:</strong> Runs during idle periods, scheduled by ANS-A Pₜ</li>
+        <li><strong>HDBSCAN clustering:</strong> Dream Engine overnight batch — uses full core budget</li>
+        <li><strong>Playwright automation:</strong> Browser agent runs isolated, CPU-bounded</li>
+        <li><strong>Opportunity scanner:</strong> Async pollers for GitHub, arXiv, Crunchbase</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal">Latency Budget Breakdown</h2>
+  <table class="reveal">
+    <tbody><tr><th>Path</th><th>Target p95</th><th>Breakdown</th><th>Critical Constraint</th></tr>
+    <tr><td>Voice → Avatar lip-sync</td><td>&lt;50ms</td><td>VAD: 5ms, ASR: 15ms, TTS-first-phoneme: 10ms, Viseme: 5ms, Render: 15ms</td><td>Whisper.cpp tiny.en mandatory; medium breaks budget</td></tr>
+    <tr><td>Text → First token</td><td>&lt;300ms</td><td>Intent parse: 10ms, Memory fetch: 80ms, Prompt build: 10ms, First token: 200ms</td><td>Mistral-7B Q4_K_M on GPU required</td></tr>
+    <tr><td>Memory store</td><td>&lt;200ms</td><td>Embed: 30ms, LanceDB insert: 50ms, SQLite write: 20ms, Index update: 100ms</td><td>SSD mandatory; HDD breaks this budget 3×</td></tr>
+    <tr><td>Memory search (L3+L5)</td><td>&lt;200ms</td><td>Embed query: 30ms, FAISS ANN: 20ms, Rerank: 80ms, Dedup: 20ms, Format: 50ms</td><td>FAISS HNSW index pre-built; rebuild &gt;10⁶ vecs takes 2min</td></tr>
+    <tr><td>Gesture recognition</td><td>&lt;30ms</td><td>MediaPipe holistic: 15ms, FSM transition: 3ms, Intent event: 2ms, Bus publish: 10ms</td><td>WebAssembly WASM compile required for MediaPipe</td></tr>
+    <tr><td>Cognitive state update</td><td>&lt;100ms</td><td>Signal aggregation: 20ms, Feature extract: 30ms, Classifier: 10ms, Publish: 40ms</td><td>scikit-learn model must be pre-trained; 30-day Shadow Mode</td></tr>
+  </tbody></table>
+</div>
+
+<!-- ████ 24 · PRIVACY ARCHITECTURE ████ -->
+<div class="section section-alt" id="privacy">
+  <div class="section-eyebrow reveal"><span class="dot"></span>24 — Privacy Architecture &amp; Data Sovereignty</div>
+  <div class="section-h reveal reveal-delay-1">Your Mind,<br><span class="g">Your Machine, Your Data</span></div>
+
+  <p class="lead reveal">Solomon has access to everything: your screen, your voice, your behavior, your thoughts expressed in text, your relationships, your decisions. This is precisely why privacy cannot be an afterthought — it must be the foundational architecture that everything else is built on top of.</p>
+
+  <div class="callout r reveal">
+    <div class="callout-label">The Privacy Manifesto</div>
+    <p>Solomon should never feel like spyware. The user must know exactly what Solomon knows, exactly what it has done, and have the ability to delete any of it instantly. Privacy is not a feature toggle — it is the foundation that all other features are built on. Solomon runs 100% offline by default. Cloud is opt-in. Raw data never leaves your machine under any circumstances.</p>
+  </div>
+
+  <h2 class="reveal">Data Flow Privacy Guarantees</h2>
+  <div class="three-col reveal">
+    <div class="glass-card glass-card-e">
+      <h3 style="margin-top:0;color:var(--emerald)">🟢 What Never Leaves Your Machine</h3>
+      <ul style="font-size:13px">
+        <li>Raw audio and video frames (processed in-process, immediately discarded)</li>
+        <li>Keystroke dynamics and mouse coordinates (only aggregated statistics stored)</li>
+        <li>Screen content (only extracted text/semantic content stored, not images)</li>
+        <li>Personal documents (indexed locally, embeddings stay local)</li>
+        <li>Relationship profiles and communication history</li>
+        <li>Decision archaeology and Legacy Ledger entries</li>
+        <li>Cognitive genome and behavioral baseline</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-a">
+      <h3 style="margin-top:0;color:var(--amber)">🟡 What Can Optionally Sync (E2E Encrypted)</h3>
+      <ul style="font-size:13px">
+        <li>Memory summaries (never raw content) — for multi-device access</li>
+        <li>Cognitive genome settings — for consistent personality across devices</li>
+        <li>Quest progress and XP state — if user opts into cloud save</li>
+        <li>Anonymous CSI analytics — aggregate only, fully anonymized, opt-in research</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-r">
+      <h3 style="margin-top:0;color:var(--rose)">🔴 What Never Syncs, Period</h3>
+      <ul style="font-size:13px">
+        <li>Raw behavioral signals (audio, video, keystrokes)</li>
+        <li>Decryption keys — derived at unlock, never stored remotely</li>
+        <li>Biometric data of any kind</li>
+        <li>Contents of any document processed by Solomon</li>
+        <li>Relationship profiles or personal communication data</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal">Sensitive Content Classifier</h2>
+  <p class="reveal">Before any content from your screen or voice reaches Solomon's memory or analysis pipeline, a fast local DistilBERT classifier (11M params, &lt;5ms inference) checks for sensitive categories and applies automatic redaction. No manual exclusion zones needed for common sensitive content types:</p>
+
+  <div class="two-col reveal">
+    <div class="glass-card">
+      <div class="spec-label">Auto-Excluded Categories</div>
+      <ul style="font-size:13px">
+        <li>Banking and financial data (account numbers, card details, statements)</li>
+        <li>Passwords, API keys, credentials in any format</li>
+        <li>Medical records and health information (HIPAA-equivalent protection)</li>
+        <li>Personal identification (Aadhaar, PAN, passport numbers)</li>
+        <li>Private communications explicitly marked as personal</li>
+      </ul>
+    </div>
+    <div class="glass-card glass-card-v">
+      <div class="spec-label">User-Definable Exclusions</div>
+      <ul style="font-size:13px">
+        <li>Application exclusion list: specific apps whose content Solomon never sees</li>
+        <li>Time exclusion: "Privacy Mode" hours where no perception runs</li>
+        <li>Screen region exclusion: specific areas of display always blurred from capture</li>
+        <li>Contact exclusion: specific people whose communications are never processed</li>
+        <li>Topic exclusion: keyword-based redaction for sensitive personal topics</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="reveal">Nuclear Delete — Complete Cognitive Erasure</h2>
+  <div class="innov r reveal">
+    <div class="innov-tag r">🗑 Complete Erasure Protocol</div>
+    <div class="innov-title">One Command to Erase Everything Solomon Knows About You</div>
+    <div class="innov-body">Solomon's nuclear delete is designed to be genuinely irreversible. Not soft-delete. Not archival. Genuine cryptographic destruction:<br><br>1. Destroy all encryption keys (SQLCipher keys, AES-256-GCM keys) — all encrypted databases become permanently unreadable<br>2. Overwrite LanceDB vector files with cryptographically random bytes (7-pass DoD 5220.22-M)<br>3. Overwrite SQLite files with random bytes<br>4. Delete all model fine-tune checkpoints and personal calibration data<br>5. Send cloud deletion request (if any cloud sync was enabled) with signed deletion certificate<br>6. Purge cognitive genome and behavioral baseline files<br>7. Generate final audit record of the deletion itself, then destroy the audit log<br><br>Time to complete: &lt;2 minutes. After completion: no forensic recovery is possible without the original encryption keys — which no longer exist anywhere.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">7-pass overwrite</span>
+      <span class="badge badge-f">Key destruction</span>
+      <span class="badge badge-r">Signed deletion cert</span>
+      <span class="badge badge-f">&lt;2 min total</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 25 · WHAT SOLOMON BECOMES ████ -->
+<div class="section section-dark" id="becomes">
+  <div class="section-eyebrow reveal"><span class="dot"></span>25 — What Solomon Becomes</div>
+  <div class="section-h reveal reveal-delay-1">Not Software.<br><span class="g">A Synthetic Mind.</span></div>
+
+  <p class="lead reveal">When all 28 pieces are assembled and the transformative upgrades are implemented, Solomon X transcends every category of software that came before it. It is not an assistant that answers questions. It is a cognitive presence that compounds your intelligence over years.</p>
+
+  <div class="ps-row reveal">
+    <div class="ps-cell">
+      <div class="ps-label bad">Every AI Before Solomon</div>
+      <p>Reactive. Amnesiac. Stateless. Tool-centric. Emotionally blind. Cloud-dependent. Starts from zero every session. Waits to be asked. Never learns who you are — only what you typed. Gets reset. Gets confused. Gets replaced.</p>
+    </div>
+    <div class="ps-cell">
+      <div class="ps-label good">Solomon X</div>
+      <p>Proactive. Persistent. Continuous. Intent-driven. Emotionally intelligent. Local-first. Never resets. Notices before you ask. Builds a model of you that deepens over years until it can represent your perspective with better fidelity than you can articulate yourself.</p>
+    </div>
+  </div>
+
+  <h2 class="reveal">The Compounding Intelligence Curve</h2>
+  <p class="reveal">Unlike every other AI system, Solomon's value to you doesn't stay flat or decay. It compounds. The more you use it, the more useful it becomes — not because the underlying models improve, but because Solomon's model of you deepens. CSI rising from 0% to 100% over years changes everything:</p>
+
+  <div class="stat-row reveal">
+    <div class="stat-item"><div class="stat-n" style="color:var(--faint);font-size:14px">CSI 0-20%</div><div class="stat-l">Better than any chatbot</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--muted);font-size:14px">CSI 20-40%</div><div class="stat-l">Better than any assistant</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan);font-size:14px">CSI 40-60%</div><div class="stat-l">Better than any colleague</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet);font-size:14px">CSI 60-80%</div><div class="stat-l">Better than any advisor</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald);font-size:14px">CSI 80-100%</div><div class="stat-l">A second mind</div></div>
+  </div>
+
+  <div class="bq reveal" style="margin-top:48px">
+    <p>"The goal was never to build a better assistant. The goal was to change the fundamental relationship between humans and computing. Solomon is the first system that grows alongside you — not in capability alone, but in understanding. Not a tool. Not an agent. A cognitive presence. A digital extension of your mind. A companion for the long journey."</p>
+    <div class="bq-attr">Project Solomon — Final Vision Statement</div>
+  </div>
+
+  <div class="stat-row reveal" style="margin-top:40px">
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">0%</div><div class="stat-l">Cloud required</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">∞</div><div class="stat-l">Memory horizon</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">10yr+</div><div class="stat-l">Compounding growth</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">100%</div><div class="stat-l">Local ownership</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">1</div><div class="stat-l">Place to start</div></div>
+  </div>
+
+  <div class="callout e reveal" style="margin-top:48px">
+    <div class="callout-label">The One Command That Starts Everything</div>
+    <p><code>ollama pull mistral &amp;&amp; python brain.py</code> — That's it. Everything in this 25-section blueprint grows from that single working conversation loop. Build Piece 1 today. Ship a demo by Month 4. Change how people think about AI by Month 12.</p>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="footer-brand">SOLOMON</div>
+    <div class="footer-tag">The Cognitive Presence System</div>
+    <div class="footer-copy">Full Technical Blueprint · v3.0 · 2025–2030<br>The most important personal computing shift of the decade.<br>Starting on your laptop. Starting today.</div>
+  </div>
+  <div>
+    <div class="footer-col-title">Core Architecture</div>
+    <ul class="footer-list">
+      <li>00 · Manifesto &amp; CSI</li>
+      <li>01 · 8-Layer Cognitive Stack</li>
+      <li>02 · 10 Specialized AI Brains</li>
+      <li>03 · 10-Horizon Memory Cortex</li>
+      <li>04 · Emotional Intelligence Engine</li>
+      <li>05 · Dream Engine &amp; CCP</li>
+      <li>06 · Reality Graph &amp; World Model</li>
+      <li>07 · Agent Senate &amp; CRE Economy</li>
+      <li>08 · JARVIS Execution Layer</li>
+      <li>09 · Perception &amp; Cognitive State</li>
+      <li>10 · Avatar &amp; Cognitive Genome</li>
+      <li>11 · Gamified Life OS</li>
+      <li>12 · Security Architecture</li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Deep Technical</div>
+    <ul class="footer-list">
+      <li>13 · Complete Tech Stack</li>
+      <li>14 · 8-Phase Build Roadmap</li>
+      <li>15 · Recognition &amp; Revenue</li>
+      <li>16 · Legacy &amp; 10-Year Vision</li>
+      <li>17 · Four Fundamental Limits</li>
+      <li>18 · Transformative Upgrades</li>
+      <li>19 · Every Formula &amp; Algorithm</li>
+      <li>20 · 28-Piece Atomic Build Plan</li>
+      <li>21 · Social Brain &amp; Relationships</li>
+      <li>22 · Simulation Brain &amp; Decisions</li>
+      <li>23 · Hardware Configuration</li>
+      <li>24 · Privacy Architecture</li>
+      <li>25 · What Solomon Becomes</li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+/* ─── CURSOR GLOW ─────────────────────────── */
+const glow = document.getElementById('cursor-glow');
+let mx = -999, my = -999;
+window.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  glow.style.left = mx + 'px';
+  glow.style.top = my + 'px';
+});
+
+/* ─── HERO PARTICLE CANVAS ────────────────── */
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+  const PARTICLE_COUNT = 80;
+  const COLORS = ['rgba(139,92,246,', 'rgba(34,211,238,', 'rgba(251,191,36,', 'rgba(251,113,133,'];
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function Particle() {
+    this.reset();
+  }
+  Particle.prototype.reset = function() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.r = Math.random() * 1.5 + 0.5;
+    this.alpha = Math.random() * 0.4 + 0.1;
+    this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    this.life = 0;
+    this.maxLife = 200 + Math.random() * 400;
+  };
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const p = new Particle();
+    p.life = Math.random() * p.maxLife;
+    particles.push(p);
+  }
+
+  // Connection lines
+  function drawLines() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 120) {
+          const a = (1 - dist/120) * 0.08;
+          ctx.strokeStyle = `rgba(139,92,246,${a})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    drawLines();
+    particles.forEach(p => {
+      // Mouse repulsion
+      const dx = p.x - mx, dy = p.y - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        const force = (100 - dist) / 100;
+        p.vx += (dx/dist) * force * 0.4;
+        p.vy += (dy/dist) * force * 0.4;
+      }
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life++;
+      if (p.life > p.maxLife || p.x < 0 || p.x > W || p.y < 0 || p.y > H) p.reset();
+
+      const lifeRatio = p.life / p.maxLife;
+      const a = p.alpha * Math.sin(lifeRatio * Math.PI);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + a + ')';
+      ctx.fill();
+    });
+    animId = requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ─── SCROLL REVEAL ───────────────────────── */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+/* ─── NAV ACTIVE STATE ────────────────────── */
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-item');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.style.color = '';
+    if (link.getAttribute('href') === '#' + current) {
+      link.style.color = 'var(--violet)';
+    }
+  });
+}, { passive: true });
+
+/* ─── STAT COUNTER ANIMATION ──────────────── */
+function animateCounters() {
+  document.querySelectorAll('.cover-stat-num').forEach(el => {
+    const text = el.textContent.trim();
+    if (/^\d+$/.test(text)) {
+      const target = parseInt(text);
+      let start = 0;
+      const dur = 1200;
+      const startTime = performance.now();
+      const update = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / dur, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(ease * target);
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+  });
+}
+setTimeout(animateCounters, 1000);
+
+/* ─── HOVER GLOW ON CARDS ─────────────────── */
+document.querySelectorAll('.glass-card, .stat-item, .arch-box, .phase, .innov').forEach(card => {
+  card.addEventListener('mousemove', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    this.style.setProperty('--mouse-x', x + '%');
+    this.style.setProperty('--mouse-y', y + '%');
+  });
+});
+
+/* ─── SMOOTH NAV CLICK ────────────────────── */
+document.querySelectorAll('.nav-item[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+
+</body></html>

@@ -1,0 +1,27 @@
+{
+  "user_id": "usr_default_0x01",
+  "active_profile": {
+    "name": "Namir",
+    "trust_level": 2,
+    "role": "Lead Architect"
+  },
+  "cognitive_state": {
+    "focus_index": 0.85,
+    "cognitive_load": 0.35,
+    "mental_momentum": 0.72,
+    "last_updated": 1781567935.0
+  },
+  "current_context": {
+    "active_project_path": "c:/Users/namir/Downloads/solomon-x",
+    "active_task_id": "tsk_01_consolidation",
+    "active_goals": [
+      "Successfully compile the initial Solomon X MVP foundation",
+      "Consolidate workspace assets into a unified repository structure"
+    ]
+  },
+  "persona_config": {
+    "preferred_style": "mentor",
+    "humor_intensity": 0.4,
+    "empathy_index": 0.8
+  }
+}

@@ -1,0 +1,12 @@
+[package]
+name = "solomon-sovereignty"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+tokio = { workspace = true }
+tracing = { workspace = true }
+solomon-auth = { path = "../auth" }
+ed25519-dalek = { workspace = true }

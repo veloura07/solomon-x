@@ -1,0 +1,1 @@
+// Deprecated: Legacypath. Authenticator logic has been structured under src/handshake.rs.

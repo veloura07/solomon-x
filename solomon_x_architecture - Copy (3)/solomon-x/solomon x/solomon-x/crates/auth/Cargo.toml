@@ -1,0 +1,19 @@
+[package]
+name = "solomon-auth"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+ed25519-dalek = { workspace = true }
+rand = { workspace = true }
+hkdf = { workspace = true }
+sha2 = { workspace = true }
+tracing = { workspace = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+tss-esapi = "7.3"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows = { version = "0.52", features = ["Win32_Security_Tpm", "Win32_Foundation", "Win32_System_SystemServices"] }

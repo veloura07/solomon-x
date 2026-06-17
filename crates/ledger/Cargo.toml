@@ -1,0 +1,17 @@
+[package]
+name = "ledger"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true }
+tracing = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+# External
+duckdb = "0.20"
+rand = "0.8"
+ring = "0.17"

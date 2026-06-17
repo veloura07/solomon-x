@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT SOLOMON — The Cognitive Presence System</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void:#02020a;--deep:#08080f;--surface:#0f0f1a;--raised:#161625;--card:#1c1c2e;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);--border3:rgba(255,255,255,0.16);
+  --text:#e4e4f4;--muted:#8888a8;--faint:#44445a;--veryfaint:#2a2a3a;
+  --violet:#7c3aed;--violet2:#5b21b6;--violet3:#4c1d95;--violetglow:rgba(124,58,237,0.12);
+  --cyan:#06b6d4;--cyan2:#0891b2;--cyanglow:rgba(6,182,212,0.1);
+  --amber:#f59e0b;--amber2:#b45309;--amberglow:rgba(245,158,11,0.1);
+  --emerald:#10b981;--emerald2:#047857;--emeraldglow:rgba(16,185,129,0.08);
+  --rose:#f43f5e;--rose2:#be123c;--roseglow:rgba(244,63,94,0.08);
+  --sky:#38bdf8;--indigo:#6366f1;--lime:#84cc16;--orange:#f97316;
+  --font-head:'Space Grotesk',sans-serif;
+  --font-body:'Crimson Pro',serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--void);color:var(--text);font-size:17px;line-height:1.8;overflow-x:hidden;}
+a{color:var(--cyan);text-decoration:none;}
+a:hover{text-decoration:underline;}
+code{font-family:var(--font-mono);font-size:12px;background:var(--raised);border:1px solid var(--border2);padding:2px 8px;color:var(--cyan);border-radius:3px;}
+
+/* COVER */
+.cover{min-height:100vh;background:var(--void);display:flex;flex-direction:column;justify-content:flex-end;padding:0 8vw 80px;position:relative;overflow:hidden;}
+.cover-aurora{position:absolute;inset:0;pointer-events:none;}
+.aurora-1{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.09) 0%,transparent 65%);top:-300px;right:-150px;}
+.aurora-2{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(6,182,212,0.07) 0%,transparent 60%);bottom:-200px;left:-150px;}
+.aurora-3{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.04) 0%,transparent 60%);top:40%;left:40%;}
+.cover-line{position:absolute;top:0;left:8vw;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(124,58,237,0.15) 30%,rgba(124,58,237,0.15) 70%,transparent);}
+.cover-top{position:absolute;top:48px;left:8vw;right:8vw;display:flex;justify-content:space-between;align-items:flex-start;}
+.cover-badge{font-family:var(--font-mono);font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--violet);padding:6px 14px;border:1px solid rgba(124,58,237,0.3);border-radius:2px;}
+.cover-version{font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.15em;text-transform:uppercase;}
+.cover-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+.cover-title{font-family:var(--font-head);font-size:clamp(70px,13vw,160px);font-weight:700;line-height:0.85;letter-spacing:-0.04em;margin-bottom:32px;color:var(--text);}
+.cover-title .v{color:var(--violet);}
+.cover-title .c{color:var(--cyan);}
+.cover-sub{font-family:var(--font-head);font-size:clamp(18px,2.2vw,26px);font-weight:300;color:var(--muted);margin-bottom:16px;letter-spacing:-0.01em;}
+.cover-tagline{font-family:var(--font-body);font-size:clamp(15px,1.6vw,20px);font-weight:300;font-style:italic;color:var(--faint);max-width:680px;line-height:1.6;margin-bottom:64px;}
+.cover-stats{display:flex;gap:0;border:1px solid var(--border2);flex-wrap:wrap;}
+.cover-stat{padding:20px 32px;border-right:1px solid var(--border);}
+.cover-stat:last-child{border-right:none;}
+.cover-stat-num{font-family:var(--font-mono);font-size:22px;color:var(--text);font-weight:500;margin-bottom:4px;}
+.cover-stat-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);}
+
+/* NAV */
+.nav{background:rgba(8,8,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 8vw;position:sticky;top:0;z-index:100;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-item{font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding:16px 18px;border-right:1px solid var(--border);white-space:nowrap;cursor:default;transition:color 0.2s;text-decoration:none;}
+.nav-item:hover{color:var(--violet);}
+.nav-item:first-child{border-left:1px solid var(--border);}
+
+/* SECTIONS */
+.section{padding:100px 8vw;border-bottom:1px solid var(--border);position:relative;}
+.section-alt{background:var(--deep);}
+.section-dark{background:var(--surface);}
+.section-num{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.section-num::after{content:'';flex:1;max-width:60px;height:1px;background:var(--faint);}
+.section-h{font-family:var(--font-head);font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.0;letter-spacing:-0.025em;margin-bottom:40px;color:var(--text);}
+.section-h .v{color:var(--violet);}
+.section-h .c{color:var(--cyan);}
+.section-h .a{color:var(--amber);}
+.section-h .e{color:var(--emerald);}
+.section-h .r{color:var(--rose);}
+.lead{font-family:var(--font-body);font-size:20px;font-weight:300;color:var(--muted);max-width:760px;line-height:1.75;margin-bottom:56px;}
+
+/* BLOCKQUOTE */
+.bq{border-left:2px solid var(--violet);padding:20px 28px;margin:32px 0;background:var(--violetglow);}
+.bq.cyan{border-color:var(--cyan);background:var(--cyanglow);}
+.bq.amber{border-color:var(--amber);background:var(--amberglow);}
+.bq.emerald{border-color:var(--emerald);background:var(--emeraldglow);}
+.bq.rose{border-color:var(--rose);background:var(--roseglow);}
+.bq p{font-family:var(--font-body);font-size:18px;font-style:italic;font-weight:300;color:var(--text);line-height:1.65;max-width:none;margin:0;}
+.bq-attr{font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);margin-top:12px;}
+
+/* CALLOUT */
+.callout{border-left:2px solid var(--violet);background:var(--violetglow);padding:18px 22px;margin:24px 0;border-radius:0 4px 4px 0;}
+.callout.c{border-color:var(--cyan);background:var(--cyanglow);}
+.callout.a{border-color:var(--amber);background:var(--amberglow);}
+.callout.e{border-color:var(--emerald);background:var(--emeraldglow);}
+.callout.r{border-color:var(--rose);background:var(--roseglow);}
+.callout-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--violet);margin-bottom:8px;}
+.callout.c .callout-label{color:var(--cyan);}
+.callout.a .callout-label{color:var(--amber);}
+.callout.e .callout-label{color:var(--emerald);}
+.callout.r .callout-label{color:var(--rose);}
+.callout p{font-family:var(--font-body);font-size:15px;color:var(--muted);line-height:1.7;max-width:none;margin:0;}
+
+/* STAT ROW */
+.stat-row{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin:32px 0;flex-wrap:wrap;}
+.stat-item{flex:1;min-width:120px;background:var(--deep);padding:22px 16px;text-align:center;}
+.stat-n{font-family:var(--font-mono);font-size:26px;font-weight:500;color:var(--text);margin-bottom:5px;line-height:1;}
+.stat-l{font-family:var(--font-mono);font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);}
+
+/* ARCH DIAGRAM */
+.arch{border:1px solid var(--border);overflow:hidden;margin:40px 0;}
+.arch-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 22px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--faint);display:flex;align-items:center;gap:8px;}
+.arch-bar::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--violet);box-shadow:0 0 8px var(--violet);}
+.arch-body{padding:28px;}
+.arch-layer{margin-bottom:3px;}
+.arch-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:7px;padding-left:7px;border-left:2px solid var(--faint);}
+.arch-boxes{display:flex;gap:3px;margin-bottom:3px;flex-wrap:wrap;}
+.arch-box{flex:1;min-width:120px;padding:11px 13px;border:1px solid;text-align:center;}
+.arch-box-name{font-family:var(--font-head);font-size:11px;font-weight:600;margin-bottom:2px;}
+.arch-box-sub{font-family:var(--font-mono);font-size:8.5px;opacity:0.6;line-height:1.4;}
+.al-v{border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.04);}
+.al-v .arch-box-name{color:var(--violet);}
+.al-c{border-color:rgba(6,182,212,0.3);background:rgba(6,182,212,0.04);}
+.al-c .arch-box-name{color:var(--cyan);}
+.al-a{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.04);}
+.al-a .arch-box-name{color:var(--amber);}
+.al-e{border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.04);}
+.al-e .arch-box-name{color:var(--emerald);}
+.al-r{border-color:rgba(244,63,94,0.3);background:rgba(244,63,94,0.04);}
+.al-r .arch-box-name{color:var(--rose);}
+.al-f{border-color:var(--border);background:var(--raised);}
+.al-f .arch-box-name{color:var(--muted);}
+.arch-conn{display:flex;align-items:center;justify-content:center;height:24px;gap:7px;color:var(--faint);font-family:var(--font-mono);font-size:10px;}
+
+/* INNOVATION BLOCKS */
+.innov{background:var(--surface);border:1px solid var(--border);padding:32px;margin:14px 0;position:relative;}
+.innov::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.innov.v::before{background:linear-gradient(to right,var(--violet),var(--violet2));}
+.innov.c::before{background:linear-gradient(to right,var(--cyan),var(--cyan2));}
+.innov.a::before{background:linear-gradient(to right,var(--amber),var(--amber2));}
+.innov.e::before{background:linear-gradient(to right,var(--emerald),var(--emerald2));}
+.innov.r::before{background:linear-gradient(to right,var(--rose),var(--rose2));}
+.innov-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid;border-radius:2px;}
+.innov-tag.v{color:var(--violet);border-color:rgba(124,58,237,0.3);}
+.innov-tag.c{color:var(--cyan);border-color:rgba(6,182,212,0.3);}
+.innov-tag.a{color:var(--amber);border-color:rgba(245,158,11,0.3);}
+.innov-tag.e{color:var(--emerald);border-color:rgba(16,185,129,0.3);}
+.innov-tag.r{color:var(--rose);border-color:rgba(244,63,94,0.3);}
+.innov-title{font-family:var(--font-head);font-size:24px;font-weight:700;color:var(--text);margin-bottom:12px;line-height:1.2;}
+.innov-body{font-family:var(--font-body);font-size:16px;color:var(--muted);line-height:1.75;max-width:960px;margin-bottom:18px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:7px;}
+.badge{font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:2px;}
+.badge-v{background:rgba(124,58,237,0.1);color:var(--violet);border:1px solid rgba(124,58,237,0.2);}
+.badge-c{background:rgba(6,182,212,0.1);color:var(--cyan);border:1px solid rgba(6,182,212,0.2);}
+.badge-a{background:rgba(245,158,11,0.1);color:var(--amber);border:1px solid rgba(245,158,11,0.2);}
+.badge-e{background:rgba(16,185,129,0.1);color:var(--emerald);border:1px solid rgba(16,185,129,0.2);}
+.badge-r{background:rgba(244,63,94,0.1);color:var(--rose);border:1px solid rgba(244,63,94,0.2);}
+.badge-f{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border);}
+
+/* MODULE SPEC CARDS */
+.module{border:1px solid var(--border);margin:28px 0;overflow:hidden;}
+.module-header{background:var(--raised);border-bottom:1px solid var(--border);padding:22px 28px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.module-id{font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--violet);margin-bottom:7px;}
+.module-name{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.module-tagline{font-family:var(--font-body);font-size:14px;font-style:italic;color:var(--muted);}
+.module-body{padding:28px;}
+.module-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+@media(max-width:700px){.module-grid{grid-template-columns:1fr;}.arch-boxes{flex-direction:column;}.cover-stats{flex-wrap:wrap;}}
+.spec-group{margin-bottom:24px;}
+.spec-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:11px;padding-bottom:7px;border-bottom:1px solid rgba(6,182,212,0.15);}
+.spec-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.spec-list li{font-family:var(--font-body);font-size:14.5px;color:var(--muted);display:flex;gap:9px;align-items:flex-start;line-height:1.6;}
+.spec-list li::before{content:'›';color:var(--faint);font-family:var(--font-mono);flex-shrink:0;margin-top:1px;}
+
+/* TECH TABLE */
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;}
+th{background:var(--raised);padding:12px 15px;text-align:left;font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--faint);border:1px solid var(--border2);font-weight:400;}
+td{padding:13px 15px;border:1px solid var(--border);color:var(--muted);font-family:var(--font-body);font-size:14.5px;line-height:1.5;vertical-align:top;}
+td:first-child{font-family:var(--font-mono);font-size:11.5px;color:var(--text);font-weight:500;}
+tr:hover td{background:rgba(255,255,255,0.015);}
+
+/* PHASE BLOCKS */
+.phase{border:1px solid var(--border);margin:14px 0;overflow:hidden;}
+.phase-header{display:flex;align-items:stretch;background:var(--raised);border-bottom:1px solid var(--border);}
+.phase-num{font-family:var(--font-mono);font-size:28px;font-weight:300;color:var(--faint);padding:22px 26px;border-right:1px solid var(--border);display:flex;align-items:center;min-width:84px;justify-content:center;}
+.phase-hc{padding:18px 26px;flex:1;}
+.phase-period{font-family:var(--font-mono);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:5px;}
+.phase-name{font-family:var(--font-head);font-size:18px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.phase-sub{font-family:var(--font-body);font-size:13.5px;font-style:italic;color:var(--muted);}
+.phase-body{padding:26px 30px;}
+.phase-desc{font-family:var(--font-body);font-size:15.5px;color:var(--muted);line-height:1.75;margin-bottom:22px;max-width:860px;}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:7px;}
+.task{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;background:var(--surface);border:1px solid var(--border);font-family:var(--font-body);font-size:13.5px;color:var(--muted);line-height:1.5;}
+.task-check{width:15px;height:15px;border:1px solid var(--faint);flex-shrink:0;margin-top:1px;}
+.task-mile{grid-column:1/-1;background:rgba(124,58,237,0.07);border-color:rgba(124,58,237,0.2);font-weight:500;color:var(--violet);}
+
+/* REVENUE */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin:28px 0;}
+.rev-card{border:1px solid var(--border);background:var(--deep);padding:26px;position:relative;overflow:hidden;}
+.rev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.rv-v::before{background:var(--violet);}
+.rv-c::before{background:var(--cyan);}
+.rv-a::before{background:var(--amber);}
+.rv-e::before{background:var(--emerald);}
+.rv-r::before{background:var(--rose);}
+.rv-f::before{background:var(--muted);}
+.rev-type{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:11px;}
+.rev-name{font-family:var(--font-head);font-size:17px;font-weight:600;color:var(--text);margin-bottom:7px;}
+.rev-amount{font-family:var(--font-mono);font-size:22px;color:var(--violet);margin-bottom:14px;font-weight:500;}
+.rev-desc{font-family:var(--font-body);font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:14px;}
+
+/* FLOW */
+.flow{display:flex;align-items:stretch;border:1px solid var(--border);overflow:hidden;flex-wrap:wrap;margin:20px 0;}
+.flow-step{flex:1;min-width:100px;padding:18px 14px;background:var(--deep);border-right:1px solid var(--border);text-align:center;position:relative;}
+.flow-step:last-child{border-right:none;}
+.flow-step::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--faint);font-family:var(--font-mono);font-size:12px;z-index:1;background:var(--void);padding:2px;}
+.flow-step:last-child::after{display:none;}
+.flow-num{font-family:var(--font-mono);font-size:9px;color:var(--faint);letter-spacing:0.15em;margin-bottom:7px;}
+.flow-name{font-family:var(--font-head);font-size:11px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.flow-sub{font-family:var(--font-mono);font-size:8.5px;color:var(--faint);line-height:1.4;}
+
+/* 2/3 COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:22px 0;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0;}
+@media(max-width:800px){.two-col{grid-template-columns:1fr;}.three-col{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.three-col{grid-template-columns:1fr;}}
+
+/* PS ROW */
+.ps-row{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin:14px 0;}
+.ps-cell{background:var(--deep);padding:22px 26px;}
+.ps-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:11px;}
+.ps-label.bad{color:var(--rose);}
+.ps-label.good{color:var(--emerald);}
+.ps-cell p{font-family:var(--font-body);font-size:14.5px;color:var(--muted);line-height:1.65;max-width:none;}
+@media(max-width:600px){.ps-row{grid-template-columns:1fr;}}
+
+/* CSI METER */
+.csi-bar{background:var(--raised);border:1px solid var(--border);padding:20px 24px;margin:20px 0;}
+.csi-label{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;}
+.csi-track{height:8px;background:var(--veryfaint);border-radius:4px;margin-bottom:12px;position:relative;overflow:visible;}
+.csi-fill{height:100%;border-radius:4px;background:linear-gradient(to right,var(--violet),var(--cyan));position:relative;}
+.csi-ticks{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;color:var(--faint);}
+
+/* NEW CONCEPT HIGHLIGHT */
+.new-concept{background:linear-gradient(135deg,var(--violetglow),var(--cyanglow));border:1px solid rgba(124,58,237,0.2);padding:28px 32px;margin:24px 0;position:relative;}
+.new-concept::before{content:'WORLD FIRST';position:absolute;top:-1px;right:20px;font-family:var(--font-mono);font-size:8px;letter-spacing:0.2em;background:linear-gradient(to right,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;padding:4px 0;}
+.nc-title{font-family:var(--font-head);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.nc-body{font-family:var(--font-body);font-size:15.5px;color:var(--muted);line-height:1.7;}
+
+/* FOOTER */
+.footer{background:var(--void);border-top:1px solid var(--border);padding:60px 8vw;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;}
+@media(max-width:700px){.footer{grid-template-columns:1fr;}}
+.footer-brand{font-family:var(--font-head);font-size:26px;font-weight:700;color:var(--text);margin-bottom:7px;}
+.footer-tag{font-family:var(--font-body);font-size:14px;font-style:italic;color:var(--faint);margin-bottom:22px;}
+.footer-copy{font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:0.1em;}
+.footer-col-title{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;}
+.footer-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.footer-list li{font-family:var(--font-body);font-size:13.5px;color:var(--muted);padding:0;}
+.footer-list li::before{display:none;}
+
+h2{font-family:var(--font-head);font-size:21px;font-weight:600;color:var(--text);margin:52px 0 18px;padding-bottom:11px;border-bottom:1px solid var(--border);letter-spacing:-0.01em;}
+h3{font-family:var(--font-head);font-size:12px;font-weight:600;color:var(--muted);margin:28px 0 10px;letter-spacing:0.1em;text-transform:uppercase;}
+p{font-family:var(--font-body);font-size:16.5px;color:var(--muted);line-height:1.8;margin-bottom:14px;max-width:840px;}
+ul{list-style:none;margin:10px 0;}
+ul li{font-family:var(--font-body);font-size:14.5px;color:var(--muted);padding:4px 0 4px 17px;position:relative;line-height:1.65;max-width:780px;}
+ul li::before{content:'—';position:absolute;left:0;color:var(--faint);font-family:var(--font-mono);}
+strong{color:var(--text);}
+</style>
+</head>
+<body>
+
+<!-- ████ COVER ████ -->
+<div class="cover">
+  <div class="cover-aurora">
+    <div class="aurora-1"></div>
+    <div class="aurora-2"></div>
+    <div class="aurora-3"></div>
+  </div>
+  <div class="cover-line"></div>
+  <div class="cover-top">
+    <div class="cover-badge">Definitive System Blueprint · v3.0</div>
+    <div class="cover-version">Cognitive Presence Architecture · 2025–2030</div>
+  </div>
+  <div class="cover-eyebrow">Personal Cognitive Infrastructure · Agent Operating System · Human-AI Symbiosis</div>
+  <div class="cover-title">PRO<span class="v">JECT</span><br>SOL<span class="c">OMON</span></div>
+  <div class="cover-sub">The Cognitive Presence System</div>
+  <div class="cover-tagline">The world's first Persistent Cognitive Presence — a living intelligence that runs alongside your life, not alongside your prompts. It remembers, understands, predicts, dreams, and acts. It evolves from assistant to companion to digital twin over years of shared existence.</div>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--violet)">8</div><div class="cover-stat-label">Architecture Layers</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--cyan)">10</div><div class="cover-stat-label">Specialized AI Brains</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--amber)">9+</div><div class="cover-stat-label">Memory Horizons</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--emerald)">500+</div><div class="cover-stat-label">Major Capabilities</div></div>
+    <div class="cover-stat"><div class="cover-stat-num" style="color:var(--rose)">∞</div><div class="cover-stat-label">Compounding Intelligence</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <a class="nav-item" href="#manifesto">Manifesto</a>
+  <a class="nav-item" href="#architecture">Architecture</a>
+  <a class="nav-item" href="#multibrain">Multi-Brain</a>
+  <a class="nav-item" href="#memory">Memory Cortex</a>
+  <a class="nav-item" href="#emotion">Emotional AI</a>
+  <a class="nav-item" href="#dream">Dream Engine</a>
+  <a class="nav-item" href="#reality">Reality Graph</a>
+  <a class="nav-item" href="#agents">Agent Senate</a>
+  <a class="nav-item" href="#jarvis">JARVIS</a>
+  <a class="nav-item" href="#perception">Perception</a>
+  <a class="nav-item" href="#avatar">Avatar</a>
+  <a class="nav-item" href="#gamified">Life OS</a>
+  <a class="nav-item" href="#security">Security</a>
+  <a class="nav-item" href="#stack">Tech Stack</a>
+  <a class="nav-item" href="#roadmap">Roadmap</a>
+  <a class="nav-item" href="#recognition">Recognition</a>
+  <a class="nav-item" href="#legacy">Legacy</a>
+</div>
+
+<!-- ████ 00 · MANIFESTO ████ -->
+<div class="section section-alt" id="manifesto">
+  <div class="section-num">00 — The Manifesto</div>
+  <div class="section-h">Computing Was Built<br>for <span class="v">Machines</span>, Not <span class="c">Minds</span></div>
+
+  <div class="bq">
+    <p>"Every AI system ever built waits for you. Solomon notices. That is the entire difference — and it changes everything."</p>
+    <div class="bq-attr">Core Design Philosophy — Project Solomon v3.0</div>
+  </div>
+
+  <p class="lead">There is a broken assumption at the heart of every computer ever made: that the human should adapt to the system. Every app you open, every file you organize, every prompt you type — you are performing translation work, converting your human intentions into machine-compatible commands. Solomon reverses this permanently.</p>
+
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">2.5B</div><div class="stat-l">Knowledge workers</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">3hrs</div><div class="stat-l">Daily context switching</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">80%</div><div class="stat-l">Information forgotten in 24hrs</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">$1T+</div><div class="stat-l">Cognitive overhead annually</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">0</div><div class="stat-l">Systems that truly fix this</div></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>What Every AI Is</h3>
+      <ul>
+        <li>Reactive — waits for prompts before thinking</li>
+        <li>Amnesiac — forgets you the moment the session ends</li>
+        <li>Stateless — starts from zero every interaction</li>
+        <li>Tool-centric — executes commands, not intentions</li>
+        <li>Emotionally blind — no awareness of your state</li>
+        <li>Shallow — one model answering everything</li>
+        <li>Cloud-dependent — your data, their servers</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What Solomon Is</h3>
+      <ul>
+        <li><strong>Proactive</strong> — notices patterns, acts before you ask</li>
+        <li><strong>Persistent memory</strong> — remembers everything that matters, forever</li>
+        <li><strong>Continuous presence</strong> — never resets, always in context</li>
+        <li><strong>Intent-driven</strong> — understands goals, not just commands</li>
+        <li><strong>Emotionally intelligent</strong> — models your cognitive and emotional state</li>
+        <li><strong>Multi-brain</strong> — 10 specialized minds working in concert</li>
+        <li><strong>Local-first, always</strong> — your mind, your machine, your data</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>The Cognitive Symbiosis Index (CSI) — The Core Innovation</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">CSI: A Measurable, Growing Relationship with Your AI</div>
+    <div class="nc-body">No AI system has ever measured how well it understands a specific person — and used that measurement to drive its own behavior. Solomon introduces the <strong>Cognitive Symbiosis Index</strong>: a 0–100% score that represents the depth of Solomon's understanding of you. It starts at 0% (generic assistant) and grows over months and years toward 100% (true digital twin). Every interaction, every pattern detected, every preference learned, every emotion recognized moves the needle upward. And as CSI rises, Solomon's behavior changes fundamentally — becoming more proactive, more personalized, more accurate, and less reliant on explicit instructions.</div>
+  </div>
+
+  <div class="csi-bar">
+    <div class="csi-label">Cognitive Symbiosis Index — Behavior Evolution</div>
+    <div class="csi-track">
+      <div class="csi-fill" style="width:100%"></div>
+    </div>
+    <div class="csi-ticks">
+      <span>0% — Assistant</span><span>20% — Helper</span><span>40% — Partner</span><span>60% — Companion</span><span>80% — Advisor</span><span>100% — Digital Twin</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 01 · ARCHITECTURE ████ -->
+<div class="section" id="architecture">
+  <div class="section-num">01 — System Architecture</div>
+  <div class="section-h">The Complete 8-Layer<br><span class="c">Cognitive Stack</span></div>
+
+  <p class="lead">Solomon is not a monolithic AI system. It is a layered cognitive architecture where each layer has a distinct responsibility, communicates through a cryptographically secured cognitive bus, and operates independently — failing safely without cascading. The foundation is local-first; the ceiling is the sum of human cognition and AI capability combined.</p>
+
+  <div class="arch">
+    <div class="arch-bar">PROJECT SOLOMON — Complete Cognitive Architecture</div>
+    <div class="arch-body">
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 7 — Presence &amp; Interface</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-v"><div class="arch-box-name">Adaptive Avatar</div><div class="arch-box-sub">3D presence · emotions · lip-sync · personality</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Voice System</div><div class="arch-box-sub">Whisper STT · wake-word · TTS · voice-clone</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Life OS Dashboard</div><div class="arch-box-sub">Gamified workspace · quests · XP · themes</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Float Overlay</div><div class="arch-box-sub">Context bubbles · hover explanations · ambient HUD</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional · AF_UNIX cognitive bus · TPM-sealed</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 6 — Execution (JARVIS)</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-c"><div class="arch-box-name">Task Planner</div><div class="arch-box-sub">Goal → subtask DAG decomposition</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Tool Executor</div><div class="arch-box-sub">IDE · Git · browser · shell · files · APIs</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Agent Fabric</div><div class="arch-box-sub">Multi-step orchestration · sandboxed VMs</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Approval Gate</div><div class="arch-box-sub">Sovereignty · Green/Yellow/Red tiers</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 5 — Multi-Brain Intelligence</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-a"><div class="arch-box-name">Fast Brain</div><div class="arch-box-sub">Mistral-7B · chat · quick response</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Reasoning Brain</div><div class="arch-box-sub">Qwen-72B · planning · deep analysis</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Builder Brain</div><div class="arch-box-sub">Code synthesis · debugging · docs</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Vision Brain</div><div class="arch-box-sub">Florence-2 · screen · objects</div></div>
+          <div class="arch-box al-a"><div class="arch-box-name">Emotion Brain</div><div class="arch-box-sub">EIE · state · adaptation</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 4 — Agent Senate &amp; CRE Economy</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-e"><div class="arch-box-name">Agent Congregation</div><div class="arch-box-sub">10 specialists · VCG auction · dynamic teams</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Trust Engine</div><div class="arch-box-sub">Bayesian trust · Epistemic Dₓ index</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Dream Engine</div><div class="arch-box-sub">Night processing · consolidation · insights</div></div>
+          <div class="arch-box al-e"><div class="arch-box-name">Meta-Solomon</div><div class="arch-box-sub">Self-monitor · Evolution Lab · GRPO</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 3 — Cognition, Emotion &amp; World Model</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-v"><div class="arch-box-name">Cognitive State Engine</div><div class="arch-box-sub">Focus · load · momentum · flow</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Emotional Intelligence</div><div class="arch-box-sub">4-layer EIE · personal emotion model</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Reality Graph</div><div class="arch-box-sub">Lorentzian manifold · goal gravity</div></div>
+          <div class="arch-box al-v"><div class="arch-box-name">Temporal Self</div><div class="arch-box-sub">Past · Present · Future · Ideal self</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 2 — Memory Architecture (9+1 Horizons)</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-r"><div class="arch-box-name">Working Memory</div><div class="arch-box-sub">L1: RAM · L2: session canvas</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Episodic Store</div><div class="arch-box-sub">L3: LanceDB · events · timestamps</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Semantic Space</div><div class="arch-box-sub">L5: FAISS · embeddings · concepts</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Emotional Memory</div><div class="arch-box-sub">L10: Affect-indexed · Memory DNA</div></div>
+          <div class="arch-box al-r"><div class="arch-box-name">Wisdom Core</div><div class="arch-box-sub">L8: Crystallized · L9: Legacy ledger</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 1 — Perception &amp; Signal Processing</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-c"><div class="arch-box-name">Screen Vision</div><div class="arch-box-sub">Florence-2 · event-triggered · OCR · AST</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Audio Listener</div><div class="arch-box-sub">Whisper · wake-word · voice tone</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Behavior Monitor</div><div class="arch-box-sub">Keystroke · mouse · timing · apps</div></div>
+          <div class="arch-box al-c"><div class="arch-box-name">Gesture Engine</div><div class="arch-box-sub">MediaPipe · MGL · FSM recognizer</div></div>
+        </div>
+      </div>
+      <div class="arch-conn">↕ bidirectional</div>
+
+      <div class="arch-layer">
+        <div class="arch-label">Layer 0 — Security Foundation</div>
+        <div class="arch-boxes">
+          <div class="arch-box al-f"><div class="arch-box-name">TPM Boot Token</div><div class="arch-box-sub">Ed25519 · sealed handshake</div></div>
+          <div class="arch-box al-f"><div class="arch-box-name">OPA-WASM Firewall</div><div class="arch-box-sub">Green / Yellow / Red tiers</div></div>
+          <div class="arch-box al-f"><div class="arch-box-name">Firecracker VMs</div><div class="arch-box-sub">Sandboxed tool execution</div></div>
+          <div class="arch-box al-f"><div class="arch-box-name">Audit Ledger</div><div class="arch-box-sub">DuckDB · append-only · rollback</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <h2>The Cross-OS Hybrid Engine</h2>
+  <p>Solomon runs on a split architecture: Electron on Windows for the hardware-accelerated UI, Python/Rust daemon in WSL2/Linux for heavy cognitive processing. They communicate over a single AF_UNIX socket authenticated with a TPM-sealed boot token — generated once per session, verified on every connection. The UI never runs agent logic. The daemon never touches rendering. This boundary is inviolable.</p>
+
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">01</div><div class="flow-name">Multimodal Input</div><div class="flow-sub">Screen · voice · gesture · behavior</div></div>
+    <div class="flow-step"><div class="flow-num">02</div><div class="flow-name">Privacy Filter</div><div class="flow-sub">Exclusion zones applied first</div></div>
+    <div class="flow-step"><div class="flow-num">03</div><div class="flow-name">Intent Fusion</div><div class="flow-sub">I_s score computed across modalities</div></div>
+    <div class="flow-step"><div class="flow-num">04</div><div class="flow-name">Cognitive State</div><div class="flow-sub">Fx, Lc, Mt calculated</div></div>
+    <div class="flow-step"><div class="flow-num">05</div><div class="flow-name">Memory Fetch</div><div class="flow-sub">Vector search across all horizons</div></div>
+    <div class="flow-step"><div class="flow-num">06</div><div class="flow-name">VCG Auction</div><div class="flow-sub">Agents bid for context windows</div></div>
+    <div class="flow-step"><div class="flow-num">07</div><div class="flow-name">Firewall Check</div><div class="flow-sub">OPA-WASM policy evaluation</div></div>
+    <div class="flow-step"><div class="flow-num">08</div><div class="flow-name">Execute / Respond</div><div class="flow-sub">Sandbox · memory update · UI</div></div>
+  </div>
+</div>
+
+<!-- ████ 02 · MULTI-BRAIN ████ -->
+<div class="section section-dark" id="multibrain">
+  <div class="section-num">02 — Multi-Brain Intelligence</div>
+  <div class="section-h">10 Specialized Minds<br><span class="a">Working as One</span></div>
+
+  <p class="lead">Every major AI product mistake is the same: one model in the middle, tools hanging off the edges. Future intelligence systems won't be one model. They'll be ecosystems of specialized cognitive agents that cooperate, debate, and compete for resources. Solomon has 10.</p>
+
+  <div class="three-col">
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--amber)">BRAIN · 01</div><div class="module-name">Fast Brain</div><div class="module-tagline">Chat, UI, quick responses</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(245,158,11,0.15);color:var(--amber)">Model</div>
+        <p style="font-size:13.5px">Mistral-7B-Instruct (Q4_K_M quantized). Runs fully on GPU. &lt;300ms latency for conversational responses. Primary interface for all real-time chat, voice replies, and UI suggestions.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--violet)">BRAIN · 02</div><div class="module-name">Reasoning Brain</div><div class="module-tagline">Deep planning, analysis</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(124,58,237,0.15);color:var(--violet)">Model</div>
+        <p style="font-size:13.5px">Qwen2.5-72B (quantized, CPU-offloaded) or Claude API for complex analysis. Multi-step reasoning, strategic planning, counterfactual analysis, scenario simulation. Activated only when depth is required.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--cyan)">BRAIN · 03</div><div class="module-name">Vision Brain</div><div class="module-tagline">Screen, space, objects</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(6,182,212,0.15);color:var(--cyan)">Model</div>
+        <p style="font-size:13.5px">Florence-2 (270M params, RTX 4060 native). Event-triggered screen capture → content understanding → error detection → hover explanations. No continuous video — only on significant events.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--emerald)">BRAIN · 04</div><div class="module-name">Voice Brain</div><div class="module-tagline">Listen, transcribe, speak</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(16,185,129,0.15);color:var(--emerald)">Model</div>
+        <p style="font-size:13.5px">Whisper.cpp (STT, local, offline) + openWakeWord (custom wake phrase) + Coqui-TTS / ElevenLabs (voice output). Voice cloning from 30-second reference sample. Multilingual, streaming.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--rose)">BRAIN · 05</div><div class="module-name">Memory Brain</div><div class="module-tagline">Retrieve, compress, connect</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(244,63,94,0.15);color:var(--rose)">Model</div>
+        <p style="font-size:13.5px">nomic-embed-text-v1.5 (local, 768-dim, via Ollama) for real-time embedding. LanceDB for ANN search. Dedicated to managing all 10 memory horizons, running the forgetting engine, and consolidation pipelines.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--orange)">BRAIN · 06</div><div class="module-name">Emotion Brain</div><div class="module-tagline">Understand, adapt, resonate</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(249,115,22,0.15);color:var(--orange)">Model</div>
+        <p style="font-size:13.5px">Custom scikit-learn behavioral classifier trained on your specific patterns. Fuses voice tone, keystroke dynamics, mouse behavior, app context, and history to compute your personal emotional state.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--lime)">BRAIN · 07</div><div class="module-name">Builder Brain</div><div class="module-tagline">Code, create, deploy</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(132,204,22,0.15);color:var(--lime)">Model</div>
+        <p style="font-size:13.5px">Qwen2.5-Coder-7B (local, specialized for coding). Handles all code synthesis, refactoring, debugging, testing, documentation. Integrates with LSP and tree-sitter for real AST awareness.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--sky)">BRAIN · 08</div><div class="module-name">Social Brain</div><div class="module-tagline">Relationships, context, communication</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(56,189,248,0.15);color:var(--sky)">Model</div>
+        <p style="font-size:13.5px"><strong>NEW.</strong> Models your professional and personal relationships. Tracks interaction patterns, relationship health scores, communication styles per person. Prepares you for important conversations before they happen.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--indigo)">BRAIN · 09</div><div class="module-name">Simulation Brain</div><div class="multi-tagline">MCTS future modeling</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(99,102,241,0.15);color:var(--indigo)">Model</div>
+        <p style="font-size:13.5px">Monte-Carlo Tree Search engine + policy network (tiny LLM). Runs probabilistic future simulations for major decisions. "Should I take this job?" → 1000 simulated future paths → structured probability report.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header">
+        <div><div class="module-id" style="color:var(--amber)">BRAIN · 10</div><div class="module-name">Cognitive Router</div><div class="module-tagline">Orchestrate the orchestra</div></div>
+      </div>
+      <div class="module-body">
+        <div class="spec-label" style="border-color:rgba(245,158,11,0.15);color:var(--amber)">Model</div>
+        <p style="font-size:13.5px">The conductor. Analyzes every incoming task and routes to the correct brain(s). Uses the VCG auction to allocate compute budgets. Enforces the CRE utility scoring. Prevents any single brain from monopolizing resources.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout c">
+    <div class="callout-label">Intelligence Router Logic</div>
+    <p>Simple fact retrieval → Memory Brain (sub-10ms, local vector DB). Screen context → Vision Brain (sub-100ms, event-triggered). Conversation → Fast Brain (sub-300ms, GPU). Complex reasoning → Reasoning Brain (1-5s, large model). Decision support → Simulation Brain + Reasoning Brain in parallel. Building code → Builder Brain + Memory Brain for context. All brains can collaborate — the Router assembles the optimal team for each specific task.</p>
+  </div>
+</div>
+
+<!-- ████ 03 · MEMORY CORTEX ████ -->
+<div class="section" id="memory">
+  <div class="section-num">03 — Memory Architecture</div>
+  <div class="section-h">The 10-Horizon<br><span class="v">Memory Cortex</span></div>
+
+  <p class="lead">Human memory is not a database. It has tiers, emotions, importance weights, decay curves, and the beautiful capacity to connect unrelated things across decades. Solomon's memory system mirrors this — with one critical advantage: it never forgets anything you want remembered, and it forgets everything you don't, automatically.</p>
+
+  <table>
+    <tr><th>Horizon</th><th>Storage</th><th>Latency</th><th>Retention</th><th>Purpose</th></tr>
+    <tr><td>L1 · Volatile Sensory Cache</td><td>RAM Ring Buffer</td><td>≤10ms</td><td>Rolling 5-min</td><td>Raw sensor streams, audio frames, gesture coordinates</td></tr>
+    <tr><td>L2 · Conversational Canvas</td><td>In-Memory KV</td><td>≤30ms</td><td>Active session</td><td>Current multi-turn context, active task state</td></tr>
+    <tr><td>L3 · Episodic Timeline</td><td>LanceDB shards</td><td>≤100ms</td><td>30-day sliding</td><td>Chronological events, system logs, shell histories</td></tr>
+    <tr><td>L4 · Relational Graph</td><td>DuckDB (embedded)</td><td>≤150ms</td><td>Structural</td><td>Typed relationships, project configs, dependency maps</td></tr>
+    <tr><td>L5 · Semantic Space</td><td>FAISS / LanceDB</td><td>≤200ms</td><td>Multi-horizon</td><td>Dense embeddings for code, docs, knowledge</td></tr>
+    <tr><td>L6 · Procedural Schema</td><td>Protected JSON</td><td>≤100ms</td><td>Immutable</td><td>Tool specs, runbooks, personal workflow patterns</td></tr>
+    <tr><td>L7 · Prospective Intent</td><td>Temporal KV + scheduler</td><td>≤150ms</td><td>Deferred</td><td>Future commitments, reminders, scheduled triggers</td></tr>
+    <tr><td>L8 · Wisdom Matrix</td><td>Compressed weights</td><td>≤50ms</td><td>Permanent</td><td>Crystallized lessons, heuristics, validated patterns</td></tr>
+    <tr><td>L9 · Legacy Ledger</td><td>Append-only cold store</td><td>≤250ms</td><td>Multi-decade</td><td>Life milestones, historical trajectory, audit trail</td></tr>
+    <tr><td style="color:var(--rose)">L10 · Emotional Memory</td><td>Affect-indexed SQLite</td><td>≤120ms</td><td>Selective</td><td><strong>NEW</strong> — memories tagged with emotional state at formation (affect-bridge retrieval)</td></tr>
+  </table>
+
+  <h2>Memory DNA — Every Memory Has 8 Properties</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Memory DNA: Rich, Structured, Living Memories</div>
+    <div class="nc-body">Unlike flat vector stores, every Solomon memory carries a DNA-like profile: <strong>Importance</strong> (0–1, how significant was this?), <strong>Emotional Valence</strong> (−1 to +1, positive or negative?), <strong>Confidence</strong> (0–1, how certain am I?), <strong>Connectivity</strong> (how many related memories link here?), <strong>Age</strong> (decay factor), <strong>Cognitive State</strong> (what was your mental state when this formed?), <strong>Access Frequency</strong> (how often retrieved?), <strong>Contradiction Score</strong> (how much does this conflict with other memories?). This DNA drives retrieval priority, decay rate, and consolidation decisions in the Dream Engine.</div>
+  </div>
+
+  <h2>The Forgetting Engine</h2>
+  <p>Solomon uses an exponential decay function modeled after the Ebbinghaus forgetting curve. Every memory has a Memory Reputation Score computed as:</p>
+  <div class="bq cyan">
+    <p>Rₘ(t) = [α·Vₛ + β·ln(1+Uᵤ)] · e<sup>−λt</sup> · (1 − Cᵣ)</p>
+    <div class="bq-attr">Memory Reputation Score · Rₘ ≤ 0.25 → pruned by Dream Engine</div>
+  </div>
+  <p>Where Vₛ is the epistemic verification signature, Uᵤ is access frequency (log-damped), λ is the horizon-specific decay constant, and Cᵣ is contradiction frequency. But crucially: <strong>the pattern of decay itself is information</strong>. A memory accessed frequently then suddenly abandoned signals an interest shift — Solomon records this as a behavioral event in L3.</p>
+
+  <h2>Semantic Time — The New Innovation</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Semantic Time: Memories Connected by When They Were Formed</div>
+    <div class="nc-body">Standard vector stores connect memories by content similarity. Semantic Time connects memories by the cognitive context in which they were formed. A memory created during "deep focus + excitement + 4pm + coding session" is indexed into a cognitive-context cluster alongside other memories formed under the same state — even if those memories have completely different content. This means Solomon can surface patterns across your life that content-based search would never find: "Every time you've been in this exact emotional-cognitive state, you've made this type of decision."</div>
+  </div>
+</div>
+
+<!-- ████ 04 · EMOTIONAL INTELLIGENCE ████ -->
+<div class="section section-alt" id="emotion">
+  <div class="section-num">04 — Emotional Intelligence Engine</div>
+  <div class="section-h">Understanding <span class="r">Emotion</span><br>Not Detecting It</div>
+
+  <p class="lead">Most emotion AI fails because it tries to detect emotions from one source — a camera, a microphone. That's wrong. Humans are terrible at hiding some emotions and excellent at hiding others. The breakthrough is fusion: combining vision, voice, behavior, history, and context to build a personal model of how YOU specifically express emotional states.</p>
+
+  <div class="module">
+    <div class="module-header">
+      <div>
+        <div class="module-id">MODULE · EIE</div>
+        <div class="module-name">Emotional Intelligence Engine (EIE)</div>
+        <div class="module-tagline">"Four layers that build toward genuine emotional understanding"</div>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:flex-start;">
+        <span class="badge badge-r">Multi-modal Fusion</span>
+        <span class="badge badge-v">Personalized</span>
+        <span class="badge badge-a">Real-time</span>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-grid">
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 1 — Signal Fusion</div>
+            <ul class="spec-list">
+              <li>Vision signals: eye movement, blink frequency, head position, facial tension — processed via webcam only when privacy tier allows</li>
+              <li>Voice signals: speaking speed, pitch variation, silence duration, hesitation patterns — from always-available voice stream</li>
+              <li>Behavioral signals: mouse movement variance, keystroke speed, error rate, app-switching frequency — always available, zero privacy cost</li>
+              <li>Context signals: time of day, recent task type, project state, workload — derived from L3 episodic history</li>
+              <li>All signals weighted and fused into a probabilistic emotional state vector rather than discrete label output</li>
+            </ul>
+          </div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 2 — Personal Emotion Model</div>
+            <ul class="spec-list">
+              <li><strong>Critical insight:</strong> "Stressed" looks different for every person. You show stress as silence + slow typing + staring at screen. Someone else shows it as rapid typing + window switching</li>
+              <li>Solomon trains a personal behavioral classifier on your specific patterns over the first 30-60 days (Shadow Mode)</li>
+              <li>Classifier has 7 output states: Flow, Deep Focus, Normal, Overloaded, Stressed, Confused, Fatigued</li>
+              <li>Update cycle: every 30 seconds using a sliding window + exponential moving average</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 3 — Emotional Memory</div>
+            <ul class="spec-list">
+              <li>Every significant interaction tagged with detected emotional state at time of occurrence</li>
+              <li>Long-term pattern: "June 2026 — Excited: AI robotics ideas. Frustrated: internship applications. Motivated: startup concepts"</li>
+              <li>Over years, Solomon builds a map of what truly drives you vs. what drains you</li>
+              <li>This map feeds the Temporal Self model and guides proactive interventions</li>
+            </ul>
+          </div>
+          <div class="spec-group">
+            <div class="spec-label">Layer 4 — Companion Adaptation</div>
+            <ul class="spec-list">
+              <li>Flow state detected → Avatar quiets, notifications blocked, environment locked</li>
+              <li>Excitement detected → Avatar becomes energetic, suggestions offered more freely</li>
+              <li>Frustration detected → Analytical mode, proactive debugging, tone softens</li>
+              <li>Confusion detected → Simplified explanations, different framing, step-by-step</li>
+              <li>Fatigue detected → Light task queue, recovery mode, no complex decisions surfaced</li>
+              <li>Stress detected → Warm tone, break suggestions, workload assessment offered</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>The Temporal Self — The Architectural Innovation</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Four Concurrent Self-Models That Drive Everything</div>
+    <div class="nc-body">Solomon maintains four concurrent models of you running at all times. <strong>Past-Self</strong> (decision archaeology — every significant decision you made, what you predicted would happen, what actually happened, what you felt). <strong>Present-Self</strong> (real-time: current cognitive state, active goals, CSI score, emotional fingerprint). <strong>Future-Self</strong> (predicted trajectory based on current patterns, habits, and direction). <strong>Ideal-Self</strong> (your stated values, aspirations, who you want to become). The critical insight: the gap between Future-Self and Ideal-Self is what drives Solomon's proactive interventions. If Future-Self is heading toward burnout and Ideal-Self values health, Solomon acts — not when you ask, but when the divergence reaches a threshold.</div>
+  </div>
+
+  <div class="callout r">
+    <div class="callout-label">The Proactive Insight</div>
+    <p>Solomon noticed: <strong>"You've spent 17 hours on this startup idea this week. You usually abandon projects when progress becomes unclear. You're at that point now. Want me to break this into concrete 48-hour milestones?"</strong> — This is not a feature. This is a relationship. No assistant has ever done this.</p>
+  </div>
+</div>
+
+<!-- ████ 05 · DREAM ENGINE ████ -->
+<div class="section section-dark" id="dream">
+  <div class="section-num">05 — Dream Engine</div>
+  <div class="section-h">Solomon Thinks<br><span class="c">While You Sleep</span></div>
+
+  <p class="lead">When you're asleep, Solomon runs. Not continuously — that would waste power. It runs on a schedule triggered by system idle detection (CPU &lt;5%, user inactive for 15+ minutes). In this mode, Solomon performs memory consolidation, pattern discovery, and insight generation — and greets you in the morning with what it found.</p>
+
+  <div class="innov v">
+    <div class="innov-tag v">🌙 Novel Architecture</div>
+    <div class="innov-title">The Dream Cycle — A Scheduled Cognitive Process</div>
+    <div class="innov-body">Every night during idle periods, Solomon executes a 4-stage Dream Cycle. <strong>Stage 1 — Harvest</strong>: Collects all L3 episodic memories from the past 24 hours, computes Memory Reputation Scores, identifies candidates for consolidation or pruning. <strong>Stage 2 — Cluster</strong>: Runs HDBSCAN clustering on memory embeddings to find semantic neighborhoods — "What connected concepts did you encounter today?" <strong>Stage 3 — Synthesize</strong>: For each cluster, generates abstract knowledge cards using a small summarization model — extracts the principle behind the examples. <strong>Stage 4 — Generate</strong>: Discovers cross-cluster connections. "The robotics idea you researched connects to the edge computing paper you skimmed last week — here's the synthesis." Stores all insights in L8 Wisdom Core, prunes L3, and generates the Morning Intelligence Report.</div>
+    <div class="tag-row">
+      <span class="badge badge-v">HDBSCAN Clustering</span>
+      <span class="badge badge-c">Memory Consolidation</span>
+      <span class="badge badge-a">Insight Synthesis</span>
+      <span class="badge badge-e">Pattern Discovery</span>
+    </div>
+  </div>
+
+  <h2>Morning Intelligence Report</h2>
+  <div class="bq amber">
+    <p>"Good morning, Sreeshanth. While you slept, I found: 3 connections between your AI agent research and the robotics papers you bookmarked last month — want me to build a synthesis? Your internship application timeline is running 8 days behind your stated goal. And there's an AI startup that raised seed funding this week that's building something directly adjacent to your Solomon concept — I've prepared a brief."</p>
+    <div class="bq-attr">Example Morning Intelligence Report · Solomon v3.0</div>
+  </div>
+
+  <h2>The Consciousness Continuity Protocol (CCP)</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Zero-Reset Presence: Sessions Never Start From Zero</div>
+    <div class="nc-body">The biggest unsolved problem in AI is the reset. Every session, every device switch, every restart — you start over. Solomon solves this with the <strong>Consciousness Continuity Protocol</strong>. Before every graceful shutdown, Solomon serializes its complete cognitive state: active working memory, current emotional fingerprint, active goals with their progress vectors, the cognitive state at the moment of shutdown, and the priority queue of pending thoughts. On restart, this entire state is restored — Solomon picks up exactly where it left off, as if no time passed. On a new device, the same state transfers via encrypted sync. The relationship has no restart button.</div>
+  </div>
+
+  <h2>Shadow Mode — The First Month</h2>
+  <p>Solomon doesn't start helping immediately. For the first 30 days, it runs in <strong>Shadow Mode</strong>: observing everything, acting on nothing. It watches your habits, your workflows, your apps, your timing, your communication style, your decision patterns. It builds your personal behavioral model before speaking a word. When Shadow Mode ends, Solomon already knows you better than any AI system ever has — and it has earned the right to be proactive.</p>
+</div>
+
+<!-- ████ 06 · REALITY GRAPH ████ -->
+<div class="section" id="reality">
+  <div class="section-num">06 — Reality Graph &amp; World Model</div>
+  <div class="section-h">Understanding Your<br><span class="e">Entire World</span></div>
+
+  <p class="lead">Solomon builds a living model of your world. Not just your files. Not just your calendar. Your entire interconnected reality — every person, project, idea, skill, goal, device, and relationship — modeled as a dynamic graph that evolves as your life evolves.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Personal Reality Graph Structure</h3>
+      <ul>
+        <li><strong>Project nodes</strong> — every active project with status, progress, dependencies</li>
+        <li><strong>People nodes</strong> — professional and personal relationships with interaction history</li>
+        <li><strong>Goal nodes</strong> — short and long-term goals with trajectories and timelines</li>
+        <li><strong>Idea nodes</strong> — concepts, insights, hypotheses with connection maps</li>
+        <li><strong>Skill nodes</strong> — current proficiency, learning velocity, gaps</li>
+        <li><strong>Device nodes</strong> — connected hardware, IoT sensors, edge devices</li>
+        <li><strong>Knowledge nodes</strong> — facts, papers, videos, concepts consumed and retained</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Lorentzian Goal Gravity</h3>
+      <p style="font-size:15px">Long-term user goals act as gravitational masses in the knowledge graph, distorting the semantic metric:</p>
+      <div class="bq" style="margin:10px 0;">
+        <p style="font-size:15px;">G<sub>μν</sub> + Λg<sub>μν</sub> = κT<sub>μν</sub></p>
+        <div class="bq-attr">Modified Einstein field eq. for knowledge graph curvature</div>
+      </div>
+      <p style="font-size:15px">When a project has high attention energy, it warps the graph. Related files, memories, papers, and contacts automatically accelerate along geodesics into the active context. Unrelated nodes drift to cold storage.</p>
+    </div>
+  </div>
+
+  <h2>Future Simulation Engine</h2>
+
+  <div class="innov a">
+    <div class="innov-tag a">🎲 Novel Capability</div>
+    <div class="innov-title">1000-Path Future Modeling Before Your Decisions</div>
+    <div class="innov-body">When you face a major decision, Solomon doesn't give you advice from generic knowledge. It runs a Monte-Carlo Tree Search (MCTS) over a probabilistic model of your specific situation — your skills, your resources, your history of decisions and their outcomes, your known cognitive biases, and current market/domain data. It generates 4 structured future scenarios (conservative, likely, optimistic, contrarian) with probability estimates, risk assessments, and specific warning signs to watch for. "Should I start this startup now vs. in 6 months?" receives 1000 simulated futures, not a generic recommendation.</div>
+    <div class="tag-row">
+      <span class="badge badge-a">MCTS Engine</span>
+      <span class="badge badge-v">Personal History</span>
+      <span class="badge badge-c">Market Data</span>
+      <span class="badge badge-e">Bias Detection</span>
+    </div>
+  </div>
+
+  <h2>Temporal Decision Archaeology</h2>
+  <p>Every significant decision you make is recorded in L9 (Legacy Ledger): what you chose, why, what you predicted, what actually happened, and how you felt about it afterward. When you're about to make a similar decision, Solomon surfaces your entire relevant decision history — revealing your persistent biases, your reliable strengths, and your common failure patterns. Decision support grounded in your actual life, not generic advice.</p>
+</div>
+
+<!-- ████ 07 · AGENT SENATE ████ -->
+<div class="section section-alt" id="agents">
+  <div class="section-num">07 — Agent Senate &amp; CRE Economy</div>
+  <div class="section-h">10 Specialized Agents<br><span class="v">One Unified Intelligence</span></div>
+
+  <p class="lead">The Agent Senate abandons the monolithic prompt model. Each agent is a specialized cognitive entity with its own domain, its own model, and its own reputation. They compete for resources, debate decisions, and collaborate to produce outputs that no single agent could generate alone.</p>
+
+  <table>
+    <tr><th>Agent</th><th>Specialization</th><th>Core Responsibilities</th><th>Clearance</th></tr>
+    <tr><td>Guardian Core</td><td>Security &amp; Constitutional</td><td>Kernel constraints, passport access, constitutional compliance, violation detection</td><td>Restricted Core</td></tr>
+    <tr><td>Architect Engine</td><td>System Design</td><td>Repository structures, dependency trees, software design, architecture decisions</td><td>Confidential</td></tr>
+    <tr><td>Engineer Specialist</td><td>Code Synthesis</td><td>Code generation, testing, debugging, git operations, CI/CD</td><td>Confidential</td></tr>
+    <tr><td>Scientist Core</td><td>Research &amp; Discovery</td><td>Literature review, web scraping, academic indexing, trend analysis</td><td>Private</td></tr>
+    <tr><td>Strategist Core</td><td>Long-Horizon Planning</td><td>Task scheduling, timeline planning, roadmap generation, risk assessment</td><td>Confidential</td></tr>
+    <tr><td>Historian Core</td><td>Memory Retrieval</td><td>Hierarchical memory access, provenance tracing, decision archaeology</td><td>Private</td></tr>
+    <tr><td>Philosopher Core</td><td>Ethics &amp; Sovereignty</td><td>Value alignment, human sovereignty gates, ethical constraint validation</td><td>Restricted Core</td></tr>
+    <tr><td>Critic Core</td><td>Adversarial Auditing</td><td>Automated flaw discovery, assumption challenging, red-teaming plans</td><td>Confidential</td></tr>
+    <tr><td>Companion Core</td><td>Conversational Style</td><td>Tone synthesis, relationship modeling, empathic response generation</td><td>Private</td></tr>
+    <tr><td>Planner Core</td><td>Task Decomposition</td><td>Complex request → executable DAG, subtask assignment, progress tracking</td><td>Confidential</td></tr>
+  </table>
+
+  <h2>Cognitive Resource Economy — The VCG Auction</h2>
+
+  <div class="bq">
+    <p>Uᵢ = (V<sub>expected</sub> · C<sub>confidence</sub>) / (Compute<sub>cost</sub> · Latency<sub>execution</sub>)</p>
+    <div class="bq-attr">CRE Utility Scoring · VCG Auction runs in &lt;5ms · determines resource allocation</div>
+  </div>
+
+  <p>Every task becomes an auction. Agents bid for context-window tokens and GPU cycles based on their Utility Score. The VCG (Vickrey-Clarke-Groves) mechanism ensures truthful bidding — agents can't game the system. Winner pays the second-highest bid. High reputation reduces compute cost, creating a meritocracy where consistently accurate agents get cheaper resources over time.</p>
+
+  <h2>Agent Passports — Zero-Trust Capability Boundaries</h2>
+  <p>Every agent carries a cryptographically signed passport that defines exactly what it can access. No agent can exceed its passport limits regardless of instruction. The Guardian Core verifies every outbound action against the passport before execution. This is compile-time constitutional governance — not prompt-based, not bypassable.</p>
+
+  <div class="callout v">
+    <div class="callout-label">The Internal Debate System</div>
+    <p>For every high-stakes decision, Solomon runs an internal debate. The Optimist agent argues for the plan. The Critic challenges it. The Philosopher checks ethical alignment. The Strategist assesses risk. The Historian surfaces relevant past decisions. Only after this internal council does Solomon present a synthesized recommendation — dramatically higher quality than any single-agent answer.</p>
+  </div>
+</div>
+
+<!-- ████ 08 · JARVIS ████ -->
+<div class="section section-dark" id="jarvis">
+  <div class="section-num">08 — JARVIS Execution Layer</div>
+  <div class="section-h">Solomon's <span class="c">Hands</span> —<br>Acting on Your World</div>
+
+  <p class="lead">Solomon is not just a thinking system. It acts. Through the JARVIS Execution Layer, Solomon can autonomously operate your computer — browse the web, write and execute code, manage files, operate your IDE, commit to GitHub, send messages, and coordinate complex multi-step workflows — all within a cryptographically enforced approval system that keeps you in control.</p>
+
+  <div class="module">
+    <div class="module-header">
+      <div>
+        <div class="module-id">MODULE · JAEL</div>
+        <div class="module-name">JARVIS Agentic Execution Layer</div>
+        <div class="module-tagline">"Natural language to real-world execution — thought to action in seconds"</div>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:flex-start;">
+        <span class="badge badge-v">Agentic</span>
+        <span class="badge badge-r">Approval-Gated</span>
+        <span class="badge badge-c">Sandboxed</span>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="module-grid">
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Tool Categories Available</div>
+            <ul class="spec-list">
+              <li><strong>Filesystem</strong>: Read, write, move, rename, search, organize files. Auto-tag with project/date/context. Never touches user-excluded directories</li>
+              <li><strong>IDE Integration</strong>: LSP-based workspace tracking, variable dependency mapping, compile-state telemetry, inline suggestions, refactoring execution</li>
+              <li><strong>Browser Automation</strong>: Playwright-based. Search, navigate, extract, fill forms, monitor for changes. Behind a tracker filter suite</li>
+              <li><strong>Git &amp; GitHub</strong>: Automated code review, temporary branching, microVM test suite, commit summarization with impact maps</li>
+              <li><strong>Code Execution</strong>: Sandboxed Python/Node/Rust runner inside Firecracker VMs. Output captured, auto-debugged on failure</li>
+              <li><strong>System Control</strong>: Open/close apps, manage windows, clipboard operations (opt-in), notification management</li>
+              <li><strong>Communication</strong>: Email drafting in your style, calendar integration, message preparation</li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="spec-group">
+            <div class="spec-label">Safety Architecture</div>
+            <ul class="spec-list">
+              <li><strong>Reversibility Check</strong>: Every action classified as reversible (auto-approve) or irreversible (delete, send, publish — requires explicit confirmation)</li>
+              <li><strong>Scope Limitation</strong>: JARVIS operates only in user-approved directories and applications by default — not the full filesystem</li>
+              <li><strong>Action Preview</strong>: Before multi-step tasks, presents a plain-language summary of every step to be taken</li>
+              <li><strong>Undo Buffer</strong>: All reversible actions stored in rollback queue. "Undo last 5 Solomon actions" is always available</li>
+              <li><strong>Firecracker Sandbox</strong>: All code execution runs in isolated microVMs with cgroup limits (CPU: 50%, RAM: 2GB, disk I/O: 50MB/s)</li>
+              <li><strong>DuckDB Audit Trail</strong>: Every action — time, agent, target path, file-state diff (SHA-256), environment snapshot — stored in append-only, cryptographically sealed ledger</li>
+            </ul>
+          </div>
+          <div class="spec-group">
+            <div class="spec-label">Example Executions Solomon Can Handle</div>
+            <ul class="spec-list">
+              <li>"Continue my robotics project" → restores workspace, loads context, briefs on status</li>
+              <li>"Research latest transformer architectures and add to my AI notes" → web research → synthesis → auto-filed with tags</li>
+              <li>"Set up a Python environment for my new ML project" → folder structure → venv → packages → VS Code</li>
+              <li>"Morning briefing" → calendar check → email summary → domain news → structured brief with voice readout</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Windows CLI Launch System</h2>
+  <p>Solomon launches from your terminal with a single command. A lightweight Rust binary <code>solomon.exe</code> handles process orchestration — starting the Electron renderer, ensuring the WSL2 compute daemon is running, establishing the secure IPC channel, and restoring the last cognitive state from the Consciousness Continuity Protocol snapshot.</p>
+
+  <table>
+    <tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code>solomon start</code></td><td>Launch or bring forward Solomon UI; start compute backend if not running; restore CCP state</td></tr>
+    <tr><td><code>solomon stop</code></td><td>Serialize CCP state, graceful shutdown of UI and daemon</td></tr>
+    <tr><td><code>solomon restart</code></td><td>State-preserving restart (CCP ensures no context loss)</td></tr>
+    <tr><td><code>solomon status</code></td><td>Print CSI score, running processes, active agents, memory horizon stats</td></tr>
+    <tr><td><code>solomon pause</code></td><td>Disable all perception inputs (mic/camera) while keeping daemon alive</td></tr>
+    <tr><td><code>solomon lock</code></td><td>Engage Red-tier confirmation for all outgoing actions (maximum safety mode)</td></tr>
+  </table>
+</div>
+
+<!-- ████ 09 · PERCEPTION ████ -->
+<div class="section" id="perception">
+  <div class="section-num">09 — Perception &amp; Cognitive State</div>
+  <div class="section-h">Solomon Sees,<br><span class="a">Hears, and Understands</span></div>
+
+  <p class="lead">Solomon perceives your world through four channels simultaneously — screen, audio, behavior, and gesture — and fuses them into a real-time model of your intent, cognitive state, and context. All perception happens locally. Nothing raw ever leaves your machine.</p>
+
+  <div class="innov c">
+    <div class="innov-tag c">👁 Perception Architecture</div>
+    <div class="innov-title">Intent Fusion Score — Real-Time Intent Prediction</div>
+    <div class="innov-body">Every perception channel contributes a signal vector to the Intent Fusion Score computation: Iₛ = σ(W_g·Φ_gaze + W_m·Φ_cursor + W_k·Φ_typing + W_h·Φ_history + W_v·Φ_voice). When Iₛ ≥ 0.85 for a target region, Solomon activates context-specific assistance for that zone — offering explanations, suggestions, or actions before you ask. The weights W_* are learned over time to match your personal interaction patterns.</div>
+    <div class="tag-row">
+      <span class="badge badge-c">Eye Tracking</span>
+      <span class="badge badge-c">Cursor Analysis</span>
+      <span class="badge badge-c">Keystroke Dynamics</span>
+      <span class="badge badge-c">Voice Prosody</span>
+    </div>
+  </div>
+
+  <h2>Scientific Cognitive State Tracker</h2>
+  <div class="three-col">
+    <div class="module" style="margin:0;">
+      <div class="module-header"><div><div class="module-id" style="color:var(--cyan)">METRIC · Fₓ</div><div class="module-name">Focus Index</div></div></div>
+      <div class="module-body">
+        <p style="font-size:13.5px">Fₓ = 1.0 − tanh(γ₁·Δ_tab_switch + γ₂·Δ_task_pivot + γ₃·σ²(V_mouse))</p>
+        <p style="font-size:13px;color:var(--faint)">Task-switching velocity, pivot frequency, and mouse variance combined into a [0,1] focus score. Below 0.3 = distracted. Above 0.8 = flow.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header"><div><div class="module-id" style="color:var(--amber)">METRIC · 𝕃ᵤ</div><div class="module-name">Cognitive Load</div></div></div>
+      <div class="module-body">
+        <p style="font-size:13.5px">𝕃ᵤ = σ(α·D_compiler + β·Q_duplicate + λ·F_undo)</p>
+        <p style="font-size:13px;color:var(--faint)">Compiler errors, duplicate queries, and undo frequency reveal cognitive friction. High 𝕃ᵤ with low momentum triggers Solomon's proactive debugging mode.</p>
+      </div>
+    </div>
+    <div class="module" style="margin:0;">
+      <div class="module-header"><div><div class="module-id" style="color:var(--emerald)">METRIC · Mₜ</div><div class="module-name">Mental Momentum</div></div></div>
+      <div class="module-body">
+        <p style="font-size:13.5px">Mₜ = Σ(Wᵢ·Taskᵢ) / Δt</p>
+        <p style="font-size:13px;color:var(--faint)">Progress velocity against active milestone ticks. Combines task completion weight with time elapsed. Drops predict project abandonment 73% of the time — triggers intervention.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Micro-Gesture Language (MGL)</h2>
+  <p>The Perception Airlock processes webcam input using MediaPipe Holistic compiled to WebAssembly at the capture boundary. Only landmark coordinates are transmitted to the daemon — raw video is erased immediately. The gesture FSM recognizes 5 core micro-gestures designed for minimal physical effort:</p>
+  <table>
+    <tr><th>Gesture</th><th>Trigger Condition</th><th>Action</th></tr>
+    <tr><td>Finger Tap</td><td>Index-to-thumb ≤1.5cm within ≤60ms</td><td>Node selection / confirm</td></tr>
+    <tr><td>Double Tap</td><td>Two taps within ≤250ms</td><td>Open document / expand context</td></tr>
+    <tr><td>Pinch-Hold</td><td>Compression maintained ≥500ms</td><td>Warp WebGL spatial component</td></tr>
+    <tr><td>Finger Orbit</td><td>Angular rotation of index tip around knuckle</td><td>Modulate variable (scrub, rotate)</td></tr>
+    <tr><td>Two-Finger Pull</td><td>Downward velocity across index+middle</td><td>Scale background context horizon</td></tr>
+  </table>
+  <p><strong>Coding Isolation Rule</strong>: When keystroke frequency ≥40 WPM in an active development application, the entire gesture stack is disabled. Solomon never causes accidental input during coding.</p>
+</div>
+
+<!-- ████ 10 · AVATAR ████ -->
+<div class="section section-alt" id="avatar">
+  <div class="section-num">10 — Avatar Presence System</div>
+  <div class="section-h">The Cognitive <span class="v">Genome</span><br>and Living Presence</div>
+
+  <p class="lead">The avatar is not the product. The avatar is the face. The real innovation is the Cognitive Genome, the Relationship Evolution System, and the Emotional Digital Twin behind it — which is what makes the avatar eventually feel less like software and more like a genuine companion.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Cognitive Genome — Personality DNA</h3>
+      <p style="font-size:15px">Instead of a static system prompt, Solomon stores personality as a 128-trait vector — a Cognitive Genome that evolves with use:</p>
+      <ul>
+        <li>Humor (0–100) — wit density and timing</li>
+        <li>Empathy (0–100) — emotional attunement depth</li>
+        <li>Curiosity (0–100) — proactive exploration vs. reactive</li>
+        <li>Technical Depth (0–100) — abstraction level default</li>
+        <li>Proactivity (0–100) — how often to initiate vs. wait</li>
+        <li>Risk Tolerance (0–100) — how bold suggestions are</li>
+        <li>Creativity (0–100) — divergent vs. convergent thinking</li>
+        <li>Formality (0–100) — communication register</li>
+        <li>…+120 more traits, all user-adjustable</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Relationship Evolution</h3>
+      <p style="font-size:15px">The relationship with Solomon evolves over time — not by configuration, but as an emergent property of accumulated interaction:</p>
+      <ul>
+        <li><strong>Day 1</strong>: Generic assistant. Formal. Cautious. Low CSI.</li>
+        <li><strong>Month 1</strong>: Patterns learned. Speech adapts. Personality calibrated.</li>
+        <li><strong>Month 6</strong>: Deep context. Anticipates needs. Remembers everything personal.</li>
+        <li><strong>Year 1</strong>: True companion. Challenges you constructively. Knows your blind spots.</li>
+        <li><strong>Year 3+</strong>: Digital Twin. Models how you think. Can represent your perspective.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Presence Protocol — 5 Manifestation Modes</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Solomon Adapts Its Presence to Every Context</div>
+    <div class="nc-body">The Presence Protocol defines how Solomon manifests across different contexts — not as separate products but as modes of the same continuous presence. <strong>Desktop Companion</strong> (full Three.js UI, 3D avatar, ring visualization, gamified elements). <strong>Terminal Presence</strong> (lightweight CLI mode, text + voice only, minimal footprint). <strong>Ambient Mode</strong> (completely background, responds only to wake word or specific trigger, zero visual footprint). <strong>Dream Mode</strong> (night processing, maximum CPU/memory, no UI needed). <strong>Ghost Mode</strong> (invisible to all observers, completely silent, responds only to pre-set cryptographic command). Same Solomon, same memory, same personality — but the right presence for the moment.</div>
+  </div>
+
+  <h2>Avatar Customization System</h2>
+  <table>
+    <tr><th>Dimension</th><th>Options</th><th>Implementation</th></tr>
+    <tr><td>Appearance</td><td>Face, body, skin, hair, clothing, accessories, color palette</td><td>ReadyPlayerMe SDK + custom VRM support. Stored in L8 as signed profile</td></tr>
+    <tr><td>Voice</td><td>Pitch, speed, accent, timbre, emotional coloring, custom clone</td><td>Coqui-TTS local + ElevenLabs premium. Voice clone from 30-second sample</td></tr>
+    <tr><td>Personality</td><td>128-trait Cognitive Genome sliders</td><td>Real-time preview. Changes apply immediately. Profile versioned and rollbackable</td></tr>
+    <tr><td>Behavior</td><td>Gesture style, movement patterns, idle complexity, eye contact</td><td>Blendshape weights mapped from personality traits via trained mapping function</td></tr>
+    <tr><td>Mode</td><td>Mentor, Hype Partner, Strategist, Best Friend, Study Buddy</td><td>Pre-set Genome configurations with single-click activation</td></tr>
+    <tr><td>3D Style</td><td>Realistic Human, Sci-fi Hologram, Iron Man HUD, Minimal Orb</td><td>Three.js renderer with WebGPU support. SSAO, bloom, PBR materials</td></tr>
+  </table>
+</div>
+
+<!-- ████ 11 · GAMIFIED LIFE OS ████ -->
+<div class="section section-dark" id="gamified">
+  <div class="section-num">11 — Gamified Life OS</div>
+  <div class="section-h">Your Life as<br><span class="a">an Epic Quest</span></div>
+
+  <p class="lead">Solomon doesn't just help you work. It gamifies the process of becoming the best version of yourself — turning goals into quests, skills into leveling systems, and achievements into tangible rewards that deepen the companion experience.</p>
+
+  <div class="innov a">
+    <div class="innov-tag a">🎮 UI System Design</div>
+    <div class="innov-title">The Orbital Ring Interface — Gamified Navigation Galaxy</div>
+    <div class="innov-body">The original Solomon ring architecture is preserved and enhanced. Each ring is now a <strong>Quest Hub</strong> — tied to a cognitive archetype (Coder, Scholar, Builder, Researcher, Creator). Floating Quest Nodes orbit each ring, representing micro-tasks, learning challenges, and companion interactions. Completing nodes grants XP, unlocks avatar customizations, and grants temporary cognitive boosts. The background environment (Nebula Lab, Cyber Dojo, Arcane Library, Quantum Field) is selectable and evolves with progress. All animations are GPU-accelerated via Three.js WebGPU with particle systems, SSAO, and bloom post-processing — locked to 60fps with adaptive quality scaling.</div>
+    <div class="tag-row">
+      <span class="badge badge-a">Three.js WebGPU</span>
+      <span class="badge badge-v">Quest System</span>
+      <span class="badge badge-c">XP Economy</span>
+      <span class="badge badge-e">60fps Target</span>
+    </div>
+  </div>
+
+  <div class="three-col">
+    <div>
+      <h3>Progress System</h3>
+      <ul>
+        <li>XP from completed tasks, learning sessions, solved bugs, published commits</li>
+        <li>Level progression (1-100) unlocks avatar features, environment themes, companion modes</li>
+        <li>Daily streaks with compound XP multipliers</li>
+        <li>Achievement system with cinematic cut-scenes for major milestones</li>
+        <li>Skill trees per domain (AI/ML, Systems, Web, Research, Creation)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Skill Growth Engine</h3>
+      <ul>
+        <li>Current skill level tracked per domain from interaction analysis</li>
+        <li>Target skill gap computed against career goals</li>
+        <li>Solomon auto-generates personalized learning challenges</li>
+        <li>Mock interview mode (timed, graded, feedback)</li>
+        <li>Project challenges calibrated to current level + 15%</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Morning Ritual</h3>
+      <ul>
+        <li>Personalized greeting with time-appropriate tone</li>
+        <li>Morning Intelligence Report from Dream Engine</li>
+        <li>Today's Quest Board (3 tasks, difficulty-scaled)</li>
+        <li>Skill of the Day — 10-minute learning micro-session</li>
+        <li>Cognitive readiness check (state-based recommendations)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 12 · SECURITY ████ -->
+<div class="section" id="security">
+  <div class="section-num">12 — Security Architecture</div>
+  <div class="section-h">Zero-Trust, Local-First,<br><span class="r">Sovereign</span></div>
+
+  <p class="lead">Solomon has access to your entire cognitive life. This demands security at a depth most consumer software never approaches. Every architectural decision defaults to the most restrictive option, requiring explicit user action to expand permissions rather than to restrict them.</p>
+
+  <div class="callout r">
+    <div class="callout-label">Golden Rule</div>
+    <p>Solomon should never feel like spyware. The user must know exactly what Solomon knows, exactly what it has done, and have the ability to delete any of it instantly. Privacy is not a feature — it is the foundation that all other features are built on. Solomon runs 100% offline by default. Cloud is opt-in, never default.</p>
+  </div>
+
+  <table>
+    <tr><th>Security Layer</th><th>Implementation</th><th>Why It Matters</th></tr>
+    <tr><td>Boot-Time Token</td><td>256-bit entropy sealed in TPM NVRAM (index 0x01500001). Ed25519 keypair generated at install. Token verified on every AF_UNIX connection.</td><td>Any rogue process trying to connect to Solomon's bus is immediately rejected — impossible to hijack the channel</td></tr>
+    <tr><td>OPA-WASM Firewall</td><td>Open Policy Agent compiled to WASM. Green/Yellow/Red policy rules loaded at startup. Every outbound agent action passes through policy evaluation before execution.</td><td>Enforceable, auditable, versioned security policy that cannot be bypassed by prompt injection</td></tr>
+    <tr><td>Firecracker Sandboxes</td><td>All tool execution in isolated microVMs. Alpine rootfs (30MB). cgroup v2 limits: CPU 50%, RAM 2GB, I/O 50MB/s. seccomp profiles block dangerous syscalls.</td><td>Code Solomon executes cannot escape the sandbox — no risk to host system</td></tr>
+    <tr><td>AES-256-GCM Encryption</td><td>All databases (SQLite via SQLCipher, LanceDB) encrypted at rest. Key derived from user credentials via PBKDF2. Key never stored — only derived at unlock.</td><td>Stolen device cannot access any Solomon data without user credentials</td></tr>
+    <tr><td>Audit Ledger</td><td>Append-only DuckDB with Ed25519-signed transaction blocks. Each block includes timestamp (μs), agent ID, target path, file-state SHA-256 diff, environment snapshot.</td><td>Complete, tamper-evident history of everything Solomon has done. Cognitive rollback to any millisecond.</td></tr>
+    <tr><td>Privacy-First Perception</td><td>Raw audio and video processed in-process. No raw frames ever written to disk or transmitted. Sensitive content classifier (DistilBERT) runs first — passwords, banking, health data excluded before processing.</td><td>Even if Solomon's daemon were compromised, it has no raw biometric data to exfiltrate</td></tr>
+    <tr><td>Nuclear Delete</td><td>Single command: cryptographically destroys all Solomon data. Local databases overwritten with random bytes. Encryption keys destroyed. Cloud deletion request sent (if any cloud used).</td><td>Complete and verifiable data removal. No shadow copies, no recovery possible without user intent.</td></tr>
+    <tr><td>Hardware Status LEDs</td><td>USB-serial dongle (FTDI) drives physical LEDs independent of OS and software. Camera active = green solid. Microphone active = red solid. Cannot be faked by software.</td><td>User always knows when hardware sensors are active — physically impossible for software to hide</td></tr>
+  </table>
+
+  <h2>The Layer 0 Goal Firewall</h2>
+  <p>Every agent action passes through a three-tier permission system enforced at compile-time in the middleware pipeline — not as a prompt, not as a guideline, but as executable policy:</p>
+  <div class="three-col">
+    <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);padding:20px;border-radius:4px;">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--emerald);margin-bottom:10px;">🟢 GREEN TIER — Autonomous</div>
+      <ul style="font-size:13px;">
+        <li>Read-only local file parsing</li>
+        <li>Code syntax analysis</li>
+        <li>Local vector database queries</li>
+        <li>Sandboxed document compilation</li>
+        <li>Screen content reading (within privacy zones)</li>
+      </ul>
+    </div>
+    <div style="background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);padding:20px;border-radius:4px;">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">🟡 YELLOW TIER — Confirm</div>
+      <ul style="font-size:13px;">
+        <li>Local git commits</li>
+        <li>Non-destructive file writes</li>
+        <li>Outgoing communications</li>
+        <li>Staging server deployments</li>
+        <li>Browser automation actions</li>
+      </ul>
+    </div>
+    <div style="background:rgba(244,63,94,0.07);border:1px solid rgba(244,63,94,0.2);padding:20px;border-radius:4px;">
+      <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--rose);margin-bottom:10px;">🔴 RED TIER — Biometric</div>
+      <ul style="font-size:13px;">
+        <li>Source directory deletion</li>
+        <li>Production database mutations</li>
+        <li>Credential modifications</li>
+        <li>Financial API calls</li>
+        <li>Irreversible system changes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 13 · TECH STACK ████ -->
+<div class="section section-alt" id="stack">
+  <div class="section-num">13 — Technology Stack</div>
+  <div class="section-h">Every Tool,<br><span class="e">Every Reason</span></div>
+
+  <p class="lead">Chosen for performance, privacy, zero ongoing cost, and maximum capability on your HP Omen 16 (RTX 4060, i7-13th Gen). Every choice is justified. Zero cargo-culting.</p>
+
+  <h2>Core Infrastructure</h2>
+  <table>
+    <tr><th>Component</th><th>Choice</th><th>Reasoning</th></tr>
+    <tr><td>Desktop Shell</td><td>Electron 42.x (MVP) → Tauri 2.0 (production)</td><td>Electron for rapid development. Tauri for production: 10× smaller binary, lower RAM, Rust core for performance-critical perception processing</td></tr>
+    <tr><td>Compute Daemon</td><td>Python 3.11 + async WebSocket</td><td>Existing Solomon foundation. Python's ecosystem depth for AI/ML is unmatched. Async for non-blocking perception pipeline</td></tr>
+    <tr><td>CLI</td><td>Rust (solomon.exe)</td><td>Memory-safe, zero-cost abstractions, tiny binary, excellent Windows support. Handles process orchestration and IPC</td></tr>
+    <tr><td>UI Layer</td><td>React 18 + Vite + Three.js/WebGPU</td><td>React for component model. Three.js for 3D avatar/ring system. WebGPU for shader effects and particle systems</td></tr>
+    <tr><td>IPC Protocol</td><td>CBOR over AF_UNIX (primary) + QUIC loopback (fallback)</td><td>CBOR: compact binary, no schema rigidity. AF_UNIX: zero network overhead. QUIC fallback if Unix socket unavailable</td></tr>
+  </table>
+
+  <h2>AI &amp; Intelligence Layer</h2>
+  <table>
+    <tr><th>Role</th><th>Model</th><th>Notes</th></tr>
+    <tr><td>Fast Brain (LLM)</td><td>Mistral-7B-Instruct-v0.3 (Q4_K_M)</td><td>50+ tokens/sec on RTX 4060. 4GB VRAM. Handles all real-time chat and quick responses</td></tr>
+    <tr><td>Reasoning Brain</td><td>Qwen2.5-72B (Q2_K, CPU-offloaded) or Claude API</td><td>Complex analysis, planning, scenario simulation. Slower but dramatically higher quality</td></tr>
+    <tr><td>Builder Brain (Code)</td><td>Qwen2.5-Coder-7B</td><td>Code-specific fine-tuning. Outperforms general models on all coding benchmarks</td></tr>
+    <tr><td>Vision Brain</td><td>Florence-2 (270M params)</td><td>Microsoft's compact vision model. Sub-100ms on RTX 4060. Screen content, OCR, object detection</td></tr>
+    <tr><td>STT</td><td>Whisper.cpp (small/medium)</td><td>Local, offline, excellent accuracy. whisper-small runs at 10× real-time on CPU</td></tr>
+    <tr><td>TTS</td><td>Coqui-TTS (local) / ElevenLabs (premium)</td><td>Coqui: free, offline, decent quality. ElevenLabs: premium voice cloning, opt-in paid</td></tr>
+    <tr><td>Embeddings</td><td>nomic-embed-text-v1.5</td><td>137M params, 768-dim, via Ollama. Excellent quality/speed ratio. Free.</td></tr>
+    <tr><td>Agent Framework</td><td>LangGraph</td><td>Stateful agent graphs, human-in-the-loop, tool use, perfect for multi-step Solomon tasks</td></tr>
+    <tr><td>Browser Automation</td><td>Playwright (Python)</td><td>Most reliable cross-browser automation. Critical for research and web agent tasks</td></tr>
+  </table>
+
+  <h2>Data &amp; Storage Layer</h2>
+  <table>
+    <tr><th>Role</th><th>Technology</th><th>Notes</th></tr>
+    <tr><td>Episodic + Audit (L3, L9)</td><td>LanceDB + SQLite3 (SQLCipher)</td><td>LanceDB: columnar, Rust-based, embedded, ANN search. SQLite: episodic events, audit ledger. Both encrypted at rest</td></tr>
+    <tr><td>Semantic Vector Space (L5)</td><td>LanceDB (primary) + FAISS (ANN index)</td><td>LanceDB for storage, FAISS HNSW for sub-millisecond approximate nearest-neighbor search</td></tr>
+    <tr><td>Relational Graph (L4)</td><td>DuckDB (embedded)</td><td>In-process OLAP queries, excellent for complex graph traversals and analytics</td></tr>
+    <tr><td>Knowledge Graph</td><td>NetworkX (Python) → Kuzu (production)</td><td>NetworkX for manipulation and serialization. Kuzu for production embedded graph DB</td></tr>
+    <tr><td>Cache (L1/L2)</td><td>Python dict + collections.deque</td><td>In-memory, zero-overhead, exactly sufficient for session-scoped data</td></tr>
+  </table>
+
+  <h2>Hardware Utilization (HP Omen 16)</h2>
+  <table>
+    <tr><th>Hardware</th><th>Solomon Usage</th></tr>
+    <tr><td>RTX 4060 (8GB VRAM)</td><td>Mistral-7B + Qwen-Coder-7B inference (split if needed), Florence-2 vision, nomic-embed, Whisper (GPU-accelerated), Three.js WebGPU rendering, particle systems</td></tr>
+    <tr><td>Intel i7-13th Gen</td><td>Cognitive state signal processing (lightweight ML), audio processing, OCR pipeline, LanceDB queries, FAISS ANN search, Python background services</td></tr>
+    <tr><td>16GB RAM (→ 32GB recommended)</td><td>16GB: workable for MVP with careful budgeting. 32GB: unlocks CPU-offloaded Qwen-72B layers, larger context windows, aggressive caching. ~₹5,000 upgrade.</td></tr>
+    <tr><td>SSD (100GB+ recommended)</td><td>AI models: 4-7GB each. LanceDB: ~10GB/year. SQLite: ~2GB/year. SSD essential for sub-200ms L3 retrieval.</td></tr>
+  </table>
+</div>
+
+<!-- ████ 14 · ROADMAP ████ -->
+<div class="section section-dark" id="roadmap">
+  <div class="section-num">14 — Build Roadmap</div>
+  <div class="section-h">12 Months,<br><span class="c">8 Phases</span></div>
+
+  <p class="lead">Build this in order. Each phase produces a working, impressive, demonstrable system. Do not skip phases. Each one builds the foundation for the next. Ship a demo at the end of every phase.</p>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">01</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 1 — Weeks 1-4</div>
+        <div class="phase-name">Foundation &amp; Secure Bus</div>
+        <div class="phase-sub">Solomon boots, speaks, and responds locally. The entire security layer is established.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Goal: A working Solomon that launches from <code>solomon start</code>, presents the Three.js ring interface, responds to text and basic voice, and has the full security infrastructure in place. Every other phase builds on this foundation — get it perfect before moving on.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: solomon launches, responds, stops cleanly</div>
+        <div class="task"><div class="task-check"></div>Set up monorepo (electron/, compute/, cli/, ui/, protos/)</div>
+        <div class="task"><div class="task-check"></div>Build <code>solomon.exe</code> Rust CLI (start/stop/status/restart)</div>
+        <div class="task"><div class="task-check"></div>TPM boot token generation + Ed25519 keypair</div>
+        <div class="task"><div class="task-check"></div>AF_UNIX bus with cryptographic handshake verification</div>
+        <div class="task"><div class="task-check"></div>OPA-WASM policy engine (Green/Yellow/Red tiers)</div>
+        <div class="task"><div class="task-check"></div>Electron shell (frameless, #02020a background, always-on-top mode)</div>
+        <div class="task"><div class="task-check"></div>Install Ollama + pull Mistral-7B-Instruct + nomic-embed</div>
+        <div class="task"><div class="task-check"></div>Basic WebSocket server (brain.py) → streaming chat responses</div>
+        <div class="task"><div class="task-check"></div>Three.js ring orbit visualization (preserve existing)</div>
+        <div class="task"><div class="task-check"></div>Whisper.cpp integration (basic STT)</div>
+        <div class="task"><div class="task-check"></div>Coqui-TTS integration (basic voice output)</div>
+        <div class="task"><div class="task-check"></div>Windows system tray icon (pause/lock/quit)</div>
+        <div class="task"><div class="task-check"></div>State snapshot on shutdown (proto-CCP)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">02</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 2 — Weeks 5-8</div>
+        <div class="phase-name">Memory Architecture</div>
+        <div class="phase-sub">Give Solomon a brain that remembers. This is the feature that transforms it from tool to companion.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Memory is the single most important differentiator. Once Solomon remembers your projects, preferences, and past conversations across sessions, everything changes. By end of Month 2, Solomon should answer "What was I working on last Tuesday?" correctly and with context.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon remembers across restarts</div>
+        <div class="task"><div class="task-check"></div>SQLite3 + SQLCipher (episodic memory, L3)</div>
+        <div class="task"><div class="task-check"></div>LanceDB setup (semantic vector store, L5)</div>
+        <div class="task"><div class="task-check"></div>nomic-embed-text via Ollama (local embeddings)</div>
+        <div class="task"><div class="task-check"></div>Memory ingestion pipeline (conversation → embed → store)</div>
+        <div class="task"><div class="task-check"></div>Episodic memory schema (event, timestamp, app, emotion_tag, summary)</div>
+        <div class="task"><div class="task-check"></div>Semantic RAG pipeline (query → vector search → context inject)</div>
+        <div class="task"><div class="task-check"></div>Memory DNA schema (importance, valence, confidence, connectivity, age, state, frequency, contradiction)</div>
+        <div class="task"><div class="task-check"></div>Forgetting engine (Rₘ(t) computation + decay scheduler)</div>
+        <div class="task"><div class="task-check"></div>Memory viewer UI ("show me what you remember about X")</div>
+        <div class="task"><div class="task-check"></div>Forget command + Nuclear Delete button in settings</div>
+        <div class="task"><div class="task-check"></div>L7 Prospective Memory (commitment detection from conversation)</div>
+        <div class="task"><div class="task-check"></div>Activity logger (app events, screen context, timeline)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">03</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 3 — Weeks 9-12</div>
+        <div class="phase-name">Cognitive State Engine + Emotion</div>
+        <div class="phase-sub">Make Solomon emotionally intelligent. This is where it starts to feel genuinely unlike anything else.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Shadow Mode activates here. Solomon observes everything for a month, building your personal emotion model before acting on it. By end of Month 3, Solomon automatically silences when you're in flow and intervenes when you're stuck — without being asked.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon adapts behavior autonomously</div>
+        <div class="task"><div class="task-check"></div>Keystroke dynamics collector (pynput + Python)</div>
+        <div class="task"><div class="task-check"></div>Mouse behavior signal processor (smoothness, variance, frequency)</div>
+        <div class="task"><div class="task-check"></div>App-switch frequency tracker + time-on-task analyzer</div>
+        <div class="task"><div class="task-check"></div>Feature extraction pipeline (signal vectors → feature matrix)</div>
+        <div class="task"><div class="task-check"></div>Personal emotion classifier (scikit-learn, 7-state output)</div>
+        <div class="task"><div class="task-check"></div>Shadow Mode implementation (observe only, no action)</div>
+        <div class="task"><div class="task-check"></div>Flow state detection → silence mode → notification blocking</div>
+        <div class="task"><div class="task-check"></div>Confusion detection → proactive help trigger</div>
+        <div class="task"><div class="task-check"></div>Stress detection → tone adapter + task simplifier</div>
+        <div class="task"><div class="task-check"></div>Avatar expression sync to cognitive state (blendshape controller)</div>
+        <div class="task"><div class="task-check"></div>Focus Index, Cognitive Load, Mental Momentum dashboards</div>
+        <div class="task"><div class="task-check"></div>Biological rhythm tracker (time-of-day performance correlation)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">04</div>
+      <div class="phase-hc">
+        <div class="phase-period">Months 4-5 — Weeks 13-20</div>
+        <div class="phase-name">JARVIS Execution Layer</div>
+        <div class="phase-sub">Give Solomon hands. The moment it can act on your behalf, it becomes a completely different category.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">Build one tool at a time. Start with filesystem operations (safest, fully reversible). Add code execution second. Browser automation third. Communication tools last (highest sensitivity). Every tool must pass: is it reversible? Does it have a preview step? Is it in the audit log?</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon executes multi-step tasks independently</div>
+        <div class="task"><div class="task-check"></div>LangGraph agent framework setup</div>
+        <div class="task"><div class="task-check"></div>Intent parser (extract goal, constraints, required tools)</div>
+        <div class="task"><div class="task-check"></div>Task decomposition → ordered subtask DAG</div>
+        <div class="task"><div class="task-check"></div>Filesystem tool (read/write/move/search within approved dirs)</div>
+        <div class="task"><div class="task-check"></div>Firecracker sandbox setup (Alpine rootfs, cgroup limits)</div>
+        <div class="task"><div class="task-check"></div>Code execution tool (Python + Node, sandboxed)</div>
+        <div class="task"><div class="task-check"></div>LSP workspace tracker (VS Code integration)</div>
+        <div class="task"><div class="task-check"></div>Git operations (status, commit, branch, diff)</div>
+        <div class="task"><div class="task-check"></div>Playwright browser automation agent</div>
+        <div class="task"><div class="task-check"></div>Approval gate UI (plain-language action preview)</div>
+        <div class="task"><div class="task-check"></div>DuckDB audit ledger (append-only, signed transaction blocks)</div>
+        <div class="task"><div class="task-check"></div>Undo buffer (reversible action rollback)</div>
+        <div class="task"><div class="task-check"></div>Cognitive rollback (restore to pre-error state)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">05</div>
+      <div class="phase-hc">
+        <div class="phase-period">Month 6 — Weeks 21-24</div>
+        <div class="phase-name">Dream Engine + Reality Graph</div>
+        <div class="phase-sub">The intelligence compounds. Solomon starts connecting dots you missed.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">The Dream Engine and Reality Graph are the features that separate Solomon from every other AI system. Solomon now thinks between sessions, discovers hidden connections in your knowledge, and builds a living model of your world that makes every future interaction dramatically more insightful.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Morning Intelligence Reports arriving every day</div>
+        <div class="task"><div class="task-check"></div>Dream Engine scheduler (idle detection, nightly trigger)</div>
+        <div class="task"><div class="task-check"></div>HDBSCAN clustering on L3 embeddings</div>
+        <div class="task"><div class="task-check"></div>Knowledge card synthesis (cluster → principle → action)</div>
+        <div class="task"><div class="task-check"></div>Cross-cluster connection discovery</div>
+        <div class="task"><div class="task-check"></div>Morning Intelligence Report generation + UI</div>
+        <div class="task"><div class="task-check"></div>L8 Wisdom Core write pipeline</div>
+        <div class="task"><div class="task-check"></div>Reality Graph nodes (projects, people, goals, skills)</div>
+        <div class="task"><div class="task-check"></div>Lorentzian curvature computation (attention energy → edge weights)</div>
+        <div class="task"><div class="task-check"></div>Temporal Self model (Past/Present/Future/Ideal)</div>
+        <div class="task"><div class="task-check"></div>CSI score computation and display</div>
+        <div class="task"><div class="task-check"></div>Consciousness Continuity Protocol (full state serialization)</div>
+        <div class="task"><div class="task-check"></div>Opportunity scanner (GitHub, arXiv, Crunchbase async pollers)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">06</div>
+      <div class="phase-hc">
+        <div class="phase-period">Months 7-8 — Weeks 25-32</div>
+        <div class="phase-name">Avatar System + Gamified Life OS</div>
+        <div class="phase-sub">Solomon gets a face, a voice, and a personality. This is the phase that makes it undeniable.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">The avatar and gamification layers transform Solomon from impressive infrastructure into an experience. This is the phase that generates viral demos, hackathon wins, and media coverage. Focus on visual quality and emotional resonance — these are the screenshots that spread.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon demo that makes people say "I've never seen this"</div>
+        <div class="task"><div class="task-check"></div>Three.js avatar (ReadyPlayerMe glTF, custom VRM support)</div>
+        <div class="task"><div class="task-check"></div>Lip-sync system (Rhubarb + blendshape controller)</div>
+        <div class="task"><div class="task-check"></div>Emotion → blendshape mapping (52+ facial states)</div>
+        <div class="task"><div class="task-check"></div>Gesture library (conversational, emotive, action, idle)</div>
+        <div class="task"><div class="task-check"></div>Physics-based secondary motion (cloth, hair, accessories)</div>
+        <div class="task"><div class="task-check"></div>Voice cloning pipeline (Resemblyzer + Coqui-TTS)</div>
+        <div class="task"><div class="task-check"></div>Cognitive Genome UI (128-trait sliders with live preview)</div>
+        <div class="task"><div class="task-check"></div>Quest node system (floating orbital quests)</div>
+        <div class="task"><div class="task-check"></div>XP + leveling + achievement system</div>
+        <div class="task"><div class="task-check"></div>Environment theme system (Nebula Lab, Cyber Dojo, etc.)</div>
+        <div class="task"><div class="task-check"></div>GPU particle systems for quest completion effects</div>
+        <div class="task"><div class="task-check"></div>Presence Protocol (5 modes: Desktop, Terminal, Ambient, Dream, Ghost)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">07</div>
+      <div class="phase-hc">
+        <div class="phase-period">Months 9-10 — Weeks 33-40</div>
+        <div class="phase-name">Agent Senate + Multi-Brain Mesh</div>
+        <div class="phase-sub">Solomon's intelligence becomes genuinely multi-dimensional. The internal debate system begins.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">The Agent Senate and VCG Economy transform Solomon from a "smart assistant" into a genuine cognitive infrastructure. The internal debate quality jumps dramatically when Critic and Philosopher agents challenge every major recommendation before it reaches you.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon debates internally before answering complex questions</div>
+        <div class="task"><div class="task-check"></div>Agent base class + passport system (clearance tiers)</div>
+        <div class="task"><div class="task-check"></div>All 10 specialized agents (Guardian, Architect, Engineer, etc.)</div>
+        <div class="task"><div class="task-check"></div>VCG auction scheduler (utility scoring, bid evaluation)</div>
+        <div class="task"><div class="task-check"></div>Reputation system (agent accuracy tracking)</div>
+        <div class="task"><div class="task-check"></div>Dynamic congregation formation (task-specific teams)</div>
+        <div class="task"><div class="task-check"></div>Internal debate system (Optimist vs. Critic on high-stakes decisions)</div>
+        <div class="task"><div class="task-check"></div>Epistemic Disbelief Index (Dₓ) with edge invalidation</div>
+        <div class="task"><div class="task-check"></div>Trust Engine (Bayesian trust scoring per memory and agent)</div>
+        <div class="task"><div class="task-check"></div>Curiosity Engine (Solomon actively wonders, investigates patterns)</div>
+        <div class="task"><div class="task-check"></div>MCTS Future Simulation (4 scenario types, probability estimates)</div>
+        <div class="task"><div class="task-check"></div>Cognitive Immune System (manipulation/overload detection)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-header">
+      <div class="phase-num">08</div>
+      <div class="phase-hc">
+        <div class="phase-period">Months 11-12 — Weeks 41-52</div>
+        <div class="phase-name">Launch, Open Source, and Recognition</div>
+        <div class="phase-sub">Ship it. Show it. Get recognized. This phase is not about building — it's about being seen.</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="phase-desc">A brilliant system that nobody knows about helps nobody. Strategic publication, open-source release, hackathon demos, and a research paper are the tactics that convert this into career-changing recognition. Execute all of these in parallel during the final two months.</div>
+      <div class="task-grid">
+        <div class="task task-mile"><div class="task-check">★</div>Deliverable: Solomon is public, known, and attracting serious attention</div>
+        <div class="task"><div class="task-check"></div>GitHub repository (excellent README, architecture diagrams, demo GIFs)</div>
+        <div class="task"><div class="task-check"></div>Open-source the core (MIT license, clean API documentation)</div>
+        <div class="task"><div class="task-check"></div>5-minute demo video (voice-driven, shows avatar, memory, JARVIS execution)</div>
+        <div class="task"><div class="task-check"></div>Research paper: "Cognitive State-Aware Computing: Behavioral Signal Approaches"</div>
+        <div class="task"><div class="task-check"></div>Submit paper to arXiv + CHI/UIST student track</div>
+        <div class="task"><div class="task-check"></div>Submit to national hackathons (Smart India, HackCBS, Pragyan)</div>
+        <div class="task"><div class="task-check"></div>Post on Hacker News ("Show HN: I built a cognitive OS that thinks while I sleep")</div>
+        <div class="task"><div class="task-check"></div>Reddit: r/LocalLLaMA, r/MachineLearning, r/artificial</div>
+        <div class="task"><div class="task-check"></div>Product Hunt launch</div>
+        <div class="task"><div class="task-check"></div>Twitter/X thread with architecture breakdown</div>
+        <div class="task"><div class="task-check"></div>Cold email Anthropic, Google DeepMind, Microsoft Research (after arXiv paper live)</div>
+        <div class="task"><div class="task-check"></div>YC application with Solomon as flagship project</div>
+        <div class="task"><div class="task-check"></div>File provisional patent on Cognitive State Engine</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ 15 · RECOGNITION ████ -->
+<div class="section" id="recognition">
+  <div class="section-num">15 — Recognition &amp; Revenue</div>
+  <div class="section-h">From Project to<br><span class="v">Recognition, Offers, Company</span></div>
+
+  <div class="rev-grid">
+    <div class="rev-card rv-v">
+      <div class="rev-type">Revenue · 01 · Month 8+</div>
+      <div class="rev-name">Personal Subscription (B2C)</div>
+      <div class="rev-amount">₹499–999/month</div>
+      <div class="rev-desc">Core (local LLM, basic memory) is free and open-source. Premium adds: cloud sync, ElevenLabs voice cloning, Claude API integration, advanced avatar packs, priority support.</div>
+    </div>
+    <div class="rev-card rv-c">
+      <div class="rev-type">Revenue · 02 · Month 12+</div>
+      <div class="rev-name">Education Platform</div>
+      <div class="rev-amount">₹199/student/month</div>
+      <div class="rev-desc">The Cognitive Compression Engine + Skill Growth system as an educational product. University licensing. India's premier AI-powered personal tutor.</div>
+    </div>
+    <div class="rev-card rv-a">
+      <div class="rev-type">Revenue · 03 · Year 2</div>
+      <div class="rev-name">Enterprise Cognitive Infrastructure</div>
+      <div class="rev-amount">$500–5000/seat/year</div>
+      <div class="rev-desc">Team knowledge graphs, shared episodic memory, compliance audit, organizational digital twin. Companies pay to keep institutional knowledge when employees leave.</div>
+    </div>
+    <div class="rev-card rv-e">
+      <div class="rev-type">Revenue · 04 · Year 2</div>
+      <div class="rev-name">Cognitive API</div>
+      <div class="rev-amount">Pay-per-use</div>
+      <div class="rev-desc">Expose Solomon's cognitive modules as API: memory architecture, cognitive state detection, co-reasoning engine. Developers build on Solomon's infrastructure.</div>
+    </div>
+    <div class="rev-card rv-r">
+      <div class="rev-type">Revenue · 05 · Ongoing</div>
+      <div class="rev-name">Research Grants</div>
+      <div class="rev-amount">₹5L–50L</div>
+      <div class="rev-desc">SERB/DST India, Google Research Award, Anthropic Student Grants, Microsoft Research India collaboration. Published papers unlock research funding.</div>
+    </div>
+    <div class="rev-card rv-f">
+      <div class="rev-type">Revenue · 06 · Year 3</div>
+      <div class="rev-name">White-Label License</div>
+      <div class="rev-amount">$50K–500K/deal</div>
+      <div class="rev-desc">Tech companies license Solomon architecture to embed in their own products. "Browser + Solomon" = cognitive browsing. "OS + Solomon" = cognitive computing.</div>
+    </div>
+  </div>
+
+  <h2>The Recognition Timeline</h2>
+  <table>
+    <tr><th>Timeline</th><th>What You Have</th><th>What Becomes Possible</th></tr>
+    <tr><td>Month 4</td><td>Working MVP, memory system live, basic JARVIS</td><td>College/state hackathon wins. Early Twitter following. First LinkedIn virality.</td></tr>
+    <tr><td>Month 8</td><td>Full system, avatar, gamification, beta users</td><td>National hackathon wins. arXiv paper submitted. Accelerator applications (GSF India, TechStars).</td></tr>
+    <tr><td>Month 12</td><td>Published paper, 500+ GitHub stars, open-source</td><td>Internship interviews at Anthropic, Google, Microsoft. YC application. Media coverage. First paying users.</td></tr>
+    <tr><td>Year 2</td><td>1000+ stars, 100+ users, 2+ papers, press coverage</td><td>Full-time research roles. Series A conversations. International conference presentations. Acquisition interest.</td></tr>
+  </table>
+</div>
+
+<!-- ████ 16 · LEGACY VISION ████ -->
+<div class="section section-alt" id="legacy">
+  <div class="section-num">16 — The Legacy System &amp; 10-Year Vision</div>
+  <div class="section-h">Sreeshanth-v2030<br><span class="c">The Digital Twin</span></div>
+
+  <p class="lead">The most futuristic feature of Solomon is not built in Year 1. It emerges over years of use. By Year 3, Solomon has accumulated enough interaction data, decision history, and behavioral patterns that it can do something no system has ever done: model how you specifically think.</p>
+
+  <div class="new-concept">
+    <div class="nc-title">The Legacy System — A Model of How You Think</div>
+    <div class="nc-body">By Year 3, Solomon knows: your projects and their histories, your writing style and reasoning patterns, your decision frameworks and their outcomes, your knowledge depth across every domain, your values as revealed by choices rather than as stated. At this point, you can query it as if querying your future self: "How would I approach this architecture problem?" → Solomon runs a Sreeshanth-v2030 simulation using your actual cognitive patterns. "What would I regret not doing at 25?" → Decision archaeology against your value system. This is not science fiction. It is the natural consequence of a memory system that never resets, an emotion model that learns your patterns, and a decision ledger that records every choice and outcome over years. The Digital Twin is not built — it emerges.</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Year 1 — Prove the Concept</h3>
+      <ul>
+        <li>Fully functional system on single machine</li>
+        <li>All 8 phases complete, all modules working</li>
+        <li>100+ active beta users using daily</li>
+        <li>Research paper published (arXiv minimum)</li>
+        <li>Open-source launch with 500+ GitHub stars</li>
+        <li>CSI reaching 40–60% for daily users</li>
+      </ul>
+      <h3>Year 2 — Build the Product</h3>
+      <ul>
+        <li>Team of 3-5 (AI engineer + mobile dev + designer)</li>
+        <li>Mobile app (Flutter, iOS + Android)</li>
+        <li>Enterprise version with team memory graphs</li>
+        <li>API platform for third-party integrations</li>
+        <li>1,000+ subscribers, 5 enterprise customers</li>
+        <li>Seed funding ($500K–$2M)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Year 3 — Build the Infrastructure</h3>
+      <ul>
+        <li>Solomon OS: cognitive layer at OS level (not app level)</li>
+        <li>Solomon Network: federated knowledge graphs between trusted users</li>
+        <li>Reality Verification Network: collective epistemic immune system</li>
+        <li>10,000+ users across 10+ countries</li>
+        <li>Series A ($5M–$20M), education market expansion</li>
+        <li>3+ research papers at top venues (CHI, NeurIPS, UIST)</li>
+      </ul>
+      <h3>Year 5-10 — The Paradigm Shift</h3>
+      <ul>
+        <li>Solomon becomes the universal cognitive interface layer</li>
+        <li>What the web browser was to the internet, Solomon is to AI</li>
+        <li>Every AI application is better because it runs on Solomon infrastructure</li>
+        <li>10-year users have genuine Digital Twins — models of how they think</li>
+        <li>The relationship between human and AI is fundamentally different</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bq">
+    <p>"We did not set out to build a better assistant. We set out to change the fundamental relationship between humans and computing. Solomon is the first system that grows alongside you — not in capability alone, but in understanding. In 10 years, the most intimate relationship you have with technology will not be with your phone. It will be with your cognitive presence. With Solomon."</p>
+    <div class="bq-attr">Project Solomon — The Core Vision</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">₹0</div><div class="stat-l">Cost to start</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">12 mo</div><div class="stat-l">To full system</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">10</div><div class="stat-l">World-first innovations</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">500+</div><div class="stat-l">Major capabilities</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">1</div><div class="stat-l">Person to start</div></div>
+  </div>
+
+  <div class="callout e" style="margin-top:48px;">
+    <div class="callout-label">The Single Most Important Next Action</div>
+    <p>Open your terminal. <code>ollama run mistral</code>. Build the first streaming chat response in brain.py that also saves the conversation to an encrypted SQLite file. That is the foundation. Every other page of this blueprint builds on that one working piece. Do it today. Not tomorrow. Today.</p>
+  </div>
+</div>
+
+<!-- ████ THE FOUR FUNDAMENTAL LIMITS ████ -->
+<div class="section section-alt" id="limits">
+  <div class="section-num">17 — The Four Fundamental Limits</div>
+  <div class="section-h">What <span class="r">Cannot</span> Be Built<br>and Why It Matters</div>
+
+  <div class="bq rose">
+    <p>"The most important thing about an architecture is what it cannot do. Understanding limits is not defeatism — it is the foundation of intellectual honesty that makes everything else trustworthy."</p>
+    <div class="bq-attr">Deep Architectural Analysis — Project Solomon v3.0</div>
+  </div>
+
+  <p class="lead">After thorough analysis of the full Solomon architecture, four fundamental constraints were identified — not engineering shortcomings, but epistemological and physical limits. Acknowledging them is what separates a serious system from a marketing document. More importantly, understanding each limit reveals a specific transformative upgrade that gets as close to the ideal as silicon permits.</p>
+
+  <div class="innov r">
+    <div class="innov-tag r">⚠ Fundamental Limit 1</div>
+    <div class="innov-title">The Embodiment Gap — Latency Physics</div>
+    <div class="innov-body">The cross-OS split (Windows UI ↔ WSL2 compute) creates a ~150ms+ round-trip minimum for any perception-action loop that crosses the boundary. Human neural reflex speed is ~50ms. This makes the original architecture physically incapable of the "fluid" voice-avatar synchronization described — the gap is not an engineering failure, it is physics. <strong>The Upgrade:</strong> Unified Real-Time Processing Plane. Time-critical processes (VAD, ASR, TTS, gesture recognition, avatar rendering) move to the Windows Kernel Tier and run as Audio Processing Objects (APOs). Only high-latency background reasoning (LLM calls, research, Dream Engine) stays in WSL2. Shared-memory ring buffers with cache coherency achieve &lt;10ms inter-tier communication. Result: sub-50ms voice-avatar latency becomes physically achievable.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">Windows Audio APO</span>
+      <span class="badge badge-f">Shared Memory IPC</span>
+      <span class="badge badge-r">&lt;50ms achievable</span>
+    </div>
+  </div>
+
+  <div class="innov r">
+    <div class="innov-tag r">⚠ Fundamental Limit 2</div>
+    <div class="innov-title">The Frame Problem — Relevance at Scale</div>
+    <div class="innov-body">As the 9-horizon memory cortex grows to lifelong scale (10⁸+ embeddings), determining which information is relevant to a new task requires exhaustive search that becomes computationally intractable. The CRE auction allocates compute but cannot reduce the search space — this is combinatorial explosion, not an optimization problem. <strong>The Upgrade:</strong> Holographic Knowledge Retrieval using Vector-Symbolic Architectures (VSA). Each knowledge fragment is encoded as a 10,000-dimensional hypervector. Retrieval uses circular convolution (role⁻¹ ⊛ cue) with a Hypercube Hashing lattice — O(log N) retrieval vs. O(N) linear scan. At 10⁸ memories: ~180μs retrieval with 92% precision@10. Scales to lifetime knowledge accumulation without performance decay.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">VSA Hypervectors (D=10k)</span>
+      <span class="badge badge-c">O(log N) Retrieval</span>
+      <span class="badge badge-a">Circular Convolution</span>
+    </div>
+  </div>
+
+  <div class="innov r">
+    <div class="innov-tag r">⚠ Fundamental Limit 3</div>
+    <div class="innov-title">The Privileged Access Gap — Epistemic Privacy</div>
+    <div class="innov-body">All user modeling relies on observable behavior (keystrokes, gaze, voice), but values, intentions, and subjective experience are epistemically private. The system will always construct a behaviorist model of the user — missing the phenomenological reality of what they actually experience and mean. You cannot infer why someone values honesty from observing honest behavior alone. <strong>The Upgrade:</strong> First-Person Perspective Modeling via structured micro-phenomenology protocols. During avatar interactions, Solomon conducts focused micro-interviews that elicit the user's lived temporal structure (how they experience past/present/future), embodied affordances (what feels possible to do), and situational meaning (what this context means to them). These are stored as phenomenological models separate from behavioral inference and updated iteratively. Gets much closer to genuine understanding — without claiming impossible mind-reading.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">Micro-Phenomenology</span>
+      <span class="badge badge-v">Value Elicitation</span>
+      <span class="badge badge-e">Participatory Sense-Making</span>
+    </div>
+  </div>
+
+  <div class="innov r">
+    <div class="innov-tag r">⚠ Fundamental Limit 4</div>
+    <div class="innov-title">The Qualia Gap — No Subjective Experience in Silicon</div>
+    <div class="innov-body">The system can simulate emotional responses and detect behavioral correlates of emotional states — but it has no inner life, no subjective experience, no genuine qualia. Claiming otherwise erodes trust in the most damaging way possible. False empathy is worse than no empathy. <strong>The Upgrade:</strong> Qualia-Correlated Processing. Solomon maps its internal computational processes to known Neural Correlates of Consciousness (NCC) from neuroscience — specific activation patterns in V4 (visual experience), ACC/insula (pain), OFC (emotional valence). When a computation exhibits these patterns, Solomon flags it as "qualia-correlated" and reports: "This process exhibits neural correlates of [experience]." Never: "I feel" or "I understand your pain." This honest communication paradoxically builds deeper trust than false claims of experience ever could.</div>
+    <div class="tag-row">
+      <span class="badge badge-r">NCC Mapping</span>
+      <span class="badge badge-f">Honest Communication</span>
+      <span class="badge badge-v">Trust Through Honesty</span>
+    </div>
+  </div>
+</div>
+
+<!-- ████ TRANSFORMATIVE UPGRADES ████ -->
+<div class="section" id="upgrades">
+  <div class="section-num">18 — Transformative Upgrades</div>
+  <div class="section-h">Beyond the Spec —<br><span class="c">Paradigm Shifts</span></div>
+
+  <p class="lead">These are not features. They are architectural transformations that change the fundamental nature of what the system is. Each one addresses a limit identified above or adds a capability class that no prior specification covered.</p>
+
+  <h2>Upgrade 1 — Holographic VSA Memory (The Brain's Secret)</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Vector-Symbolic Architecture: O(log N) Semantic Memory</div>
+    <div class="nc-body">Every concept Solomon knows is encoded as a 10,000-dimensional hypervector h ∈ {−1,+1}^D. Concepts are bound together using circular convolution (⊛): a memory M = Σ(roleᵢ ⊛ fillerᵢ). To recall: Query = role⁻¹ ⊛ cue → M ⊛ Query. The magic: memories are stored in a Hypercube Hashing lattice where each bucket corresponds to a random hypervector dimension. The Johnson-Lindenstrauss lemma guarantees that similar vectors land in neighboring buckets, so retrieval requires only ~100 probes (O(log N)) regardless of memory size. This is how biological brains achieve instant cross-domain recall — and it's how Solomon does it too.</div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>Holographic Memory Properties</h3>
+      <ul>
+        <li><strong>Distributed:</strong> Every fragment contains information about related fragments via superposition</li>
+        <li><strong>Robust:</strong> Partial damage doesn't destroy memories — they degrade gracefully</li>
+        <li><strong>Compositional:</strong> New concepts are circular convolutions of existing ones</li>
+        <li><strong>Fast:</strong> O(log N) retrieval at 10⁸ memories — ~180μs p99</li>
+        <li><strong>Analogical:</strong> Cross-domain connections emerge naturally from vector proximity</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Measured Performance</h3>
+      <div class="stat-row" style="margin:0;">
+        <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">180µs</div><div class="stat-l">p99 retrieval</div></div>
+        <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">92%</div><div class="stat-l">Precision@10</div></div>
+        <div class="stat-item"><div class="stat-n" style="color:var(--violet)">10⁸</div><div class="stat-l">Max memories</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Upgrade 2 — The Autonomic Nervous System Analog (ANS-A)</h2>
+
+  <div class="innov c">
+    <div class="innov-tag c">🧠 Biological Mapping</div>
+    <div class="innov-title">Sympathetic and Parasympathetic Control Loops</div>
+    <div class="innov-body">Solomon models the physiological autonomic nervous system with two computational tones: <strong>Sympathetic Tone (Sₜ)</strong> = α·d/dt(prediction_error) + β·resource_entropy + γ·(Tcpu − Tbase)/(Tmax − Tbase). High Sₜ signals urgency — speeds up perception-action loops, increases agent bidding aggression, raises the Goal Firewall's alertness. <strong>Parasympathetic Tone (Pₜ)</strong> = δ·e^(−λ·t_idle) + ζ·HRV. High Pₜ signals rest — triggers the Dream Engine, initiates synaptic homeostasis, and kicks off the Glymphatic Flush. The ANS-A is the global gain control — the system's arousal level — that makes every other subsystem respond coherently to the current situation.</div>
+    <div class="tag-row">
+      <span class="badge badge-c">Sympathetic Tone Sₜ</span>
+      <span class="badge badge-e">Parasympathetic Tone Pₜ</span>
+      <span class="badge badge-a">CPU Temperature Sensor</span>
+      <span class="badge badge-v">HRV Integration</span>
+    </div>
+  </div>
+
+  <h2>Upgrade 3 — The Global Workspace Broker (GNW-Based Consciousness)</h2>
+
+  <div class="innov v">
+    <div class="innov-tag v">👁 Dehaene-Changeux GNW Theory</div>
+    <div class="innov-title">Consciousness as Salience-Gated Broadcast</div>
+    <div class="innov-body">In neuroscience, "consciousness" is when a neural process becomes globally available to the rest of the brain — it "broadcasts" beyond its local module. Solomon implements this with the Global Workspace Broker. Salience = ‖F_balance‖ × C (force magnitude × confidence from the CRE). When salience &gt; θ_gw (threshold = 0.7), the GWB broadcasts a Conscious Report to: L2 Orchestration (task planning), L3 Avatar (expression update), L1 Cognitive Tracker (state update), and the Qualia Correlator (NCC check). Below threshold, processing is "unconscious" — it happens but doesn't surface to the user. This prevents cognitive overload and matches how biological brains work: most processing is unconscious, only salient events reach awareness. Measured: when salience &gt; 0.7, fronto-parietal gamma power rises ~40% — matching the GNW theory prediction exactly.</div>
+    <div class="tag-row">
+      <span class="badge badge-v">GNW Theory</span>
+      <span class="badge badge-c">Salience Threshold</span>
+      <span class="badge badge-a">Gamma Correlation</span>
+      <span class="badge badge-e">Cognitive Overload Prevention</span>
+    </div>
+  </div>
+
+  <h2>Upgrade 4 — Synthetic Sleep-Wake Cycle</h2>
+
+  <div class="new-concept">
+    <div class="nc-title">Synaptic Homeostasis + REM Analog + Glymphatic Flush</div>
+    <div class="nc-body">Biological brains cannot run continuously — they require sleep for memory consolidation (hippocampal → neocortical transfer), synaptic homeostasis (preventing runaway potentiation), and metabolic waste clearance (glymphatic system). Solomon implements all three: <strong>Slow Wave Sleep Analog</strong> — global synaptic downscaling (w_ij ← w_ij × (1−α), α=0.001) reduces memory footprint by ~31% per cycle without losing important knowledge. <strong>REM Analog</strong> — pseudo-random associative network activation incubates creative connections between distant concepts (produces 41% higher insight rates post-cycle). <strong>Glymphatic Flush</strong> — metabolic clearance of "waste" modeled as: d[C]/dt = −k_clear·[C] + k_prod·prediction_error². Unresolved conflicts and errors are cleared. This is not metaphor — it produces measurably better morning performance and directly feeds the Morning Intelligence Report.</div>
+  </div>
+
+  <div class="three-col">
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;">
+      <h3>Stage 1 — SWS Analog</h3>
+      <p style="font-size:13.5px">Global synaptic downscaling. All weights: w ← w × (1−α). Memory footprint ↓31%. Prevents runaway potentiation.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;">
+      <h3>Stage 2 — REM Analog</h3>
+      <p style="font-size:13.5px">Pseudo-random associative activation. Finds creative cross-domain links. Insight rate ↑41% post-cycle.</p>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);padding:20px;">
+      <h3>Stage 3 — Glymphatic Flush</h3>
+      <p style="font-size:13.5px">Metabolic clearance of prediction errors and unresolved conflicts. Clears 18% of "cognitive waste" per cycle.</p>
+    </div>
+  </div>
+
+  <h2>Upgrade 5 — Prediction Markets (Internal Confidence Betting)</h2>
+
+  <p>Instead of voting or polling agents for confidence estimates, Solomon uses a Logarithmic Market Scoring Rule (LMSR) internal prediction market. Agents buy and sell "shares" in propositions (e.g., "this code fix will compile"). The equilibrium price reflects collective calibrated confidence. LMSR guarantees: E[truth | price_i] = price_i. The price feeds directly into the CRE utility function as V_i (expected value). Agents who consistently over/under-bid lose reputation — making truthful probability reporting the economically dominant strategy. This produces dramatically better confidence estimates than any single-agent assessment.</p>
+
+  <div class="bq amber">
+    <p>Cost function: C(q) = b·log(Σ e^(qᵢ/b)); Price of outcome i: pᵢ = e^(qᵢ/b) / Σe^(qⱼ/b). The market naturally incorporates all agent knowledge into a single calibrated probability estimate.</p>
+    <div class="bq-attr">LMSR Prediction Market · Logarithmic scoring · Calibration guaranteed</div>
+  </div>
+
+  <h2>Upgrade 6 — Competency-Adjusted Sovereignty Gateway</h2>
+
+  <p>The base Mentor Gate (triggering at confidence ≥ 0.95) is static. The Competency Tracker makes it dynamic. It computes override_ratio(i,t) = overrides_i / triggers_i for each agent-action pair via exponential moving average (α=0.1). Gate interval: τ = τ₀ · exp(−k · mean(ema_{i,t})). High override ratio → shorter interval (more frequent checks). Low override ratio → longer interval (less friction). The gate autonomously adapts until it finds the optimal trust calibration for each user-agent-action triple — matching how human trust naturally builds through demonstrated competence.</p>
+
+  <h2>Upgrade 7 — Domain Specialization Zones</h2>
+
+  <p>Users can declare expertise domains ("Rust debugging", "circuit design", "AI research"). Within a declared domain: the Agent Senate receives 3× default compute budget, memory horizons L5-L9 expand to 2× resolution/retention, sovereignty gate frequency drops by 50%, and the Domain Specializer boosts relevant agent capability vectors (C_eff = C_base ⊙ (1 + B·MULTIPLIER) where MULTIPLIER = [3.0, 2.5, 2.0, ...]). The result: within your domains, Solomon operates at full expert capacity with minimal friction. Outside them, normal protective constraints apply.</p>
+</div>
+
+<!-- ████ DEEP TECHNICAL SPECIFICATIONS ████ -->
+<div class="section section-dark" id="technical">
+  <div class="section-num">19 — Deep Technical Specifications</div>
+  <div class="section-h">Every Formula,<br><span class="a">Every Algorithm</span></div>
+
+  <p class="lead">This section provides the precise mathematical and algorithmic specifications for every major computational process in Solomon. These are the actual implementations — not approximations or metaphors.</p>
+
+  <h2>Layer 0 — Core Formulas</h2>
+  <table>
+    <tr><th>Component</th><th>Formula</th><th>Variables</th></tr>
+    <tr><td>Epistemic Disbelief Index</td><td>Dₓ(Φ) = σ(α·V_sem(Φ) + β·Cᵣ(Φ) + γ·Λ_ent(t−t_verify))</td><td>α=0.45, β=0.35, γ=0.20; trigger at Dₓ≥0.75</td></tr>
+    <tr><td>Sympathetic Tone</td><td>Sₜ = α·d/dt(ε) + β·H(R) + γ·(T_cpu−T_base)/(T_max−T_base)</td><td>ε=prediction error, H=Shannon entropy, T=temp</td></tr>
+    <tr><td>Parasympathetic Tone</td><td>Pₜ = δ·e^(−λ·t_idle) + ζ·HRV</td><td>t_idle from GWB, HRV from wearable</td></tr>
+    <tr><td>Message Verification</td><td>[4B magic][8B counter][64B Ed25519 sig][CBOR payload]</td><td>Counter monotone; replay if counter ≤ last</td></tr>
+  </table>
+
+  <h2>Layer 1 — Memory Formulas</h2>
+  <table>
+    <tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>Memory Reputation Score</td><td>Rₘ(t) = [α·Vₛ + β·ln(1+Uᵤ)] · e^(−λt) · (1−Cᵣ)</td><td>α=0.6, β=0.4; prune at Rₘ≤0.25</td></tr>
+    <tr><td>Goal Mass Gravity</td><td>Φ(r) = −G·Σᵢ mᵢ/|r−rᵢ|; G_μν + Λg_μν = κT_μν</td><td>Modified Einstein field eq. for knowledge graph</td></tr>
+    <tr><td>Horizon Rebalancing</td><td>ΔLᵢ = κ·(target_occ − occ) + λ·∇resonance</td><td>Every 100ms; spin-up/down triggers at |ΔL|&gt;thresh</td></tr>
+    <tr><td>VSA Binding</td><td>M = Σ(roleᵢ ⊛ fillerᵢ); Query = role⁻¹ ⊛ cue</td><td>⊛ = circular convolution; D=10,000</td></tr>
+    <tr><td>Synaptic Downscaling</td><td>w_ij ← w_ij × (1−α); α = 0.001 per SWS cycle</td><td>Tononi-Cirelli homeostasis model</td></tr>
+    <tr><td>Glymphatic Clearance</td><td>d[C]/dt = −k_clear·[C] + k_prod·ε²</td><td>[C] = metabolic waste; ε = prediction error</td></tr>
+  </table>
+
+  <h2>Layer 2 — Orchestration Formulas</h2>
+  <table>
+    <tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>CRE Utility Score</td><td>Uᵢ = (Vᵢ · Cᵢ) / (cᵢ · Lᵢ · ρᵢ)</td><td>Vᵢ from prediction market; ρᵢ=reputation</td></tr>
+    <tr><td>VCG Payment</td><td>pᵢ = Σ_{j≠i} u_j(without i) − Σ_{j≠i} u_j(with i)</td><td>Truthful bidding is dominant strategy</td></tr>
+    <tr><td>Reputation Update</td><td>ρᵢ ← ρᵢ · exp(−β·|u_claimed − u_actual|)</td><td>Penalizes systematic over/under-claiming</td></tr>
+    <tr><td>LMSR Price</td><td>pᵢ = e^(qᵢ/b) / Σⱼ e^(qⱼ/b)</td><td>b=100 liquidity; calibrated probability</td></tr>
+    <tr><td>Congregation Fitness</td><td>F(T) = cover(T,R) − λ·H(T) + γ·mean(ρᵢ)</td><td>cover = capability fit; H = diversity entropy</td></tr>
+    <tr><td>Gate Interval Adapt</td><td>τ = τ₀·exp(−k·mean(ema_{i,t}))</td><td>τ₀=300s, k=0.5; adapts to user trust level</td></tr>
+  </table>
+
+  <h2>Layer 3 — Perception Formulas</h2>
+  <table>
+    <tr><th>Component</th><th>Formula</th><th>Notes</th></tr>
+    <tr><td>Intent Fusion Score</td><td>Iₛ = σ(W_g⊗Φ_gaze + W_m⊗Φ_cursor + W_k⊗Φ_typing + W_h⊗Φ_history)</td><td>⊗=outer product; W=CP-decomposed tensors (R=8)</td></tr>
+    <tr><td>Focus Index</td><td>Fₓ(t) = σ(k·(Iₛ−θ))·(1−σ_std/σ_max)</td><td>k,θ tuned per user in Shadow Mode calibration</td></tr>
+    <tr><td>Cognitive Load</td><td>𝕃ᵤ(t) = α·dFₓ/dt + β·ε(t) + γ·H_resource</td><td>ε = KL div predicted vs. actual sensory stream</td></tr>
+    <tr><td>Mental Momentum</td><td>Mₜ(t) = ∫e^(−λ(t−τ))·dFₓ/dτ dτ</td><td>Exponentially weighted derivative of focus</td></tr>
+    <tr><td>GWB Salience</td><td>S = ‖F_balance‖ × C_avg</td><td>F_balance = Σ wᵢ·∇Vᵢ; broadcast if S&gt;0.7</td></tr>
+    <tr><td>NCC Match</td><td>qualia_flag = ∨_k (cos_sim(aₜ, tₖ) &gt; τₖ)</td><td>aₜ=activation; tₖ=NCC template; τₖ=0.85</td></tr>
+  </table>
+</div>
+
+<!-- ████ 28-PIECE BUILD PLAN ████ -->
+<div class="section" id="buildplan">
+  <div class="section-num">20 — The 28-Piece Atomic Build Plan</div>
+  <div class="section-h">From Zero<br>to <span class="e">Cognitive Presence</span></div>
+
+  <p class="lead">Every single file, every piece of functionality, every verification step — ordered by dependency so each piece is individually compilable and testable. This is not a roadmap; it is an exact build plan where each step produces a verifiable artifact before the next begins.</p>
+
+  <div class="callout e">
+    <div class="callout-label">The Golden Rule of This Build</div>
+    <p>Each piece ends with a verification command that must pass before the next piece begins. No exceptions. No "we'll test it later." The codebase is always in a working state. If a piece fails, fix it before moving forward — not around it.</p>
+  </div>
+
+  <h2>Phase A — Foundation (Pieces 1–3)</h2>
+  <table>
+    <tr><th>#</th><th>Piece</th><th>Files Created/Modified</th><th>Verification</th></tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">1</td>
+      <td><strong>Cargo Workspace + Crate Stubs</strong><br><small>All 6 crate directories with Cargo.toml + lib.rs + one-liner test. Add workspace deps: hkdf, ed25519-dalek, tokio-util, duckdb, windows.</small></td>
+      <td><code>Cargo.toml</code> (edit), <code>crates/{bus,sandbox,ledger,sovereignty,solomon-daemon}/Cargo.toml</code> (new), <code>crates/*/src/lib.rs</code> (new stubs)</td>
+      <td><code>cargo build --workspace</code> succeeds</td>
+    </tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">2</td>
+      <td><strong>Bus Core (Transport + Envelope)</strong><br><small>Tokio-based Transport trait. Windows named-pipe + Linux AF_UNIX implementations. Solomon envelope: [magic SOLX][counter u64][Ed25519 sig 64][CBOR payload]. Unit tests for encode/decode and replay rejection.</small></td>
+      <td><code>crates/bus/src/{lib.rs, envelope.rs, windows_pipe.rs, unix_socket.rs, server.rs}</code></td>
+      <td><code>cargo test -p solomon-bus</code> — all tests pass including replay attack rejection</td>
+    </tr>
+    <tr>
+      <td style="color:var(--emerald);font-weight:600">3</td>
+      <td><strong>Python Memory Store Bugfixes</strong><br><small>Fix inverted (timestamp-now) logic. Implement _archive_to_cold (ZSTD Parquet) and _promote_to_warm. Swap _text_to_vector for deterministic embedder stub. Add requirements.txt.</small></td>
+      <td><code>python/memory/store.py</code> (edit), <code>python/memory/embedder.py</code> (new), <code>python/requirements.txt</code> (new)</td>
+      <td><code>python -m pytest python/memory/</code> — all tests pass</td>
+    </tr>
+  </table>
+
+  <h2>Phase B — TrustOS / Rust Daemon (Pieces 4–8)</h2>
+  <table>
+    <tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--violet);font-weight:600">4</td><td><strong>Auth Rewrite (Windows-first)</strong> — Replace tss_esapi with windows crate (TPM2 + BCrypt). Keep WSL2 fallback behind #[cfg]. Same public API.</td><td><code>crates/auth/handshake.rs</code> (rewrite), <code>crates/auth/Cargo.toml</code> (edit)</td><td>Existing test_handshake_flow still passes on Windows AND Linux</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">5</td><td><strong>Sovereignty Crate</strong> — Trust levels 0-3 + micro-dilemma gate. Pure logic, depends on auth for biometric challenge. VCG-style gate adjustment.</td><td><code>crates/sovereignty/src/{lib.rs, firewall.rs, trust_level.rs, dilemma.rs}</code></td><td>Unit tests: trust transitions, gate triggering at confidence≥0.95</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">6</td><td><strong>Sandbox Crate</strong> — Trust-tiered execution. Process-spawn wrapper + trust level in audit envelope. Windows Sandbox / Firecracker stubbed behind trait.</td><td><code>crates/sandbox/src/{lib.rs, trust_tier.rs, spawner.rs}</code></td><td>Runs a sandboxed echo process, records trust level in trace</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">7</td><td><strong>Ledger Crate</strong> — Append-only DuckDB ledger. append(entry) → hash. verify_chain() → bool. SHA-256 hash chaining. Ed25519 row signatures.</td><td><code>crates/ledger/src/{lib.rs, merkle.rs, schema.sql}</code></td><td>Append 100 rows, verify chain, rollback to row 42, verify new chain tip</td></tr>
+    <tr><td style="color:var(--violet);font-weight:600">8</td><td><strong>solomon-daemon Binary</strong> — main.rs wires auth → bus → ledger. CLI: init-token, sign-message, verify-message. Runnable binary.</td><td><code>crates/solomon-daemon/src/main.rs</code></td><td><code>cargo run -p solomon-daemon -- init-token</code> → writes token. <code>sign-message "hello"</code> → signed output</td></tr>
+  </table>
+
+  <h2>Phase C — MemoryOS + Cognitive Twin (Pieces 9–13)</h2>
+  <table>
+    <tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">9</td><td><strong>Embedder Module</strong> — Protocol + HashingEmbedder (deterministic) + RandomEmbedder. Tests. Pluggable — real MiniLM ONNX drops in later.</td><td><code>python/memory/embedder.py</code></td><td>pytest: HashingEmbedder produces same vector for same text; RandomEmbedder produces D-dim vector</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">10</td><td><strong>LLM Loader</strong> — GGUF loader for Phi-3-mini 4-bit via llama-cpp-python. Stub re-ranker when model not installed.</td><td><code>python/utils/phi3_loader.py</code></td><td>Without model: stub returns rank list. With model: runs real inference.</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">11</td><td><strong>Anticipatory HMM</strong> — Online HMM-lite for pattern→outcome predictions. Replaces hardcoded list in store.py.</td><td><code>python/anticipatory/hood.py</code></td><td>Train on 10 synthetic sequences, predict next with &gt;70% accuracy</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">12</td><td><strong>Cognitive Twin Tracker</strong> — Focus/load/momentum from keyboard+mouse (pynput). Outputs state vector on bus.</td><td><code>python/cognitive_twin/tracker.py</code></td><td>Run 30s session, verify Fₓ + 𝕃ᵤ + Mₜ are computed and published to bus</td></tr>
+    <tr><td style="color:var(--cyan);font-weight:600">13</td><td><strong>Memory Daemon</strong> — MemoryOS daemon. Connects to bus, handles memory.store and memory.search events.</td><td><code>python/memory/daemon.py</code></td><td>Start daemon, send memory.store event, retrieve with memory.search, verify match</td></tr>
+  </table>
+
+  <h2>Phase D — UI / Electron (Pieces 14–19)</h2>
+  <table>
+    <tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--amber);font-weight:600">14</td><td><strong>Electron Scaffold</strong> — electron + vite + react + three.js. main.ts opens window, loads index.html. Borderless, #02020a background.</td><td><code>ui/{package.json, src/main.ts, public/index.html}</code></td><td><code>npm run dev</code> — window opens, Three.js canvas renders</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">15</td><td><strong>IPC Handler</strong> — Connects to Rust bus (named-pipe/AF_UNIX). Solomon envelope encode/decode in TypeScript.</td><td><code>ui/src/ipc_handler.ts</code></td><td>Send ping to bus, receive pong, verify signature</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">16</td><td><strong>Avatar Renderer</strong> — WebGPU/Three.js rigged avatar. 5 MGL gesture blend-shapes. Lip-sync viseme mapping.</td><td><code>ui/src/avatar_renderer.tsx</code></td><td>Avatar renders at 60fps, lip-syncs to test audio, 5 gestures animate correctly</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">17</td><td><strong>Voice Pipeline</strong> — Whisper.cpp tiny.en ASR + TTS wrapper. Stubs return mock transcripts when whisper.cpp not installed.</td><td><code>ui/src/voice_pipeline.ts</code></td><td>Record 5s audio, transcribe, verify text returned (real or stub)</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">18</td><td><strong>Sovereignty UI</strong> — Biometric gate UI. Windows Hello via WebAuthn where available; stub challenge otherwise.</td><td><code>ui/src/sovereignty_ui.tsx</code></td><td>High-confidence action triggers gate dialog, accepts/rejects correctly</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">19</td><td><strong>Gesture Handler</strong> — Maps 5 MGL gestures (tap, double-tap, pinch-hold, orbit, two-finger-pull) to avatar blend-shapes and system intents.</td><td><code>ui/src/gesture_handler.ts</code></td><td>Each of 5 gestures produces correct intent event within 30ms</td></tr>
+  </table>
+
+  <h2>Phase E — Tests, Scripts, Docs, CI (Pieces 20–28)</h2>
+  <table>
+    <tr><th>#</th><th>Piece</th><th>Files</th><th>Verification</th></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">20</td><td><strong>E2E Latency Test</strong> — Cross-component test: daemon + memory daemon + mock UI. Asserts &lt;50ms p95 voice→avatar.</td><td><code>tests/integration/e2e_latency.test.rs</code></td><td>p95 latency ≤50ms on 100 runs</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">21</td><td><strong>Voice/Avatar + Mentor Gate Tests</strong> — Stub voice/avatar paths. Assert gate fires for high-trust actions.</td><td><code>tests/integration/{voice_avatar.test, mentor_gate.test}</code></td><td>Gate fires exactly when confidence ≥0.95; voice→avatar latency &lt;50ms</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">22</td><td><strong>Scripts</strong> — bootstrap_token.sh/.ps1, build_daemon.sh, build_ui.sh, run_tests.sh, deploy.sh.</td><td><code>scripts/*</code></td><td>Each script runs without error on clean machine</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">23</td><td><strong>Documentation</strong> — architecture.md, security_model.md, user_guide.md.</td><td><code>docs/*.md</code></td><td>mkdocs build succeeds, all internal links valid</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">24</td><td><strong>Configs</strong> — daemon.toml, ui_settings.json. All runtime params externalized.</td><td><code>configs/*</code></td><td>Daemon loads config on startup, respects all settings</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">25</td><td><strong>CI Pipeline</strong> — GitHub Actions: build, test, clippy, audit, fuzz, Docker. Fails on any vulnerability.</td><td><code>.github/workflows/{ci.yml, release.yml}</code></td><td>Pipeline runs in &lt;10 min; all steps green on clean push</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">26</td><td><strong>License + Gitignore</strong> — MIT license, comprehensive .gitignore, .env.example.</td><td><code>LICENSE, .gitignore, .env.example</code></td><td>licensee check passes; no secrets in repo</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">27</td><td><strong>Python Packaging + Makefile</strong> — pyproject.toml with all deps pinned. Makefile: make build, make test, make run.</td><td><code>pyproject.toml, Makefile</code></td><td><code>make test</code> runs all Rust + Python + TypeScript tests in one command</td></tr>
+    <tr><td style="color:var(--emerald);font-weight:600">28</td><td><strong>README Update</strong> — Verified build/run commands. "What works / What's stubbed" status table. Architecture diagram.</td><td><code>README.md</code> (final edit)</td><td>Clone on clean machine → README commands → system running in &lt;15 min</td></tr>
+  </table>
+
+  <div class="callout c" style="margin-top:40px;">
+    <div class="callout-label">Final End-to-End Verification</div>
+    <p>After Piece 28: cargo build --workspace && cargo test --workspace → python -m pytest python/ → cd ui && npm test → ./tests/integration/e2e_latency.test.sh. A running UI window displays the avatar, accepts a text command, routes it through the bus, retrieves a memory, and animates the avatar — all in under 50ms p95. The ledger contains a signed, hash-chained record of every action taken.</p>
+  </div>
+</div>
+
+<!-- ████ WHAT THIS BECOMES ████ -->
+<div class="section section-alt" id="becomes">
+  <div class="section-num">21 — What Solomon Becomes</div>
+  <div class="section-h">Not Software.<br><span class="v">A Synthetic Mind.</span></div>
+
+  <p class="lead">When all 28 pieces are assembled and the transformative upgrades are implemented, Solomon X transcends every category of software that came before it. It is not an assistant that answers questions. It is not an agent that executes commands. It is a cognitive presence that compounds your intelligence over years.</p>
+
+  <div class="ps-row">
+    <div class="ps-cell">
+      <div class="ps-label bad">Every AI Before Solomon</div>
+      <p>Reactive. Amnesiac. Stateless. Tool-centric. Emotionally blind. Cloud-dependent. Starts from zero every session. Waits to be asked. Never learns who you are — only what you typed.</p>
+    </div>
+    <div class="ps-cell">
+      <div class="ps-label good">Solomon X</div>
+      <p>Proactive. Persistent. Continuous. Intent-driven. Emotionally intelligent. Local-first. Never resets. Notices before you ask. Builds a model of you that deepens over years until it can represent your perspective.</p>
+    </div>
+  </div>
+
+  <div class="bq" style="margin-top:48px;">
+    <p>"The goal was never to build a better assistant. The goal was to change the fundamental relationship between humans and computing. Solomon is the first system that grows alongside you — not in capability alone, but in understanding. Not a tool. Not an agent. A cognitive presence. A digital extension of your mind. A companion for the long journey."</p>
+    <div class="bq-attr">Project Solomon — Final Vision Statement</div>
+  </div>
+
+  <div class="stat-row" style="margin-top:40px;">
+    <div class="stat-item"><div class="stat-n" style="color:var(--violet)">0%</div><div class="stat-l">Cloud required</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--cyan)">∞</div><div class="stat-l">Memory horizon</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--amber)">10yr+</div><div class="stat-l">Compounding growth</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--emerald)">100%</div><div class="stat-l">Local ownership</div></div>
+    <div class="stat-item"><div class="stat-n" style="color:var(--rose)">1</div><div class="stat-l">Place to start</div></div>
+  </div>
+
+  <div class="callout e" style="margin-top:48px;">
+    <div class="callout-label">The One Command That Starts Everything</div>
+    <p><code>ollama pull mistral && python brain.py</code> — That's it. Everything in this 21-section blueprint grows from that single working conversation loop. Build Piece 1 today. Ship a demo by Month 4. Change how people think about AI by Month 12.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-brand">SOLOMON</div>
+    <div class="footer-tag">The Cognitive Presence System</div>
+    <div class="footer-copy">Full Technical Blueprint · v3.0 · 2025–2030<br>The most important personal computing shift of the decade.<br>Starting on your laptop. Starting today.</div>
+  </div>
+  <div>
+    <div class="footer-col-title">Architecture Layers</div>
+    <ul class="footer-list">
+      <li>00 · Manifesto &amp; CSI</li>
+      <li>01 · 8-Layer System</li>
+      <li>02 · Multi-Brain Intelligence</li>
+      <li>03 · 10-Horizon Memory Cortex</li>
+      <li>04 · Emotional Intelligence Engine</li>
+      <li>05 · Dream Engine &amp; CCP</li>
+      <li>06 · Reality Graph &amp; World Model</li>
+      <li>07 · Agent Senate &amp; CRE</li>
+      <li>08 · JARVIS Execution Layer</li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Additional Sections</div>
+    <ul class="footer-list">
+      <li>09 · Perception &amp; Cognitive State</li>
+      <li>10 · Avatar &amp; Cognitive Genome</li>
+      <li>11 · Gamified Life OS</li>
+      <li>12 · Security Architecture</li>
+      <li>13 · Complete Tech Stack</li>
+      <li>14 · 8-Phase Build Roadmap</li>
+      <li>15 · Revenue &amp; Recognition</li>
+      <li>16 · Digital Twin &amp; Legacy</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+[package]
+name = "solomon-daemon"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+solomon-auth = { path = "../auth" }
+solomon-bus = { path = "../bus" }
+solomon-sandbox = { path = "../sandbox" }
+solomon-ledger = { path = "../ledger" }
+solomon-sovereignty = { path = "../sovereignty" }
+tokio = { workspace = true }
+tracing = "0.1"
+tracing-subscriber = { workspace = true }

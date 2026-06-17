@@ -1,0 +1,7 @@
+websockets
+httpx
+pydantic
+lancedb
+pyarrow
+numpy
+pytest
