@@ -720,9 +720,21 @@ const mouseNDC = new THREE.Vector2();
 let hoveredRingIndex = -1;
 let ringAtSigilIndex = -1;
 const raycastTargets = [];
+// ⚡ Bolt Optimization: Filter raycast targets.
+// By targeting only the structural meshes ('band', 'frontRail', 'backRail', 'stone'),
+// we avoid calculating intersections against hundreds of intricate detail meshes
+// (cross-struts, hex nodes, etc.), drastically reducing CPU load during mouse hover.
 rings.forEach((r, idx) => {
   r.group.traverse(child => {
-    if (child.isMesh) raycastTargets.push({ mesh: child, ringIndex: idx });
+    if (
+      child.isMesh &&
+      (child.name === 'band' ||
+        child.name === 'frontRail' ||
+        child.name === 'backRail' ||
+        child.name === 'stone')
+    ) {
+      raycastTargets.push({ mesh: child, ringIndex: idx });
+    }
   });
 });
 const raycastMeshes = raycastTargets.map(t => t.mesh);
@@ -805,20 +817,33 @@ function unhoverRing(idx) {
   hideTooltip();
 }
 
+// ⚡ Bolt Optimization: Debounce mousemove event.
+// Throttling raycasting via requestAnimationFrame ensures that heavy intersection
+// logic fires at most once per frame, preventing synchronous main-thread blocking
+// caused by rapid, high-frequency mouse events.
+let isRaycasting = false;
+
 function onMouseMove(e) {
   mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
   mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
-  raycaster.setFromCamera(mouseNDC, camera);
-  const hits = raycaster.intersectObjects(raycastMeshes, false);
-  let newHoverIndex = -1;
-  if (hits.length > 0) {
-    const target = raycastTargets.find(t => t.mesh === hits[0].object);
-    if (target) newHoverIndex = target.ringIndex;
-  }
-  if (newHoverIndex !== hoveredRingIndex) {
-    if (hoveredRingIndex !== -1) unhoverRing(hoveredRingIndex);
-    if (newHoverIndex !== -1) hoverRing(newHoverIndex);
-    hoveredRingIndex = newHoverIndex;
+
+  if (!isRaycasting) {
+    isRaycasting = true;
+    requestAnimationFrame(() => {
+      raycaster.setFromCamera(mouseNDC, camera);
+      const hits = raycaster.intersectObjects(raycastMeshes, false);
+      let newHoverIndex = -1;
+      if (hits.length > 0) {
+        const target = raycastTargets.find(t => t.mesh === hits[0].object);
+        if (target) newHoverIndex = target.ringIndex;
+      }
+      if (newHoverIndex !== hoveredRingIndex) {
+        if (hoveredRingIndex !== -1) unhoverRing(hoveredRingIndex);
+        if (newHoverIndex !== -1) hoverRing(newHoverIndex);
+        hoveredRingIndex = newHoverIndex;
+      }
+      isRaycasting = false;
+    });
   }
 }
 window.addEventListener('mousemove', onMouseMove);
